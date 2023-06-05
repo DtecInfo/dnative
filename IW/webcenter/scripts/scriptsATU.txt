@@ -1,5 +1,0 @@
---Scripts de atualização:
-
-alter table wc_simulacao_venda  add placa_usado varchar2(8);
-
-alter table wc_lista_documentos add obrigatorio varchar2(1);

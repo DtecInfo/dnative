@@ -1,5 +1,0 @@
-inherited FrmIndex: TFrmIndex
-  OnCreate = IWAppFormCreate
-  DesignLeft = 2
-  DesignTop = 2
-end

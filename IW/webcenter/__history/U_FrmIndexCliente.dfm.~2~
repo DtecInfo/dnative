@@ -1,7 +1,0 @@
-inherited FrmIndexCliente: TFrmIndexCliente
-  DesignLeft = 8
-  DesignTop = 8
-  inherited IWTemplateProcessorHTML1: TIWTemplateProcessorHTML
-    MasterTemplate = 'MasterCliente.html'
-  end
-end
