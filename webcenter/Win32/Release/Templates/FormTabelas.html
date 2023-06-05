@@ -1,0 +1,759 @@
+<!DOCTYPE html>
+<html>
+   <head>
+      <link rel="stylesheet" type="text/css" href="css/estilo.css">
+   </head>
+   <body>
+      <section class="content-header">
+         <h1>
+            Tabelas
+            <small>Listagem e Manutenção.</small>
+         </h1>
+         <ol class="breadcrumb">
+            <li><a href="javascript: SetaAcao('Menu', 'Iniciar');"><i class="fa fa-home"></i> Início</a></li>
+            <li class="active">Tabelas</li>
+         </ol>
+      </section>
+      <ul class="nav nav-tabs">
+         <li class="nav-item">
+            <a class="nav-link active" href="#">Tabelas</a>
+         </li>
+      </ul>
+      <section class="content container-fluid">
+         <div class="col-md-12">
+            <div class="box box-primary">
+               <div class="box-header with-border">
+                  <i class="fa fa-fw  fa-database"></i>
+                  <h3 class="box-title">Tabelas - Listagem e Manutenção</h3>
+               </div>
+               <div class="box-body">
+                  <div class="box box-default">
+                     <div class="row">
+                        <div class="col-md-12">
+                           <br />
+                           <div class="box">
+                              <div class="box-header">
+                                 <h3 class="box-title">Opções de Manutenção</h3>
+                              </div>
+                              <div class="box-body">
+                                 <a class="btn btn-app" id="BTN_GRUPOS" >
+                                 <i class="fa fa-object-group"></i> Grupos
+                                 </a>
+                                 <a class="btn btn-app">
+                                 <i class="fa fa-sitemap" id="BTN_LOCACOES"></i> Locações
+                                 </a>
+                                 <a class="btn btn-app">
+                                 <i class="fa fa-table"></i> NCMs
+                                 </a>                            
+                                 <a class="btn btn-app" id="BTN_PESQUISARP">                                 
+                                 <i class="fa fa-barcode"></i> Itens
+                                 </a>
+                                 <a class="btn btn-app">                                 
+                                 <i class="fa  fa-user-md"  id="BTN_FORNECEDORES"></i> Fornecedores
+                                 </a>
+                                 <a class="btn btn-app">                                 
+                                 <i class="fa fa-wordpress" id="BTN_MARCAS" ></i> Marcas
+                                 </a>
+                                 <a class="btn btn-app">                                 
+                                 <i class="fa fa-ambulance" id="BTN_LESTOQUE"></i> Local Estoque
+                                 </a>
+                              </div>
+                              <!-- /.box-body -->
+                           </div>
+                        </div>
+                     </div>
+                  </div>
+               </div>
+            </div>
+         </div>
+      </section>
+      <!-- Modal Locações Incluir --> 
+      <div class="modal fade" id="MDIncluirL" role="dialog" data-backdrop="static" data-keyboard="false">
+         <div class="modal-dialog modal-lg">
+            <!-- Modal content-->
+            <div class="modal-content">
+               <div class="modal-header">
+                  <h4 class="modal-title"><i class="fa fa-fw fa-sitemap"></i> Locações - Inclusão</h4>
+               </div>
+               <div class="modal-body">
+                  <form>
+                     <div class="form-row">
+                        <div class="form-group col-md-3">
+                           <label for="label1">Local Estoque</label>
+                           {%combo_local_estoque%}
+                        </div>
+                        <div class="form-group col-md-3">
+                           <label for="label1">Locação</label>
+                           {%edit_locacao%}
+                        </div>
+                        <div class="form-group col-md-3">
+                           <label for="label1">Prateleira</label>
+                           {%edit_prateleira%}
+                        </div>
+                        <div class="form-group col-md-3">
+                           <label for="label1">Lado</label>
+                           {%edit_lado%}
+                        </div>
+                     </div>
+                     A 
+                  </form>
+               </div>
+               <div class="modal-footer"> 
+                  <button type="button" class="btn btn-default"   
+                     id="BTN_SALVAR_LOC"  data-dismiss="modal" ><i class="fa fa-fw fa-save"></i> Salvar</button>  
+                  <button type="button" class="btn btn-default"  data-dismiss="modal"
+                     >  Sair</button>
+               </div>
+            </div>
+         </div>
+      </div>
+      <!--FIM  Modal Locações de Itens Incluir -->
+      <!-- Modal Locações -->
+      <div class="modal fade" id="MDLocacoes" role="dialog" data-backdrop="static" data-keyboard="false">
+         <div class="modal-dialog modal-lg">
+            <!-- Modal content-->
+            <div class="modal-content">
+               <div class="modal-header">
+                  <h4 class="modal-title"><i class="fa fa-fw fa-sitemap"></i>Locações</h4>
+               </div>
+               <div class="modal-body">
+                  <div class="box-tools pull-right">
+                     <div class="btn-group">
+                        <button type="buttom" class="btn btn-primary" id="BTN_INCLUIR_LOC"  data-dismiss="modal" >
+                        <i class="fa fa-plus" aria-hidden="true"></i><span class="hidden-xs hidden-sm">
+                        Incluir</span>
+                        </button>
+                     </div>
+                  </div>
+                  <div class="table-responsive">
+                     <div class="container-fluid">
+                        <div class="row">
+                           <div class="col-xs-12">
+                              <br />
+                              <table id="TBLocacoes" class="table table-hover table-striped table-bordered table-condensed" style="width:100%">
+                                 <thead>
+                                    <tr class="success">
+                                       <th>Local Estoque </th>
+                                       <th>Locação</th>
+                                       <th>Prateleira</th>
+                                       <th>Lado</th>
+                                       <th>Ação</th>
+                                    </tr>
+                                 </thead>
+                              </table>
+                           </div>
+                        </div>
+                     </div>
+                  </div>
+               </div>
+               <div class="modal-footer">                 
+                  <button type="button" class="btn btn-default"   data-dismiss="modal"
+                     >Sair</button>
+               </div>
+            </div>
+         </div>
+      </div>
+      <!--FIM  Modal Locações de Itens -->
+      <!-- Modal Grupos Incluir --> 
+      <div class="modal fade" id="MDIncluirGrupos" role="dialog" data-backdrop="static" data-keyboard="false">
+         <div class="modal-dialog modal-lg">
+            <!-- Modal content-->
+            <div class="modal-content">
+               <div class="modal-header">
+                  <h4 class="modal-title"><i class="fa fa-fw fa-object-group"></i> Grupo de Itens </h4>
+               </div>
+               <div class="modal-body">
+                  <div class="box box-primary">
+                     <div class="box-header with-border">
+                        <i class="fa fa-fw fa-object-group"></i>
+                        <h3 class="box-title">Inclusão...</h3>
+                     </div>
+                     <div class="box-body">
+                        <div class="box box-default">
+                           <form id="formulario"  >
+                              <fieldset background-color:#A7C0DC; >
+                                 <div class="form-row">
+                                    <div class="form-group col-md-12">
+                                       <label for="label1">Descrição do Grupo do Item</label>
+                                       {%edit_grupo%}
+                                    </div>
+                                 </div>
+                              </fieldset>
+                           </form>
+                        </div>
+                     </div>
+                  </div>
+               </div>
+               <div class="modal-footer"> 
+                  <button type="button" class="btn btn-default"   data-dismiss="modal"
+                     id="BTNSALVARGRUPO"><i class="fa fa-fw fa-save"></i> Salvar</button>  
+                  <button type="button" class="btn btn-default" onclick="SetaAcao('CancM');" data-dismiss="modal"
+                     id="BTNCANCELAR">  Sair</button>
+               </div>
+            </div>
+         </div>
+      </div>
+      <!--FIM  Modal Grupos de Itens Incluir -->
+      <!-- Modal Grupos -->
+      <div class="modal fade" id="MDGrupos" role="dialog" data-backdrop="static" data-keyboard="false">
+         <div class="modal-dialog modal-lg">
+            <!-- Modal content-->
+            <div class="modal-content">
+               <div class="modal-header">
+                  <h4 class="modal-title"><i class="fa fa-fw fa-object-group"></i> Grupos de itens</h4>
+               </div>
+               <div class="modal-body">
+                  <div class="box box-primary">
+                     <div class="box-header with-border">
+                        <i class="fa fa-fw fa-object-group"></i>
+                        <h3 class="box-title">Listagem e Manutenção</h3>
+                     </div>
+                     <div class="box-body">
+                        <div class="box box-default">
+                           <div class="box-tools pull-right">
+                              <div class="btn-group">
+                                 <button type="buttom" class="btn btn-primary" id="BTN_INCLUIR_GRUPO"  data-dismiss="modal" >
+                                 <i class="fa fa-plus" aria-hidden="true"></i><span class="hidden-xs hidden-sm">
+                                 Incluir</span>
+                                 </button>
+                              </div>
+                           </div>
+                           <div class="table-responsive">
+                              <div class="container-fluid">
+                                 <div class="row">
+                                    <div class="col-xs-12">
+                                       <br />
+                                       <table id="TBGrupos" class="table table-hover table-striped table-bordered table-condensed" style="width:100%">
+                                          <thead>
+                                             <tr class="success">
+                                                <th>Id</th>
+                                                <th>Descrição </th>
+                                                <th>Ação</th>
+                                             </tr>
+                                          </thead>
+                                       </table>
+                                    </div>
+                                 </div>
+                              </div>
+                           </div>
+                        </div>
+                     </div>
+                  </div>
+               </div>
+               <div class="modal-footer">                 
+                  <button type="button" class="btn btn-default" onclick="SetaAcao('CancM');" data-dismiss="modal"
+                     id="BTNCANCELAR">Sair</button>
+               </div>
+            </div>
+         </div>
+      </div>
+      <!--FIM  Modal Grupos de Itens -->
+      <!-- Modal Local Estoque---------------------------------------------------------------------------------------> 
+      <!--Incluir-->
+      <div class="modal fade" id="MDCadLEstoque" role="dialog" data-backdrop="static" data-keyboard="false">
+         <div class="modal-dialog modal-lg">
+            <!-- Modal content-->
+            <div class="modal-content">
+               <div class="modal-header">
+                  <h4 class="modal-title"><i class="fa fa-fw fa-object-group"></i>Locais de Estoque</h4>
+               </div>
+               <div class="modal-body">
+                  <div class="box box-primary">
+                     <div class="box-header with-border">
+                        <i class="fa fa-fw fa-object-group"></i>
+                        <h3 class="box-title">Inclusão...</h3>
+                     </div>
+                     <div class="box-body">
+                        <div class="box box-default">
+                           <form>
+                              <div class="form-row">
+                                 <div class="form-group col-md-12">
+                                    <label for="label1">Descrição</label>
+                                    {%edit_descricao_local%}
+                                 </div>
+                              </div>
+                           </form>
+                        </div>
+                     </div>
+                  </div>
+               </div>
+               <div class="modal-footer"> 
+                  <button type="button" class="btn btn-default"   id="BTNSALVARLOCAL" data-dismiss="modal" >
+                  <i class="fa fa-fw fa-save"></i> Salvar</button>  
+                  <button type="button" class="btn btn-default" onclick="SetaAcao('CancM');" data-dismiss="modal"
+                     id="BTNCANCELAR">  Sair</button>
+               </div>
+            </div>
+         </div>
+      </div>
+      <!--Listar-->
+      <div class="modal fade" id="MDLEstoque" role="dialog" data-backdrop="static" data-keyboard="false">
+         <div class="modal-dialog modal-lg">
+            <!-- Modal content-->
+            <div class="modal-content">
+               <div class="modal-header">
+                  <h4 class="modal-title"><i class="fa fa-fw fa-object-group"></i>Locais de Estoque</h4>
+               </div>
+               <div class="modal-body">
+                  <div class="box-tools pull-right">
+                     <div class="btn-group">
+                        <button type="buttom" class="btn btn-primary" id="BTN_INC_LOCAIS"  data-dismiss="modal" >
+                        <i class="fa fa-plus" aria-hidden="true"></i><span class="hidden-xs hidden-sm">
+                        Incluir</span>
+                        </button>
+                     </div>
+                  </div>
+                  <div class="table-responsive">
+                     <div class="container-fluid">
+                        <div class="row">
+                           <div class="col-xs-12">
+                              <br />
+                              <table id="TBLEstoque" class="table table-hover table-striped table-bordered table-condensed" style="width:100%">
+                                 <thead>
+                                    <tr class="success">
+                                       <th>Cod. Local</th>
+                                       <th>Descrição </th>
+                                       <th>Ação</th>
+                                    </tr>
+                                 </thead>
+                              </table>
+                           </div>
+                        </div>
+                     </div>
+                  </div>
+               </div>
+               <div class="modal-footer">                 
+                  <button type="button" class="btn btn-default" onclick="SetaAcao('CancM');" data-dismiss="modal"
+                     id="BTNCANCELAR">Sair</button>
+               </div>
+            </div>
+         </div>
+      </div>
+      <!--FIM Modal Local Estoque---------------------------------------------------------------------------------------> 
+      <!-- Modal Marcas Incluir---------------------------------------------------------------------------------------> 
+      <div class="modal fade" id="MDCadMarcas" role="dialog" data-backdrop="static" data-keyboard="false">
+         <div class="modal-dialog modal-lg">
+            <!-- Modal content-->
+            <div class="modal-content">
+               <div class="modal-header">
+                  <h4 class="modal-title"><i class="fa fa-fw fa-object-group"></i>Marcas</h4>
+               </div>
+               <div class="modal-body">
+                  <div class="box box-primary">
+                     <div class="box-header with-border">
+                        <i class="fa fa-fw fa-object-group"></i>
+                        <h3 class="box-title">Inclusão...</h3>
+                     </div>
+                     <div class="box-body">
+                        <div class="box box-default">
+                           <form>
+                              <div class="form-row">
+                                 <div class="form-group col-md-12">
+                                    <label for="label1">Descrição</label>
+                                    {%edit_descricao_marca%}
+                                 </div>
+                              </div>
+                           </form>
+                        </div>
+                     </div>
+                  </div>
+               </div>
+               <div class="modal-footer"> 
+                  <button type="button" class="btn btn-default"   id="BTNSALVARMARCA" data-dismiss="modal" >
+                  <i class="fa fa-fw fa-save"></i> Salvar</button>  
+                  <button type="button" class="btn btn-default" onclick="SetaAcao('CancM');" data-dismiss="modal"
+                     id="BTNCANCELAR">  Sair</button>
+               </div>
+            </div>
+         </div>
+      </div>
+      <!--FIM  Modal Marcas Incluir--------------------------------------------------------------------------------->     
+      <!--Modal Marcas--------------------------------------------------------------------------->
+      <div class="modal fade" id="MDMarcas" role="dialog" data-backdrop="static" data-keyboard="false">
+         <div class="modal-dialog modal-lg">
+            <!-- Modal content-->
+            <div class="modal-content">
+               <div class="modal-header">
+                  <h4 class="modal-title"><i class="fa fa-fw fa-object-group"></i>Marcas</h4>
+               </div>
+               <div class="modal-body">
+                  <div class="box-tools pull-right">
+                     <div class="btn-group">
+                        <button type="buttom" class="btn btn-primary" id="BTN_INC_MARCAS"  data-dismiss="modal" >
+                        <i class="fa fa-plus" aria-hidden="true"></i><span class="hidden-xs hidden-sm">
+                        Incluir</span>
+                        </button>
+                     </div>
+                  </div>
+                  <div class="table-responsive">
+                     <div class="container-fluid">
+                        <div class="row">
+                           <div class="col-xs-12">
+                              <br />
+                              <table id="TBMarcas" class="table table-hover table-striped table-bordered table-condensed" style="width:100%">
+                                 <thead>
+                                    <tr class="success">
+                                       <th>Cod. Marca</th>
+                                       <th>Descrição </th>
+                                       <th>Ação</th>
+                                    </tr>
+                                 </thead>
+                              </table>
+                           </div>
+                        </div>
+                     </div>
+                  </div>
+               </div>
+               <div class="modal-footer">                 
+                  <button type="button" class="btn btn-default" onclick="SetaAcao('CancM');" data-dismiss="modal"
+                     id="BTNCANCELAR">Sair</button>
+               </div>
+            </div>
+         </div>
+      </div>
+      <!--FIM  Modal Marcas--------------------------------------------------------------------------->
+      <!-- Modal Fornecedores Incluir --> 
+      <div class="modal fade" id="MDCadFornec" role="dialog" data-backdrop="static" data-keyboard="false">
+         <div class="modal-dialog modal-lg">
+            <!-- Modal content-->
+            <div class="modal-content">
+               <div class="modal-header">
+                  <h4 class="modal-title"><i class="fa fa-fw fa-object-group"></i> Fornecedores</h4>
+               </div>
+               <div class="modal-body">
+                  <div class="box box-primary">
+                     <div class="box-header with-border">
+                        <i class="fa fa-fw fa-object-group"></i>
+                        <h3 class="box-title">Inclusão...</h3>
+                     </div>
+                     <div class="box-body">
+                        <div class="box box-default">
+                           <form class="modal-footer">
+                              <div class="form-row">
+                                 <div class="form-group col-md-12">
+                                    <label for="label1">Descrição</label>
+                                    {%edit_descricao_fornecedor%}
+                                 </div>
+                              </div>
+                           </form>
+                        </div>
+                     </div>
+                  </div>
+               </div>
+               <div class="modal-footer"> 
+                  <button type="button" class="btn btn-default"   id="BTNSALVARFORNEC" data-dismiss="modal" >
+                  <i class="fa fa-fw fa-save"></i> Salvar</button>  
+                  <button type="button" class="btn btn-default" onclick="SetaAcao('CancM');" data-dismiss="modal"
+                     id="BTNCANCELAR">  Sair</button>
+               </div>
+            </div>
+         </div>
+      </div>
+      <!--FIM  Modal Fornecedores Incluir--------------------------------------------------------------------------------->
+      <!-- Modal Fornecedores -------------------------------------------------------------------------------------------->
+      <div class="modal fade" id="MDFornecedores" role="dialog" data-backdrop="static" data-keyboard="false">
+         <div class="modal-dialog modal-lg">
+            <!-- Modal content-->
+            <div class="modal-content">
+               <div class="modal-header">
+                  <h4 class="modal-title"><i class="fa fa-fw fa-object-group"></i> Fornecedor Estoque</h4>
+               </div>
+               <div class="modal-body">
+                  <div class="box-tools pull-right">
+                     <div class="btn-group">
+                        <button type="buttom" class="btn btn-primary" id="BTN_INCLUIR_FOR"  data-dismiss="modal" >
+                        <i class="fa fa-plus" aria-hidden="true"></i><span class="hidden-xs hidden-sm">
+                        Incluir</span>
+                        </button>
+                     </div>
+                  </div>
+                  <div class="table-responsive">
+                     <div class="container-fluid">
+                        <div class="row">
+                           <div class="col-xs-12">
+                              <br />
+                              <table id="TBFornecedores" class="table table-hover table-striped table-bordered table-condensed" style="width:100%">
+                                 <thead>
+                                    <tr class="success">
+                                       <th>Cod. Fornecedor</th>
+                                       <th>Descrição </th>
+                                       <th>Ação</th>
+                                    </tr>
+                                 </thead>
+                              </table>
+                           </div>
+                        </div>
+                     </div>
+                  </div>
+               </div>
+               <div class="modal-footer">                 
+                  <button type="button" class="btn btn-default" onclick="SetaAcao('CancM');" data-dismiss="modal"
+                     id="BTNCANCELAR">Sair</button>
+               </div>
+            </div>
+         </div>
+      </div>
+      <!--FIM  Modal Fornecedores--------------------------------------------------------------------------->
+      <!-- Modal busca produtos----------------------------------------------------------------------------->
+      <div class="modal fade" id="MDPesquisaP2" role="dialog" data-backdrop="static" data-keyboard="false">
+         <div class="modal-dialog modal-lg">
+            <!-- Modal content-->
+            <div class="modal-content">
+               <div class="modal-header">
+                  <h4 class="modal-title"><i class="fa fa-fw fa-users"></i> Pesquisa de Produtos</h4>
+               </div>
+               <div class="modal-body">
+                  <div class="box-tools pull-right">
+                     <div class="btn-group">
+                        <button type="buttom" class="btn btn-primary" id="BTN_INCLUIR_ITEM"  data-dismiss="modal" >
+                        <i class="fa fa-plus" aria-hidden="true"></i><span class="hidden-xs hidden-sm">
+                        Incluir</span>
+                        </button>
+                     </div>
+                  </div>
+                  <div class="table-responsive">
+                     <div class="container-fluid">
+                        <div class="row">
+                           <div class="col-xs-12">
+                              <br />
+                              <table id="TBPesquisaP" class="table table-hover table-striped table-bordered table-condensed" style="width:100%">
+                                 <thead>
+                                    <tr class="success">
+                                       <th>Código Item</th>
+                                       <th>Fornecedor </th>
+                                       <th>Descrição</th>
+                                       <th>Preço Venda</th>
+                                       <th>NCM</th>
+                                       <th>Ação</th>
+                                    </tr>
+                                 </thead>
+                              </table>
+                           </div>
+                        </div>
+                     </div>
+                  </div>
+               </div>
+               <div class="modal-footer">                 
+                  <button type="button" class="btn btn-default" onclick="SetaAcao('CancM');" data-dismiss="modal"
+                     ><i class="fa fa-sign-out"></i> Sair</button>
+               </div>
+            </div>
+         </div>
+      </div>
+      <!--FIM  Modal Busca Produtos------------------------------------------------------------------------------>
+      <!-- Modal Manutenção de produtos-------------------------------------------------------------------------->
+      <div class="modal fade" id="MDCadastroP" role="dialog" data-backdrop="static" data-keyboard="false">
+         <div class="modal-dialog modal-lg">
+            <!-- Modal content-->
+            <div class="modal-content">
+               <div class="modal-header">
+                  <h4 class="modal-title"><i class="fa fa-fw  fa-calculator"></i> Cadastro de Produtos</h4>
+               </div>
+               <div class="modal-body">
+                  <div class="box-body">
+                     Id: {%ID_ITEM%}
+                     Modo: {%MODO_ITEM%}
+                     <div class="box box-info">
+                        <div class="row">
+                           <div class="col-md-12">
+                              <form>
+                                 <div class="form-row">
+                                    <div class="form-group col-md-3">
+                                       <label for="label1">Código do Item</label>
+                                       {%edit_md_cod_item%}
+                                    </div>
+                                    <div class="form-group col-md-5">
+                                       <label for="label1">Descrição</label>
+                                       {%edit_md_descricao%}
+                                    </div>
+                                    <div class="form-group col-md-4">
+                                       <label for="label1">Fornecedor</label>
+                                       {%combo_md_fornecedor%}
+                                    </div>
+                                 </div>
+                                 <div class="form-row">
+                                    <div class="form-group col-md-4">
+                                       <label for="label1">Marca</label>
+                                       {%combo_md_marca_item%}
+                                    </div>
+                                    <div class="form-group col-md-4">
+                                       <label for="label1">Grupo</label>
+                                       {%combo_md_grupo%}
+                                    </div>
+                                    <div class="form-group col-md-4">
+                                       <label for="label1">Preço venda</label>
+                                       {%edit_md_preco_venda%}
+                                    </div>
+                                 </div>
+                                 <div class="form-row">
+                                    <div class="form-group col-md-4">
+                                       <label for="label1">Tributação</label>
+                                       {%combo_tributacao_item%}
+                                    </div>
+                                    <div class="form-group col-md-4">
+                                       <label for="label1">Tipo Item</label>
+                                       {%combo_tipo_item%}
+                                    </div>
+                                    <div class="form-group col-md-4">
+                                       <label for="label1">Orígem</label>
+                                       {%combo_origem_item%}
+                                    </div>
+                                 </div>
+                                 <div class="form-row">
+                                    <div class="form-group col-md-2">
+                                       <label for="label1">Qtde.</label>
+                                       {%edit_md_comp_item%}
+                                    </div>
+                                    <div class="form-group col-md-2">
+                                       <label for="label1">Unidade</label>
+                                       {%combo_md_un_item%}
+                                    </div>
+                                    <div class="form-group col-md-4">
+                                       <label for="label1">NCM</label>
+                                       {%edit_md_ncm_item%}
+                                    </div>
+                                    <div class="form-group col-md-4">
+                                       <label for="label1">Cód. barras</label>
+                                       {%edit_md_cod_barras%}
+                                    </div>
+                                 </div>
+                              </form>
+                           </div>
+                        </div>
+                     </div>
+                  </div>
+               </div>
+               <div class="modal-footer">
+                  <button type="button" class="btn btn-default"   data-dismiss="modal" id="BTN_CAD_ITEM"><i class="fa fa-save"></i> Salvar</button>
+                  <button type="button" class="btn btn-default" onclick="SetaAcao('CancM');" data-dismiss="modal"
+                     ><i class="fa fa-sign-out"></i> Sair</button>
+               </div>
+            </div>
+         </div>
+      </div>
+      <!-- Fim Modal Manutenção de produtos------------------------------------------------------------------------------------------>
+      <!--Scripts-->
+      <script>
+         $(document).ready(function () {
+             $('#TBGrupos').DataTable(
+                 {
+                     responsive: true,
+                     "pageLength": 10,
+                     "language": {
+                         "url": "//cdn.datatables.net/plug-ins/1.10.19/i18n/Portuguese-Brasil.json"
+                     },
+                     "paging": true,
+                     "ordering": true,
+                     "searching": true,
+                     serverSide: true,
+                     processing: true,
+                     ajax: "/$/callback?callback=TBGrupos"
+                 });
+         
+         });
+      </script>
+      <script>
+         $(document).ready(function () {
+             $('#TBLocacoes').DataTable(
+                 {
+                     responsive: true,
+                     "pageLength": 10,
+                     "language": {
+                         "url": "//cdn.datatables.net/plug-ins/1.10.19/i18n/Portuguese-Brasil.json"
+                     },
+                     "paging": true,
+                     "ordering": true,
+                     "searching": true,
+                     serverSide: true,
+                     processing: true,
+                     ajax: "/$/callback?callback=TBLocacoes"
+                 });
+         
+         });
+      </script>
+      <script>
+         $(document).ready(function () {
+             $('#TBPesquisaP').DataTable(
+                 {
+                     responsive: true,
+                     "pageLength": 10,
+                     "language": {
+                         "url": "//cdn.datatables.net/plug-ins/1.10.19/i18n/Portuguese-Brasil.json"
+                     },
+                     "paging": true,
+                     "ordering": true,
+                     "searching": true,
+                     serverSide: true,
+                     processing: true,
+                     ajax: "/$/callback?callback=TBPesquisaP"
+                 });
+         
+         });
+         
+         
+      </script>
+      <script>
+         $(document).ready(function () {
+             $('#TBFornecedores').DataTable(
+                 {
+                     responsive: true,
+                     "pageLength": 10,
+                     "language": {
+                         "url": "//cdn.datatables.net/plug-ins/1.10.19/i18n/Portuguese-Brasil.json"
+                     },
+                     "paging": true,
+                     "ordering": true,
+                     "searching": true,
+                     serverSide: true,
+                     processing: true,
+                     ajax: "/$/callback?callback=TBFornecedores"
+                 });
+         
+         });
+         
+         
+      </script>
+      <script>
+         $(document).ready(function () {
+             $('#TBMarcas').DataTable(
+                 {
+                     responsive: true,
+                     "pageLength": 10,
+                     "language": {
+                         "url": "//cdn.datatables.net/plug-ins/1.10.19/i18n/Portuguese-Brasil.json"
+                     },
+                     "paging": true,
+                     "ordering": true,
+                     "searching": true,
+                     serverSide: true,
+                     processing: true,
+                     ajax: "/$/callback?callback=TBMarcas"
+                 });
+         
+         });
+         
+         
+      </script>
+       <script>
+         $(document).ready(function () {
+             $('#TBLEstoque').DataTable(
+                 {
+                     responsive: true,
+                     "pageLength": 10,
+                     "language": {
+                         "url": "//cdn.datatables.net/plug-ins/1.10.19/i18n/Portuguese-Brasil.json"
+                     },
+                     "paging": true,
+                     "ordering": true,
+                     "searching": true,
+                     serverSide: true,
+                     processing: true,
+                     ajax: "/$/callback?callback=TBLEstoque"
+                 });
+         
+         });
+         
+         
+      </script>
+   </body>
+</html>

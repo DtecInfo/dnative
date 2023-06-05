@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+</head>
+<body>
+    <section class="content-header">
+        <h1>
+            {%Cliente%}
+        </h1>
+        <ol class="breadcrumb">
+            <li><i class="fa fa-home"></i> Início</li>
+        </ol>
+    </section>
+    <br />
+    <!-- Main content -->
+    <section class="content">
+        <div class="row">
+            <div class="col-md-6">
+<!--                <br />-->
+                {%Chamados%}
+            </div>
+            <div class="col-md-6">
+                <div class="box box-warning">
+            <div class="box-header with-border">
+                <i class="fa fa-search"></i>
+                <h3 class="box-title">Consulta aos Chamados já Fechados no HelpDesk
+                    <small> ( Consulta )</small>
+                </h3> 
+            </div>
+            <!-- /.box-header -->
+            <div class="box-body">
+                <!-- Info boxes -->
+                <div class="row">
+                    <div class="col-md-12"> 
+                        <div class="row">
+                            <div class="col-lg-5">
+                                <div class="form-group">
+                                    <label>Digite parte do Problema</label>
+                                    {%PesquisaProblema%}
+                                </div>
+                            </div>
+                            <div class="col-lg-5">
+                                <div class="form-group">
+                                    <label>Digite parte da Solução</label>
+                                    {%PesquisaSolucao%}
+                                </div>
+                            </div>
+                            <div class="col-lg-2">
+                                <br class="hidden-xs hidden-sm hidden-md" />
+                                <button type="button" class="btn btn-warning btn-block btn-sm" onclick="Pesquisar();"><b>Filtrar</b></button>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-xs-12">
+                                <br />
+                                {%Pesquisa%}
+                            </div>
+                        </div>
+                    </div>
+                    <!-- /.col -->
+                </div>
+                <!-- /.row -->
+            </div>
+        </div>
+            </div>
+        </div>
+    </section>
+
+
+    <script>
+        //
+        //  FUNCAO DE VALIDACAO DE CAMPOS ANTES DE FILTRAR
+        //
+        function Pesquisar(){
+            debugger;
+            var str = document.getElementById('PESQUISAPROBLEMA').value;
+            var n = str.length;
+            
+            str = document.getElementById('PESQUISASOLUCAO').value;
+            var n2 = str.length;
+            if (n == 0 && n2 == 0){
+                swal('Atenção!!!', 'Um dos campos de Pesquisa deve ser preenchido !', 'warning');
+                document.getElementById('IWACAO').value = 'Limpa';
+                AddChangedControl('IWACAO');   // colocar essa linha sempre que usar o onAsyncClick pois colocar o campo como alterado
+                IWBTNACAO.click();
+            }
+            else {
+                document.getElementById('IWACAO').value = 'Pesqu';
+                AddChangedControl('IWACAO');   // colocar essa linha sempre que usar o onAsyncClick pois colocar o campo como alterado
+                IWBTNACAO.click();
+            }
+        }
+    </script>
+</body>
+</html>

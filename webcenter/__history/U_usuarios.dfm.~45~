@@ -1,0 +1,528 @@
+inherited form_usuarios: Tform_usuarios
+  OnCreate = IWAppFormCreate
+  OnShow = IWAppFormShow
+  DesignLeft = 2
+  DesignTop = 2
+  inherited BTN_TROCAR_SENHA: TIWButton
+    TabOrder = 4
+  end
+  object edit_padrao: TIWEdit [4]
+    Left = 208
+    Top = 47
+    Width = 113
+    Height = 21
+    Css = 'form-control'
+    RenderSize = False
+    StyleRenderOptions.RenderSize = False
+    StyleRenderOptions.RenderPosition = False
+    StyleRenderOptions.RenderFont = False
+    StyleRenderOptions.RenderZIndex = False
+    StyleRenderOptions.RenderVisibility = False
+    StyleRenderOptions.RenderStatus = False
+    StyleRenderOptions.RenderAbsolute = False
+    StyleRenderOptions.RenderPadding = False
+    StyleRenderOptions.RenderBorder = False
+    Font.Color = clNone
+    Font.Size = 10
+    Font.Style = []
+    FriendlyName = 'edit_padrao'
+    SubmitOnAsyncEvent = True
+    TabOrder = 3
+    Text = 'edit_padrao'
+  end
+  object edit_login: TIWEdit [5]
+    Left = 208
+    Top = 74
+    Width = 113
+    Height = 21
+    Css = 'form-control'
+    RenderSize = False
+    StyleRenderOptions.RenderSize = False
+    StyleRenderOptions.RenderPosition = False
+    StyleRenderOptions.RenderFont = False
+    StyleRenderOptions.RenderZIndex = False
+    StyleRenderOptions.RenderVisibility = False
+    StyleRenderOptions.RenderStatus = False
+    StyleRenderOptions.RenderAbsolute = False
+    StyleRenderOptions.RenderPadding = False
+    StyleRenderOptions.RenderBorder = False
+    Font.Color = clNone
+    Font.Size = 10
+    Font.Style = []
+    FriendlyName = 'edit_padrao'
+    SubmitOnAsyncEvent = True
+    TabOrder = 5
+    Text = 'edit_login'
+  end
+  object edit_nome: TIWEdit [6]
+    Left = 208
+    Top = 101
+    Width = 113
+    Height = 21
+    Css = 'form-control'
+    RenderSize = False
+    StyleRenderOptions.RenderSize = False
+    StyleRenderOptions.RenderPosition = False
+    StyleRenderOptions.RenderFont = False
+    StyleRenderOptions.RenderZIndex = False
+    StyleRenderOptions.RenderVisibility = False
+    StyleRenderOptions.RenderStatus = False
+    StyleRenderOptions.RenderAbsolute = False
+    StyleRenderOptions.RenderPadding = False
+    StyleRenderOptions.RenderBorder = False
+    Font.Color = clNone
+    Font.Size = 10
+    Font.Style = []
+    FriendlyName = 'edit_padrao'
+    SubmitOnAsyncEvent = True
+    TabOrder = 6
+    Text = 'edit_nome'
+  end
+  object edit_cpf: TIWEdit [7]
+    Left = 208
+    Top = 128
+    Width = 113
+    Height = 21
+    Css = 'form-control'
+    RenderSize = False
+    StyleRenderOptions.RenderSize = False
+    StyleRenderOptions.RenderPosition = False
+    StyleRenderOptions.RenderFont = False
+    StyleRenderOptions.RenderZIndex = False
+    StyleRenderOptions.RenderVisibility = False
+    StyleRenderOptions.RenderStatus = False
+    StyleRenderOptions.RenderAbsolute = False
+    StyleRenderOptions.RenderPadding = False
+    StyleRenderOptions.RenderBorder = False
+    Font.Color = clNone
+    Font.Size = 10
+    Font.Style = []
+    FriendlyName = 'edit_padrao'
+    SubmitOnAsyncEvent = True
+    TabOrder = 7
+    Text = 'edit_cpf'
+  end
+  object combo_padrao: TIWDBLookupComboBox [8]
+    Left = 344
+    Top = 47
+    Width = 145
+    Height = 21
+    Css = 'form-control'
+    RenderSize = False
+    StyleRenderOptions.RenderSize = False
+    StyleRenderOptions.RenderPosition = False
+    StyleRenderOptions.RenderFont = False
+    StyleRenderOptions.RenderZIndex = False
+    StyleRenderOptions.RenderVisibility = False
+    StyleRenderOptions.RenderStatus = False
+    StyleRenderOptions.RenderAbsolute = False
+    StyleRenderOptions.RenderPadding = False
+    StyleRenderOptions.RenderBorder = False
+    Font.Color = clNone
+    Font.Size = 10
+    Font.Style = []
+    TabOrder = 8
+    AutoEditable = False
+    FriendlyName = 'combo_padrao'
+    DisableWhenEmpty = True
+    NoSelectionText = '-- No Selection --'
+  end
+  object combo_funcao: TIWDBLookupComboBox [9]
+    Left = 344
+    Top = 74
+    Width = 145
+    Height = 21
+    Css = 'form-control'
+    RenderSize = False
+    StyleRenderOptions.RenderSize = False
+    StyleRenderOptions.RenderPosition = False
+    StyleRenderOptions.RenderFont = False
+    StyleRenderOptions.RenderZIndex = False
+    StyleRenderOptions.RenderVisibility = False
+    StyleRenderOptions.RenderStatus = False
+    StyleRenderOptions.RenderAbsolute = False
+    StyleRenderOptions.RenderPadding = False
+    StyleRenderOptions.RenderBorder = False
+    Font.Color = clNone
+    Font.Size = 10
+    Font.Style = []
+    TabOrder = 9
+    AutoEditable = False
+    FriendlyName = 'combo_padrao'
+    KeyField = 'ID'
+    ListField = 'DESCRICAO'
+    ListSource = ds_funcoes
+    DisableWhenEmpty = True
+    NoSelectionText = '-- No Selection --'
+  end
+  object combo_departamento: TIWDBLookupComboBox [10]
+    Left = 344
+    Top = 101
+    Width = 145
+    Height = 21
+    Css = 'form-control'
+    RenderSize = False
+    StyleRenderOptions.RenderSize = False
+    StyleRenderOptions.RenderPosition = False
+    StyleRenderOptions.RenderFont = False
+    StyleRenderOptions.RenderZIndex = False
+    StyleRenderOptions.RenderVisibility = False
+    StyleRenderOptions.RenderStatus = False
+    StyleRenderOptions.RenderAbsolute = False
+    StyleRenderOptions.RenderPadding = False
+    StyleRenderOptions.RenderBorder = False
+    Font.Color = clNone
+    Font.Size = 10
+    Font.Style = []
+    TabOrder = 10
+    AutoEditable = False
+    FriendlyName = 'combo_padrao'
+    KeyField = 'COD_DEPARTAMENTO'
+    ListField = 'DESCRICAO'
+    ListSource = ds_dpto
+    DisableWhenEmpty = True
+    NoSelectionText = '-- No Selection --'
+  end
+  object combo_empresa: TIWDBLookupComboBox [11]
+    Left = 344
+    Top = 128
+    Width = 145
+    Height = 21
+    Css = 'form-control'
+    RenderSize = False
+    StyleRenderOptions.RenderSize = False
+    StyleRenderOptions.RenderPosition = False
+    StyleRenderOptions.RenderFont = False
+    StyleRenderOptions.RenderZIndex = False
+    StyleRenderOptions.RenderVisibility = False
+    StyleRenderOptions.RenderStatus = False
+    StyleRenderOptions.RenderAbsolute = False
+    StyleRenderOptions.RenderPadding = False
+    StyleRenderOptions.RenderBorder = False
+    Font.Color = clNone
+    Font.Size = 10
+    Font.Style = []
+    OnAsyncChange = combo_empresaAsyncChange
+    TabOrder = 11
+    AutoEditable = False
+    FriendlyName = 'combo_padrao'
+    KeyField = 'COD_EMPRESA'
+    ListField = 'EMPRESA'
+    ListSource = ds_empresas
+    DisableWhenEmpty = True
+    NoSelectionText = '-- No Selection --'
+  end
+  object ck_ativo: TIWCheckBox [12]
+    Left = 344
+    Top = 168
+    Width = 65
+    Height = 21
+    Css = 'form-control'
+    RenderSize = False
+    StyleRenderOptions.RenderSize = False
+    StyleRenderOptions.RenderPosition = False
+    StyleRenderOptions.RenderFont = False
+    StyleRenderOptions.RenderZIndex = False
+    StyleRenderOptions.RenderVisibility = False
+    StyleRenderOptions.RenderStatus = False
+    StyleRenderOptions.RenderAbsolute = False
+    StyleRenderOptions.RenderPadding = False
+    StyleRenderOptions.RenderBorder = False
+    Caption = 'Ativo'
+    Editable = True
+    Font.Color = clNone
+    Font.Size = 10
+    Font.Style = []
+    SubmitOnAsyncEvent = True
+    Style = stNormal
+    TabOrder = 12
+    Checked = False
+    FriendlyName = 'ck_ativo'
+  end
+  object BTN_SALVAR: TIWButton [13]
+    Left = 208
+    Top = 155
+    Width = 130
+    Height = 30
+    RenderSize = False
+    StyleRenderOptions.RenderSize = False
+    StyleRenderOptions.RenderPosition = False
+    StyleRenderOptions.RenderFont = False
+    StyleRenderOptions.RenderZIndex = False
+    StyleRenderOptions.RenderVisibility = False
+    StyleRenderOptions.RenderStatus = False
+    StyleRenderOptions.RenderAbsolute = False
+    StyleRenderOptions.RenderPadding = False
+    StyleRenderOptions.RenderBorder = False
+    Caption = 'BTN_SALVAR'
+    Color = clBtnFace
+    Font.Color = clNone
+    Font.Size = 10
+    Font.Style = []
+    FriendlyName = 'BTN_SALVAR'
+    TabOrder = 13
+    OnAsyncClick = BTN_SALVARAsyncClick
+  end
+  object BTN_INCLUIR_USER: TIWButton [14]
+    Left = 208
+    Top = 191
+    Width = 130
+    Height = 30
+    RenderSize = False
+    StyleRenderOptions.RenderSize = False
+    StyleRenderOptions.RenderPosition = False
+    StyleRenderOptions.RenderFont = False
+    StyleRenderOptions.RenderZIndex = False
+    StyleRenderOptions.RenderVisibility = False
+    StyleRenderOptions.RenderStatus = False
+    StyleRenderOptions.RenderAbsolute = False
+    StyleRenderOptions.RenderPadding = False
+    StyleRenderOptions.RenderBorder = False
+    Caption = 'BTN_INCLUIR_USER'
+    Color = clBtnFace
+    Font.Color = clNone
+    Font.Size = 10
+    Font.Style = []
+    FriendlyName = 'BTN_SALVAR'
+    TabOrder = 14
+    OnAsyncClick = BTN_INCLUIR_USERAsyncClick
+  end
+  object acao: TIWLabel [15]
+    Left = 216
+    Top = 272
+    Width = 36
+    Height = 16
+    Css = 'form-control'
+    Font.Color = clNone
+    Font.Size = 10
+    Font.Style = []
+    HasTabOrder = False
+    FriendlyName = 'acao'
+    Caption = 'A'#231#227'o:'
+  end
+  object combo_status: TIWComboBox [16]
+    Left = 208
+    Top = 227
+    Width = 121
+    Height = 21
+    Css = 'form-control'
+    RenderSize = False
+    StyleRenderOptions.RenderSize = False
+    StyleRenderOptions.RenderPosition = False
+    StyleRenderOptions.RenderFont = False
+    StyleRenderOptions.RenderZIndex = False
+    StyleRenderOptions.RenderVisibility = False
+    StyleRenderOptions.RenderStatus = False
+    StyleRenderOptions.RenderAbsolute = False
+    StyleRenderOptions.RenderPadding = False
+    StyleRenderOptions.RenderBorder = False
+    Font.Color = clNone
+    Font.Size = 10
+    Font.Style = []
+    ItemsHaveValues = True
+    OnAsyncChange = combo_statusAsyncChange
+    TabOrder = 15
+    ItemIndex = 0
+    Items.Strings = (
+      'Ativo=-1'
+      'Desativado=0'
+      'Todos=1')
+    FriendlyName = 'combo_status'
+    NoSelectionText = '-- No Selection --'
+  end
+  object combo_empresa_f: TIWDBLookupComboBox [17]
+    Left = 344
+    Top = 227
+    Width = 145
+    Height = 21
+    Css = 'form-control'
+    RenderSize = False
+    StyleRenderOptions.RenderSize = False
+    StyleRenderOptions.RenderPosition = False
+    StyleRenderOptions.RenderFont = False
+    StyleRenderOptions.RenderZIndex = False
+    StyleRenderOptions.RenderVisibility = False
+    StyleRenderOptions.RenderStatus = False
+    StyleRenderOptions.RenderAbsolute = False
+    StyleRenderOptions.RenderPadding = False
+    StyleRenderOptions.RenderBorder = False
+    Font.Color = clNone
+    Font.Size = 10
+    Font.Style = []
+    OnAsyncChange = combo_empresa_fAsyncChange
+    TabOrder = 16
+    AutoEditable = False
+    FriendlyName = 'combo_padrao'
+    KeyField = 'COD_EMPRESA'
+    ListField = 'EMPRESA'
+    ListSource = ds_empresas
+    DisableWhenEmpty = True
+    NoSelectionText = '-- No Selection --'
+  end
+  object q_datatable: TFDQuery
+    Connection = DM.banco
+    Left = 800
+    Top = 24
+  end
+  object q_geral: TFDQuery
+    Connection = DM.banco
+    Left = 800
+    Top = 80
+  end
+  object q_aux: TFDQuery
+    Connection = DM.banco
+    Left = 800
+    Top = 136
+  end
+  object q_insert: TFDQuery
+    Connection = DM.banco
+    SQL.Strings = (
+      'select case'
+      '         when cod_pgto = 1 then'
+      '          '#39'A Vista'#39
+      '         when cod_pgto = 2 then'
+      '          '#39'Cartao'#39
+      '         when cod_pgto = 3 then'
+      '          '#39'A prazo'#39
+      '         when cod_pgto = 4 then'
+      '          '#39'Cheque'#39
+      '       end PGTO,'
+      '       valor'
+      '  from vendas_pgto'
+      '  where controle_venda= :controle_venda'
+      '  and cod_empresa= :cod_empresa')
+    Left = 800
+    Top = 208
+    ParamData = <
+      item
+        Name = 'CONTROLE_VENDA'
+        DataType = ftInteger
+        ParamType = ptInput
+        Value = Null
+      end
+      item
+        Name = 'COD_EMPRESA'
+        DataType = ftInteger
+        ParamType = ptInput
+        Value = Null
+      end>
+    object StringField1: TStringField
+      FieldName = 'PGTO'
+      Origin = 'PGTO'
+      Size = 7
+    end
+    object FMTBCDField1: TFMTBCDField
+      FieldName = 'VALOR'
+      Origin = 'VALOR'
+      Precision = 38
+      Size = 2
+    end
+  end
+  object q_empresas: TFDQuery
+    Connection = DM.banco
+    SQL.Strings = (
+      'select cod_empresa || '#39'-'#39' || nome as empresa, cod_empresa'
+      '  from empresas'
+      ' order by empresa')
+    Left = 688
+    Top = 32
+    object q_empresasEMPRESA: TStringField
+      FieldName = 'EMPRESA'
+      Origin = 'EMPRESA'
+      Size = 241
+    end
+    object q_empresasCOD_EMPRESA: TFMTBCDField
+      FieldName = 'COD_EMPRESA'
+      Origin = 'COD_EMPRESA'
+      ProviderFlags = [pfInUpdate, pfInWhere, pfInKey]
+      Required = True
+      Precision = 38
+      Size = 0
+    end
+  end
+  object ds_empresas: TDataSource
+    DataSet = q_empresas
+    Left = 688
+    Top = 88
+  end
+  object q_dpto: TFDQuery
+    Connection = DM.banco
+    SQL.Strings = (
+      
+        'select id, cod_departamento, cod_empresa, cod_empresa||'#39'-'#39'||desc' +
+        'ricao||'#39'-'#39'||cod_departamento descricao from departamentos'
+      'where cod_empresa= :cod_empresa')
+    Left = 688
+    Top = 152
+    ParamData = <
+      item
+        Name = 'COD_EMPRESA'
+        ParamType = ptInput
+      end>
+    object q_dptoID: TFMTBCDField
+      FieldName = 'ID'
+      Origin = 'ID'
+      ProviderFlags = [pfInUpdate, pfInWhere, pfInKey]
+      Required = True
+      Precision = 38
+      Size = 0
+    end
+    object q_dptoCOD_DEPARTAMENTO: TFMTBCDField
+      FieldName = 'COD_DEPARTAMENTO'
+      Origin = 'COD_DEPARTAMENTO'
+      Required = True
+      Precision = 38
+      Size = 0
+    end
+    object q_dptoDESCRICAO: TStringField
+      FieldName = 'DESCRICAO'
+      Origin = 'DESCRICAO'
+      Size = 100
+    end
+  end
+  object ds_dpto: TDataSource
+    DataSet = q_dpto
+    Left = 688
+    Top = 208
+  end
+  object q_funcoes: TFDQuery
+    Connection = DM.banco
+    SQL.Strings = (
+      'select ID, COD_FUNCAO,COD_EMPRESA,DESCRICAO from funcoes   '
+      ' ')
+    Left = 688
+    Top = 272
+    object q_funcoesID: TFMTBCDField
+      FieldName = 'ID'
+      Origin = 'ID'
+      ProviderFlags = [pfInUpdate, pfInWhere, pfInKey]
+      Required = True
+      Precision = 38
+      Size = 0
+    end
+    object q_funcoesCOD_FUNCAO: TFMTBCDField
+      FieldName = 'COD_FUNCAO'
+      Origin = 'COD_FUNCAO'
+      Required = True
+      Precision = 38
+      Size = 0
+    end
+    object q_funcoesCOD_EMPRESA: TFMTBCDField
+      FieldName = 'COD_EMPRESA'
+      Origin = 'COD_EMPRESA'
+      Required = True
+      Precision = 38
+      Size = 0
+    end
+    object q_funcoesDESCRICAO: TStringField
+      FieldName = 'DESCRICAO'
+      Origin = 'DESCRICAO'
+      Size = 100
+    end
+  end
+  object ds_funcoes: TDataSource
+    DataSet = q_funcoes
+    Left = 688
+    Top = 328
+  end
+end

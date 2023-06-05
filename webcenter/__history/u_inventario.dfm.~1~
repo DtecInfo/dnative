@@ -1,0 +1,4 @@
+inherited form_inventario: Tform_inventario
+  DesignLeft = 2
+  DesignTop = 2
+end

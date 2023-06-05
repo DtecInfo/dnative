@@ -1,0 +1,174 @@
+<?xml version="1.0" encoding="utf-8" standalone="no"?>
+<TfrxReport Version="6.9.3" DotMatrixReport="False" IniFile="\Software\Fast Reports" PreviewOptions.Buttons="167935" PreviewOptions.Zoom="1" PrintOptions.Printer="Padrão" PrintOptions.PrintOnSheet="0" ReportOptions.CreateDate="44461,0729934722" ReportOptions.Description.Text="" ReportOptions.LastChange="44553,5862766435" ScriptLanguage="PascalScript" ScriptText.Text="begin&#13;&#10;&#13;&#10;end.">
+  <Datasets>
+    <item DataSet="dv_pgto" DataSetName="fomas_pgto"/>
+    <item DataSet="db_vi" DataSetName="vendas_itens"/>
+  </Datasets>
+  <Variables>
+    <item Name=" Variaveis locais"/>
+    <item Name="doc_emissao" Value="'Em branco'"/>
+    <item Name="doc_id" Value="'Em branco'"/>
+    <item Name="empresa" Value="'Em Branco'"/>
+    <item Name="tipo" Value="'Em branco'"/>
+    <item Name="emp_endereco" Value="'Em branco'"/>
+    <item Name="emp_bairro" Value="'Em branco'"/>
+    <item Name="emp_cidade" Value="'Em branco'"/>
+    <item Name="emp_uf" Value="'Em branco'"/>
+    <item Name="emp_vendedor" Value="'Em branco'"/>
+    <item Name="emp_cnpj" Value="'Em branco'"/>
+    <item Name="cli_nome" Value="'Em branco'"/>
+    <item Name="cli_endereco" Value="'Em branco'"/>
+    <item Name="cli_bairro" Value="'Em branco'"/>
+    <item Name="cli_fone" Value="'Em branco'"/>
+    <item Name="cli_cpf" Value="'Em branco'"/>
+    <item Name="cli_cidade" Value="'Em branco'"/>
+    <item Name="cli_email" Value="'Em branco'"/>
+    <item Name="cli_uf" Value="'Em branco'"/>
+    <item Name="cli_cep" Value="'Em branco'"/>
+    <item Name="doc_total" Value="'Em branco'"/>
+    <item Name="cod_serv" Value="'Em branco'"/>
+    <item Name="descricao_serv" Value="'Em branco'"/>
+    <item Name="valor_serv" Value="'Em branco'"/>
+  </Variables>
+  <TfrxDataPage Name="Data" HGuides.Text="" VGuides.Text="" Height="1000" Left="0" Top="0" Width="1000"/>
+  <TfrxReportPage Name="Page1" HGuides.Text="57,44094" VGuides.Text="" PaperWidth="210" PaperHeight="297" PaperSize="9" LeftMargin="10" RightMargin="10" TopMargin="10" BottomMargin="10" ColumnWidth="0" ColumnPositions.Text="" Frame.Typ="0" MirrorMode="0">
+    <TfrxReportTitle Name="ReportTitle1" FillType="ftBrush" FillGap.Top="0" FillGap.Left="0" FillGap.Bottom="0" FillGap.Right="0" Frame.Typ="0" Height="155,63791" Left="0" Top="18,89765" Width="718,1107">
+      <TfrxMemoView Name="Memo1" AllowVectorExport="True" Left="0" Top="0" Width="714,33117" Height="18,89765" Font.Charset="1" Font.Color="0" Font.Height="-16" Font.Name="Arial" Font.Style="1" Frame.Typ="0" HAlign="haCenter" ParentFont="False" Text="[tipo]"/>
+      <TfrxMemoView Name="Memo2" AllowVectorExport="True" Left="0" Top="22,11812" Width="56,69295" Height="18,89765" Font.Charset="1" Font.Color="0" Font.Height="-11" Font.Name="Arial" Font.Style="1" Frame.Typ="0" ParentFont="False" Text="Empresa:"/>
+      <TfrxMemoView Name="Memo3" AllowVectorExport="True" Left="0" Top="44,7953" Width="60,47248" Height="18,89765" Font.Charset="1" Font.Color="0" Font.Height="-11" Font.Name="Arial" Font.Style="1" Frame.Typ="0" ParentFont="False" Text="Endereço:"/>
+      <TfrxMemoView Name="Memo4" AllowVectorExport="True" Left="389,29159" Top="44,86611" Width="41,57483" Height="18,89765" Font.Charset="1" Font.Color="0" Font.Height="-11" Font.Name="Arial" Font.Style="1" Frame.Typ="0" ParentFont="False" Text="Bairro:"/>
+      <TfrxMemoView Name="Memo5" AllowVectorExport="True" Left="536,69326" Top="44,86611" Width="45,35436" Height="18,89765" Font.Charset="1" Font.Color="0" Font.Height="-11" Font.Name="Arial" Font.Style="1" Frame.Typ="0" ParentFont="False" Text="Cidade:"/>
+      <TfrxMemoView Name="Memo6" AllowVectorExport="True" Left="540,47279" Top="66,32282" Width="64,25201" Height="18,89765" Font.Charset="1" Font.Color="0" Font.Height="-11" Font.Name="Arial" Font.Style="1" Frame.Typ="0" ParentFont="False" Text="Vendedor:"/>
+      <TfrxMemoView Name="Memo7" AllowVectorExport="True" Left="2,55906" Top="3,32282" Width="56,69295" Height="18,89765" Font.Charset="1" Font.Color="0" Font.Height="-11" Font.Name="Arial" Font.Style="1" Frame.Typ="0" ParentFont="False" Text="Emissao:"/>
+      <TfrxMemoView Name="Date" IndexTag="1" AllowVectorExport="True" Left="585,82715" Top="0,22047" Width="52,91342" Height="18,89765" Font.Charset="1" Font.Color="0" Font.Height="-11" Font.Name="Arial" Font.Style="1" Frame.Typ="0" ParentFont="False" Text="Número:"/>
+      <TfrxMemoView Name="Time" IndexTag="1" AllowVectorExport="True" Left="653,85869" Top="0,22047" Width="79,37013" Height="18,89765" Font.Charset="1" Font.Color="0" Font.Height="-11" Font.Name="Arial" Font.Style="0" Frame.Typ="0" ParentFont="False" Text="[doc_id]"/>
+      <TfrxMemoView Name="TotalPages" IndexTag="1" AllowVectorExport="True" Left="657,63822" Top="25,89765" Width="30,23624" Height="18,89765" Frame.Typ="0" Text="[TotalPages#]"/>
+      <TfrxMemoView Name="Page" IndexTag="1" AllowVectorExport="True" Left="612,28386" Top="25,89765" Width="22,67718" Height="18,89765" Font.Charset="1" Font.Color="0" Font.Height="-13" Font.Name="Arial" Font.Style="0" Frame.Typ="0" HAlign="haRight" ParentFont="False" Text="[Page]"/>
+      <TfrxMemoView Name="Memo8" AllowVectorExport="True" Left="638,74057" Top="25,89765" Width="18,89765" Height="18,89765" Font.Charset="1" Font.Color="0" Font.Height="-13" Font.Name="Arial" Font.Style="0" Frame.Typ="0" HAlign="haCenter" ParentFont="False" Text="de"/>
+      <TfrxMemoView Name="Memo9" AllowVectorExport="True" Left="566,9295" Top="25,89765" Width="45,35436" Height="18,89765" Font.Charset="1" Font.Color="0" Font.Height="-13" Font.Name="Arial" Font.Style="1" Frame.Typ="0" ParentFont="False" Text="Página"/>
+      <TfrxMemoView Name="numero_nota" IndexTag="1" AllowVectorExport="True" Left="63,47248" Top="44,86611" Width="317,48052" Height="18,89765" Font.Charset="1" Font.Color="0" Font.Height="-11" Font.Name="Arial" Font.Style="0" Frame.Typ="0" ParentFont="False" Text="[emp_endereco]"/>
+      <TfrxMemoView Name="serie" IndexTag="1" AllowVectorExport="True" Left="430,64595" Top="44,32282" Width="102,04731" Height="18,89765" Font.Charset="1" Font.Color="0" Font.Height="-11" Font.Name="Arial" Font.Style="0" Frame.Typ="0" ParentFont="False" Text="[emp_bairro]"/>
+      <TfrxMemoView Name="responsavel" IndexTag="1" AllowVectorExport="True" Left="608,50433" Top="66,32282" Width="102,04731" Height="18,89765" Font.Charset="1" Font.Color="0" Font.Height="-11" Font.Name="Arial" Font.Style="0" Frame.Typ="0" ParentFont="False" Text="[emp_vendedor]"/>
+      <TfrxMemoView Name="empresa" IndexTag="1" AllowVectorExport="True" Left="60,47248" Top="23,11812" Width="283,46475" Height="18,89765" Font.Charset="1" Font.Color="0" Font.Height="-11" Font.Name="Arial" Font.Style="0" Frame.Typ="0" ParentFont="False" Text="[empresa]"/>
+      <TfrxMemoView Name="fornecedor" IndexTag="1" AllowVectorExport="True" Left="583,82715" Top="45,42517" Width="128,50402" Height="18,89765" Font.Charset="1" Font.Color="0" Font.Height="-11" Font.Name="Arial" Font.Style="0" Frame.Typ="0" ParentFont="False" Text="[emp_cidade]"/>
+      <TfrxMemoView Name="Date1" IndexTag="1" AllowVectorExport="True" Left="60,47248" Top="3,54329" Width="105,82684" Height="18,89765" Font.Charset="1" Font.Color="0" Font.Height="-11" Font.Name="Arial" Font.Style="0" Frame.Typ="0" ParentFont="False" Text="[doc_emissao]"/>
+      <TfrxMemoView Name="Memo11" AllowVectorExport="True" Left="1,77953" Top="65,76376" Width="26,45671" Height="18,89765" Font.Charset="1" Font.Color="0" Font.Height="-11" Font.Name="Arial" Font.Style="1" Frame.Typ="0" ParentFont="False" Text="UF:"/>
+      <TfrxMemoView Name="Memo12" IndexTag="1" AllowVectorExport="True" Left="31,01577" Top="64,76376" Width="49,13389" Height="18,89765" Font.Charset="1" Font.Color="0" Font.Height="-11" Font.Name="Arial" Font.Style="0" Frame.Typ="0" ParentFont="False" Text="[emp_uf]"/>
+      <TfrxMemoView Name="Memo13" AllowVectorExport="True" Left="1,77953" Top="92,72449" Width="45,35436" Height="18,89765" Font.Charset="1" Font.Color="0" Font.Height="-11" Font.Name="Arial" Font.Style="1" Frame.Typ="0" ParentFont="False" Text="Cliente:"/>
+      <TfrxLineView Name="Line1" AllowVectorExport="True" Left="714,33117" Top="88,25201" Width="-714,33117" Height="0" Color="0" Frame.Typ="0" Diagonal="True"/>
+      <TfrxMemoView Name="Memo14" AllowVectorExport="True" Left="343,93723" Top="25,89765" Width="45,35436" Height="18,89765" Font.Charset="1" Font.Color="0" Font.Height="-11" Font.Name="Arial" Font.Style="1" Frame.Typ="0" ParentFont="False" Text="CNPJ:"/>
+      <TfrxMemoView Name="Memo15" IndexTag="1" AllowVectorExport="True" Left="393,07112" Top="25,89765" Width="170,07885" Height="18,89765" Font.Charset="1" Font.Color="0" Font.Height="-11" Font.Name="Arial" Font.Style="0" Frame.Typ="0" ParentFont="False" Text="[emp_cnpj]"/>
+      <TfrxMemoView Name="Memo16" AllowVectorExport="True" Left="272,12616" Top="92,72449" Width="60,47248" Height="18,89765" Font.Charset="1" Font.Color="0" Font.Height="-11" Font.Name="Arial" Font.Style="1" Frame.Typ="0" ParentFont="False" Text="CPF/CNPJ:"/>
+      <TfrxMemoView Name="Memo17" AllowVectorExport="True" Left="0,77953" Top="111,1812" Width="56,69295" Height="18,89765" Font.Charset="1" Font.Color="0" Font.Height="-11" Font.Name="Arial" Font.Style="1" Frame.Typ="0" ParentFont="False" Text="Endereço:"/>
+      <TfrxMemoView Name="Memo18" AllowVectorExport="True" Left="423,30736" Top="113,06308" Width="41,57483" Height="18,89765" Font.Charset="1" Font.Color="0" Font.Height="-11" Font.Name="Arial" Font.Style="1" Frame.Typ="0" ParentFont="False" Text="Bairro:"/>
+      <TfrxMemoView Name="Memo19" AllowVectorExport="True" Left="0,77953" Top="131,1812" Width="45,35436" Height="18,89765" Font.Charset="1" Font.Color="0" Font.Height="-11" Font.Name="Arial" Font.Style="1" Frame.Typ="0" ParentFont="False" Text="Cidade:"/>
+      <TfrxMemoView Name="Memo20" AllowVectorExport="True" Left="230,55133" Top="131,1812" Width="30,23624" Height="18,89765" Font.Charset="1" Font.Color="0" Font.Height="-11" Font.Name="Arial" Font.Style="1" Frame.Typ="0" ParentFont="False" Text="UF:"/>
+      <TfrxMemoView Name="Memo21" AllowVectorExport="True" Left="-94,48825" Top="136,1812" Width="45,35436" Height="18,89765" Font.Charset="1" Font.Color="0" Font.Height="-11" Font.Name="Arial" Font.Style="1" Frame.Typ="0" ParentFont="False" Text="CEP:"/>
+      <TfrxMemoView Name="Memo22" AllowVectorExport="True" Left="495,11843" Top="93,60637" Width="34,01577" Height="18,89765" Font.Charset="1" Font.Color="0" Font.Height="-11" Font.Name="Arial" Font.Style="1" Frame.Typ="0" ParentFont="False" Text="Fone:"/>
+      <TfrxMemoView Name="Memo23" IndexTag="1" AllowVectorExport="True" Left="47,13389" Top="92,72449" Width="209,87415" Height="18,89765" Font.Charset="1" Font.Color="0" Font.Height="-11" Font.Name="Arial" Font.Style="0" Frame.Typ="0" ParentFont="False" Text="[cli_nome]"/>
+      <TfrxMemoView Name="Memo24" IndexTag="1" AllowVectorExport="True" Left="61,25201" Top="111,1812" Width="355,27582" Height="18,89765" Font.Charset="1" Font.Color="0" Font.Height="-11" Font.Name="Arial" Font.Style="0" Frame.Typ="0" ParentFont="False" Text="[cli_endereco]"/>
+      <TfrxMemoView Name="Memo25" IndexTag="1" AllowVectorExport="True" Left="336,1577" Top="92,16543" Width="154,96073" Height="18,89765" Font.Charset="1" Font.Color="0" Font.Height="-11" Font.Name="Arial" Font.Style="0" Frame.Typ="0" ParentFont="False" Text="[cli_cpf]"/>
+      <TfrxMemoView Name="Memo26" IndexTag="1" AllowVectorExport="True" Left="464,88219" Top="113,06308" Width="238,11039" Height="18,89765" Font.Charset="1" Font.Color="0" Font.Height="-11" Font.Name="Arial" Font.Style="0" Frame.Typ="0" ParentFont="False" Text="[cli_bairro]"/>
+      <TfrxMemoView Name="Memo27" IndexTag="1" AllowVectorExport="True" Left="49,13389" Top="130,1812" Width="158,74026" Height="18,89765" Font.Charset="1" Font.Color="0" Font.Height="-11" Font.Name="Arial" Font.Style="0" Frame.Typ="0" ParentFont="False" Text="[cli_cidade]"/>
+      <TfrxMemoView Name="Memo28" IndexTag="1" AllowVectorExport="True" Left="264,5671" Top="131,96073" Width="37,7953" Height="18,89765" Font.Charset="1" Font.Color="0" Font.Height="-11" Font.Name="Arial" Font.Style="0" Frame.Typ="0" ParentFont="False" Text="[cli_uf]"/>
+      <TfrxMemoView Name="Memo29" IndexTag="1" AllowVectorExport="True" Left="348,71676" Top="130,96073" Width="90,70872" Height="18,89765" Font.Charset="1" Font.Color="0" Font.Height="-11" Font.Name="Arial" Font.Style="0" Frame.Typ="0" ParentFont="False" Text="[cli_cep]"/>
+      <TfrxMemoView Name="Memo30" IndexTag="1" AllowVectorExport="True" Left="532,91373" Top="93,60637" Width="170,07885" Height="18,89765" Font.Charset="1" Font.Color="0" Font.Height="-11" Font.Name="Arial" Font.Style="0" Frame.Typ="0" ParentFont="False" Text="[cli_fone]"/>
+      <TfrxMemoView Name="Memo31" AllowVectorExport="True" Left="442,20501" Top="132,96073" Width="41,57483" Height="18,89765" Font.Charset="1" Font.Color="0" Font.Height="-11" Font.Name="Arial" Font.Style="1" Frame.Typ="0" ParentFont="False" Text="Email:"/>
+      <TfrxMemoView Name="Memo32" IndexTag="1" AllowVectorExport="True" Left="487,55937" Top="132,96073" Width="215,43321" Height="18,89765" Font.Charset="1" Font.Color="0" Font.Height="-11" Font.Name="Arial" Font.Style="0" Frame.Typ="0" ParentFont="False" Text="[cli_email]"/>
+      <TfrxLineView Name="Line3" AllowVectorExport="True" Left="710,55164" Top="22" Width="-714,33117" Height="0" Color="0" Frame.Typ="0" Diagonal="True"/>
+      <TfrxLineView Name="Line4" AllowVectorExport="True" Left="710,55164" Top="1,32282" Width="-714,33117" Height="0" Color="0" Frame.Typ="0" Diagonal="True"/>
+      <TfrxMemoView Name="Memo35" AllowVectorExport="True" Left="313,70099" Top="132,28355" Width="30,23624" Height="18,89765" Font.Charset="1" Font.Color="0" Font.Height="-11" Font.Name="Arial" Font.Style="1" Frame.Typ="0" ParentFont="False" Text="CEP:"/>
+    </TfrxReportTitle>
+    <TfrxMasterData Name="MasterData1" FillType="ftBrush" FillGap.Top="0" FillGap.Left="0" FillGap.Bottom="0" FillGap.Right="0" Frame.Typ="0" Height="18,89765" Left="0" Top="279,68522" Width="718,1107" ColumnWidth="0" ColumnGap="0" DataSet="db_vi" DataSetName="vendas_itens" RowCount="0">
+      <TfrxTableObject Name="TableObject1" AllowVectorExport="True" Left="4" Top="-1,77953">
+        <TfrxTableColumn Name="TableColumn14" Width="116,683997619048" MinWidth="0" MaxWidth="75,5906"/>
+        <TfrxTableColumn Name="TableColumn15" Width="204,683997619048" MinWidth="0" MaxWidth="75,5906"/>
+        <TfrxTableColumn Name="TableColumn16" Width="54,6839976190483" MinWidth="0" MaxWidth="75,5906"/>
+        <TfrxTableColumn Name="TableColumn17" Width="51,6839976190483" MinWidth="0" MaxWidth="75,5906"/>
+        <TfrxTableColumn Name="TableColumn18" Width="65,6839976190483" MinWidth="0" MaxWidth="75,5906"/>
+        <TfrxTableColumn Name="TableColumn19" Width="59,6839976190483" MinWidth="0" MaxWidth="75,5906"/>
+        <TfrxTableColumn Name="TableColumn20" Width="158,849324285714" MinWidth="0" MaxWidth="75,5906"/>
+        <TfrxTableRow Name="TableRow1" MinHeight="0" MaxHeight="0" Height="18,89765">
+          <TfrxTableCell Name="TableCell13" AllowVectorExport="True" Restrictions="8" DataField="COD_PRODUTO" DataSet="db_vi" DataSetName="vendas_itens" Font.Charset="1" Font.Color="0" Font.Height="-11" Font.Name="Arial" Font.Style="0" Frame.Typ="15" ParentFont="False" Text="[vendas_itens.&#34;COD_PRODUTO&#34;]"/>
+          <TfrxTableCell Name="TableCell14" AllowVectorExport="True" Restrictions="8" DataField="DESCRICAO" DataSet="db_vi" DataSetName="vendas_itens" Font.Charset="1" Font.Color="0" Font.Height="-11" Font.Name="Arial" Font.Style="0" Frame.Typ="15" ParentFont="False" Text="[vendas_itens.&#34;DESCRICAO&#34;]"/>
+          <TfrxTableCell Name="TableCell15" AllowVectorExport="True" Restrictions="8" DataField="PRECO_UNITARIO" DataSet="db_vi" DataSetName="vendas_itens" Font.Charset="1" Font.Color="0" Font.Height="-11" Font.Name="Arial" Font.Style="0" Frame.Typ="15" HAlign="haCenter" ParentFont="False" Text="[vendas_itens.&#34;PRECO_UNITARIO&#34;]"/>
+          <TfrxTableCell Name="TableCell16" AllowVectorExport="True" Restrictions="8" DataField="QTDE" DataSet="db_vi" DataSetName="vendas_itens" Font.Charset="1" Font.Color="0" Font.Height="-11" Font.Name="Arial" Font.Style="0" Frame.Typ="15" HAlign="haCenter" ParentFont="False" Text="[vendas_itens.&#34;QTDE&#34;]"/>
+          <TfrxTableCell Name="TableCell17" AllowVectorExport="True" Restrictions="8" DataField="DESC_PERC" DataSet="db_vi" DataSetName="vendas_itens" Font.Charset="1" Font.Color="0" Font.Height="-11" Font.Name="Arial" Font.Style="0" Frame.Typ="15" HAlign="haCenter" ParentFont="False" Text="[vendas_itens.&#34;DESC_PERC&#34;]"/>
+          <TfrxTableCell Name="TableCell18" AllowVectorExport="True" Restrictions="8" DataField="DESC_VALOR" DataSet="db_vi" DataSetName="vendas_itens" Font.Charset="1" Font.Color="0" Font.Height="-11" Font.Name="Arial" Font.Style="0" Frame.Typ="15" HAlign="haCenter" ParentFont="False" Text="[vendas_itens.&#34;DESC_VALOR&#34;]"/>
+          <TfrxTableCell Name="TableCell19" AllowVectorExport="True" Restrictions="8" DataField="VALOR_TOTAL" DataSet="db_vi" DataSetName="vendas_itens" Font.Charset="1" Font.Color="0" Font.Height="-11" Font.Name="Arial" Font.Style="1" Frame.Typ="15" HAlign="haCenter" ParentFont="False" Text="[vendas_itens.&#34;VALOR_TOTAL&#34;]"/>
+        </TfrxTableRow>
+      </TfrxTableObject>
+    </TfrxMasterData>
+    <TfrxHeader Name="Header1" FillType="ftBrush" FillGap.Top="0" FillGap.Left="0" FillGap.Bottom="0" FillGap.Right="0" Frame.Typ="0" Height="20,89765" Left="0" Top="234,33086" Width="718,1107">
+      <TfrxTableObject Name="TableObject2" AllowVectorExport="True" Left="4" Top="2">
+        <TfrxTableColumn Name="TableColumn7" Width="116,683997619048" MinWidth="0" MaxWidth="75,5906"/>
+        <TfrxTableColumn Name="TableColumn8" Width="204,683997619048" MinWidth="0" MaxWidth="75,5906"/>
+        <TfrxTableColumn Name="TableColumn9" Width="54,6839976190483" MinWidth="0" MaxWidth="75,5906"/>
+        <TfrxTableColumn Name="TableColumn10" Width="51,6839976190483" MinWidth="0" MaxWidth="75,5906"/>
+        <TfrxTableColumn Name="TableColumn11" Width="65,6839976190483" MinWidth="0" MaxWidth="75,5906"/>
+        <TfrxTableColumn Name="TableColumn12" Width="59,6839976190483" MinWidth="0" MaxWidth="75,5906"/>
+        <TfrxTableColumn Name="TableColumn13" Width="158,849324285714" MinWidth="0" MaxWidth="75,5906"/>
+        <TfrxTableRow Name="TableRow2" MinHeight="0" MaxHeight="0" Height="18,89765">
+          <TfrxTableCell Name="TableCell6" AllowVectorExport="True" Restrictions="8" DataSet="db_vi" DataSetName="vendas_itens" Font.Charset="1" Font.Color="0" Font.Height="-11" Font.Name="Arial" Font.Style="1" Frame.Typ="15" ParentFont="False" Text="Cód Item"/>
+          <TfrxTableCell Name="TableCell7" AllowVectorExport="True" Restrictions="8" DataSet="db_vi" DataSetName="vendas_itens" Font.Charset="1" Font.Color="0" Font.Height="-11" Font.Name="Arial" Font.Style="1" Frame.Typ="15" ParentFont="False" Text="Descrição"/>
+          <TfrxTableCell Name="TableCell8" AllowVectorExport="True" Restrictions="8" DataSet="db_vi" DataSetName="vendas_itens" Font.Charset="1" Font.Color="0" Font.Height="-11" Font.Name="Arial" Font.Style="1" Frame.Typ="15" ParentFont="False" Text="P. UN."/>
+          <TfrxTableCell Name="TableCell9" AllowVectorExport="True" Restrictions="8" DataSet="db_vi" DataSetName="vendas_itens" Font.Charset="1" Font.Color="0" Font.Height="-11" Font.Name="Arial" Font.Style="1" Frame.Typ="15" ParentFont="False" Text="Qtde."/>
+          <TfrxTableCell Name="TableCell10" AllowVectorExport="True" Restrictions="8" DataSet="db_vi" DataSetName="vendas_itens" Font.Charset="1" Font.Color="0" Font.Height="-11" Font.Name="Arial" Font.Style="1" Frame.Typ="15" ParentFont="False" Text="% Desc."/>
+          <TfrxTableCell Name="TableCell11" AllowVectorExport="True" Restrictions="8" DataSet="db_vi" DataSetName="vendas_itens" Font.Charset="1" Font.Color="0" Font.Height="-11" Font.Name="Arial" Font.Style="1" Frame.Typ="15" ParentFont="False" Text="V. Desc."/>
+          <TfrxTableCell Name="TableCell12" AllowVectorExport="True" Restrictions="8" Font.Charset="1" Font.Color="0" Font.Height="-11" Font.Name="Arial" Font.Style="1" Frame.Typ="15" ParentFont="False" Text="Total R$"/>
+        </TfrxTableRow>
+      </TfrxTableObject>
+    </TfrxHeader>
+    <TfrxHeader Name="Header2" FillType="ftBrush" FillGap.Top="0" FillGap.Left="0" FillGap.Bottom="0" FillGap.Right="0" Frame.Typ="0" Height="22,67718" Left="0" Top="321,26005" Width="718,1107">
+      <TfrxTableObject Name="TableObject3" AllowVectorExport="True" Left="465,10266" Top="2">
+        <TfrxTableColumn Name="TableColumn21" Width="93,581647619048" MinWidth="0" MaxWidth="75,5906"/>
+        <TfrxTableColumn Name="TableColumn22" Width="156,581647619048" MinWidth="0" MaxWidth="75,5906"/>
+        <TfrxTableRow Name="TableRow3" MinHeight="0" MaxHeight="0" Height="18,89765">
+          <TfrxTableCell Name="TableCell20" AllowVectorExport="True" Restrictions="8" DataSet="db_vi" DataSetName="vendas_itens" Font.Charset="1" Font.Color="0" Font.Height="-11" Font.Name="Arial" Font.Style="1" Frame.Typ="15" ParentFont="False" Text="Forma de PGTO"/>
+          <TfrxTableCell Name="TableCell21" AllowVectorExport="True" Restrictions="8" DataSet="db_vi" DataSetName="vendas_itens" Font.Charset="1" Font.Color="0" Font.Height="-11" Font.Name="Arial" Font.Style="1" Frame.Typ="15" HAlign="haRight" ParentFont="False" Text="Valor R$"/>
+        </TfrxTableRow>
+      </TfrxTableObject>
+    </TfrxHeader>
+    <TfrxMasterData Name="MasterData2" FillType="ftBrush" FillGap.Top="0" FillGap.Left="0" FillGap.Bottom="0" FillGap.Right="0" Frame.Typ="0" Height="18,89765" Left="0" Top="366,61441" Width="718,1107" ColumnWidth="0" ColumnGap="0" DataSet="dv_pgto" DataSetName="fomas_pgto" RowCount="0">
+      <TfrxTableObject Name="TableObject4" AllowVectorExport="True" Left="465,10266" Top="0">
+        <TfrxTableColumn Name="TableColumn23" Width="93,581647619048" MinWidth="0" MaxWidth="75,5906"/>
+        <TfrxTableColumn Name="TableColumn24" Width="156,581647619048" MinWidth="0" MaxWidth="75,5906"/>
+        <TfrxTableRow Name="TableRow4" MinHeight="0" MaxHeight="0" Height="18,89765">
+          <TfrxTableCell Name="TableCell22" AllowVectorExport="True" Restrictions="8" DataField="PGTO" DataSet="dv_pgto" DataSetName="fomas_pgto" Font.Charset="1" Font.Color="0" Font.Height="-11" Font.Name="Arial" Font.Style="1" Frame.Typ="15" ParentFont="False" Text="[fomas_pgto.&#34;PGTO&#34;]"/>
+          <TfrxTableCell Name="TableCell23" AllowVectorExport="True" Restrictions="8" DataField="VALOR" DataSet="dv_pgto" DataSetName="fomas_pgto" Font.Charset="1" Font.Color="0" Font.Height="-11" Font.Name="Arial" Font.Style="1" Frame.Typ="15" HAlign="haRight" ParentFont="False" Text="[fomas_pgto.&#34;VALOR&#34;]"/>
+        </TfrxTableRow>
+      </TfrxTableObject>
+    </TfrxMasterData>
+    <TfrxFooter Name="Footer1" FillType="ftBrush" FillGap.Top="0" FillGap.Left="0" FillGap.Bottom="0" FillGap.Right="0" Frame.Typ="0" Height="124,72449" Left="0" Top="408,18924" Width="718,1107">
+      <TfrxMemoView Name="Memo33" AllowVectorExport="True" Left="467,66172" Top="103,7953" Width="94,48825" Height="18,89765" Font.Charset="1" Font.Color="0" Font.Height="-11" Font.Name="Arial" Font.Style="1" Frame.Typ="15" HAlign="haCenter" ParentFont="False" Text="Total:"/>
+      <TfrxMemoView Name="Memo34" AllowVectorExport="True" Left="562,14997" Top="103,7953" Width="154,96073" Height="18,89765" Font.Charset="1" Font.Color="0" Font.Height="-11" Font.Name="Arial" Font.Style="1" Frame.Typ="15" HAlign="haRight" ParentFont="False" Text="[doc_total]"/>
+      <TfrxTableObject Name="TableObject5" AllowVectorExport="True" Left="4" Top="2">
+        <TfrxTableColumn Name="TableColumn25" Width="116,683997619048" MinWidth="0" MaxWidth="75,5906"/>
+        <TfrxTableColumn Name="TableColumn26" Width="439,683997619048" MinWidth="0" MaxWidth="75,5906"/>
+        <TfrxTableColumn Name="TableColumn27" Width="156,683997619048" MinWidth="0" MaxWidth="75,5906"/>
+        <TfrxTableRow Name="TableRow5" MinHeight="0" MaxHeight="0" Height="18,89765">
+          <TfrxTableCell Name="TableCell24" AllowVectorExport="True" Restrictions="8" DataSet="db_vi" DataSetName="vendas_itens" Font.Charset="1" Font.Color="0" Font.Height="-11" Font.Name="Arial" Font.Style="1" Frame.Typ="15" ParentFont="False" Text="Cód Serv."/>
+          <TfrxTableCell Name="TableCell25" AllowVectorExport="True" Restrictions="8" DataSet="db_vi" DataSetName="vendas_itens" Font.Charset="1" Font.Color="0" Font.Height="-11" Font.Name="Arial" Font.Style="1" Frame.Typ="15" ParentFont="False" Text="Descrição"/>
+          <TfrxTableCell Name="TableCell26" AllowVectorExport="True" Restrictions="8" DataSet="db_vi" DataSetName="vendas_itens" Font.Charset="1" Font.Color="0" Font.Height="-11" Font.Name="Arial" Font.Style="1" Frame.Typ="15" ParentFont="False" Text="Valor R$"/>
+        </TfrxTableRow>
+      </TfrxTableObject>
+      <TfrxTableObject Name="TableObject6" AllowVectorExport="True" Left="4" Top="20,45671">
+        <TfrxTableColumn Name="TableColumn28" Width="116,683997619048" MinWidth="0" MaxWidth="75,5906"/>
+        <TfrxTableColumn Name="TableColumn29" Width="439,683997619048" MinWidth="0" MaxWidth="75,5906"/>
+        <TfrxTableColumn Name="TableColumn30" Width="156,683997619048" MinWidth="0" MaxWidth="75,5906"/>
+        <TfrxTableRow Name="TableRow6" MinHeight="0" MaxHeight="0" Height="18,89765">
+          <TfrxTableCell Name="TableCell27" AllowVectorExport="True" Restrictions="8" DataSet="db_vi" DataSetName="vendas_itens" Font.Charset="1" Font.Color="0" Font.Height="-11" Font.Name="Arial" Font.Style="1" Frame.Typ="15" ParentFont="False" Text="[cod_serv]"/>
+          <TfrxTableCell Name="TableCell28" AllowVectorExport="True" Restrictions="8" DataSet="db_vi" DataSetName="vendas_itens" Font.Charset="1" Font.Color="0" Font.Height="-11" Font.Name="Arial" Font.Style="1" Frame.Typ="15" ParentFont="False" Text="[descricao_serv]"/>
+          <TfrxTableCell Name="TableCell29" AllowVectorExport="True" Restrictions="8" DataSet="db_vi" DataSetName="vendas_itens" Font.Charset="1" Font.Color="0" Font.Height="-11" Font.Name="Arial" Font.Style="1" Frame.Typ="15" HAlign="haRight" ParentFont="False" Text="[valor_serv]"/>
+        </TfrxTableRow>
+      </TfrxTableObject>
+      <TfrxMemoView Name="Memo36" AllowVectorExport="True" Left="4,33859" Top="41,57483" Width="75,5906" Height="15,11812" Font.Charset="1" Font.Color="0" Font.Height="-11" Font.Name="Arial" Font.Style="1" Frame.Typ="0" ParentFont="False" Text="Observações:"/>
+      <TfrxTableObject Name="TableObject7" AllowVectorExport="True" Left="4" Top="58,25201">
+        <TfrxTableColumn Name="TableColumn31" Width="713,849737619048" MinWidth="0" MaxWidth="75,5906"/>
+        <TfrxTableRow Name="TableRow7" MinHeight="0" MaxHeight="0" Height="42,89765">
+          <TfrxTableCell Name="TableCell30" AllowVectorExport="True" Restrictions="8" DataSet="db_vi" DataSetName="vendas_itens" Font.Charset="1" Font.Color="0" Font.Height="-11" Font.Name="Arial" Font.Style="1" Frame.Typ="15" ParentFont="False" Text="[obs_serv]"/>
+        </TfrxTableRow>
+      </TfrxTableObject>
+    </TfrxFooter>
+  </TfrxReportPage>
+</TfrxReport>

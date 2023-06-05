@@ -1,0 +1,110 @@
+unit U_FrmConfiguracoes;
+
+interface
+
+uses
+  Winapi.Windows, Winapi.Messages, System.SysUtils, System.Variants, System.Classes, Vcl.Graphics,
+  Vcl.Controls, Vcl.Forms, Vcl.Dialogs, IWHTMLTag, U_FrmPadrao, Data.DB,
+  IWCompListbox, IWDBStdCtrls, IWVCLComponent, IWBaseLayoutComponent,
+  IWBaseContainerLayout, IWContainerLayout, IWTemplateProcessorHTML,
+  IWCompButton, IWVCLBaseControl, IWBaseControl, IWBaseHTMLControl, IWControl,
+  IWCompEdit;
+
+type
+  TFrmConfiguracoes = class(TFrmPadrao)
+    IDLICENCA: TIWDBEdit;
+    NOMELICENCA: TIWDBEdit;
+    CNPJ: TIWDBEdit;
+    CEP: TIWDBEdit;
+    ENDERECO: TIWDBEdit;
+    NUMERO: TIWDBEdit;
+    BAIRRO: TIWDBEdit;
+    CIDADE: TIWDBEdit;
+    ESTADO: TIWDBEdit;
+    TELEFONES: TIWDBEdit;
+    EMAILORIGEM: TIWDBEdit;
+    NOMEORIGEM: TIWDBEdit;
+    SMTP: TIWDBEdit;
+    BtnGravar: TIWButton;
+    BtnCancelar: TIWButton;
+    PORTA: TIWDBEdit;
+    USUARIO: TIWDBEdit;
+    SENHA: TIWDBEdit;
+    TLS: TIWDBComboBox;
+    SSL: TIWDBComboBox;
+    dsConfiguracoes: TDataSource;
+    procedure CNPJHTMLTag(ASender: TObject; ATag: TIWHTMLTag);
+    procedure CEPHTMLTag(ASender: TObject; ATag: TIWHTMLTag);
+    procedure BtnCancelarClick(Sender: TObject);
+    procedure BtnGravarClick(Sender: TObject);
+    procedure IWAppFormCreate(Sender: TObject);
+    procedure IWAppFormDestroy(Sender: TObject);
+  private
+    { Private declarations }
+  public
+    { Public declarations }
+  end;
+
+var
+  FrmConfiguracoes: TFrmConfiguracoes;
+
+implementation
+
+{$R *.dfm}
+
+uses ServerController, SweetAlerts;
+
+procedure TFrmConfiguracoes.BtnCancelarClick(Sender: TObject);
+begin
+  inherited;
+  //
+  // CANCELAR EDICAO OU INCLUSAO DO REGISTRO
+  //
+  Controller.DM.FDQConfiguracoes.Cancel;
+end;
+
+procedure TFrmConfiguracoes.BtnGravarClick(Sender: TObject);
+begin
+  inherited;
+  //
+  // GRAVA RESGISTRO
+  //
+  try
+    Controller.DM.FDQConfiguracoes.Post;
+
+    AddToInitProc(swalSuccess('CONFIRMAÇÃO', 'Alteração realizada com sucesso !'))
+
+  except
+    AddToInitProc(swalAlert('ATENÇÃO','Ocorreu um erro na gravação do registro !'));
+  end;
+
+end;
+
+procedure TFrmConfiguracoes.CEPHTMLTag(ASender: TObject; ATag: TIWHTMLTag);
+begin
+  inherited;
+  ATag.Add('data-inputmask="''mask'': ''99999-999''" data-mask');
+end;
+
+procedure TFrmConfiguracoes.CNPJHTMLTag(ASender: TObject; ATag: TIWHTMLTag);
+begin
+  inherited;
+  ATag.Add('data-inputmask="''mask'': ''99.999.999/9999-99''" data-mask');
+end;
+
+procedure TFrmConfiguracoes.IWAppFormCreate(Sender: TObject);
+begin
+  inherited;
+  Controller.DM.FDQConfiguracoes.Close;
+  Controller.DM.FDQConfiguracoes.Open();
+  Controller.DM.FDQConfiguracoes.First;
+  Controller.DM.FDQConfiguracoes.Edit;
+end;
+
+procedure TFrmConfiguracoes.IWAppFormDestroy(Sender: TObject);
+begin
+  inherited;
+  Controller.DM.FDQConfiguracoes.Close;
+end;
+
+end.

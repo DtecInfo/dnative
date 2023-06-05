@@ -1,0 +1,371 @@
+inherited Seguranca: TSeguranca
+  OnCreate = IWAppFormCreate
+  OnShow = IWAppFormShow
+  DesignLeft = 2
+  DesignTop = 2
+  object LISTA_ACESSOS: TIWListbox [2]
+    Left = 40
+    Top = 144
+    Width = 305
+    Height = 193
+    Css = 'form-control'
+    RenderSize = False
+    StyleRenderOptions.RenderSize = False
+    StyleRenderOptions.RenderPosition = False
+    StyleRenderOptions.RenderFont = False
+    StyleRenderOptions.RenderZIndex = False
+    StyleRenderOptions.RenderVisibility = False
+    StyleRenderOptions.RenderStatus = False
+    StyleRenderOptions.RenderAbsolute = False
+    StyleRenderOptions.RenderPadding = False
+    StyleRenderOptions.RenderBorder = False
+    Font.Color = clNone
+    Font.Size = 10
+    Font.Style = []
+    RequireSelection = False
+    TabOrder = 2
+    FriendlyName = 'LISTA_ACESSOS'
+    ItemIndex = 0
+    Items.Strings = (
+      'WC0001-Pode Criar Nova Simula'#231#227'o de Venda'
+      'WC0002-Mant'#233'm Tabelas de Usuarios x Empresas'
+      'WC0003-Mant'#233'm Tabelas de Usu'#225'rios x Acessos'
+      'WC0004-Mant'#233'm Tabelas de Recusa'
+      'WC0005-Mant'#233'm Tabelas de Status'
+      'WC0006-Mant'#233'm Controle de Fichas'
+      'WC0007-Pode Acessar Detalhe da Ficha'
+      'WC0008-Pode Aprovar Gerente'
+      'WC0009-Pode Aprovar Operador'
+      'WC0010-Pode AprovarAcessorios'
+      'WC0011-Pode Alterar Vendedor'
+      'WC0012-Pode Visualizar Detalhe da Ficha'
+      'WC0013-Pode Alterar Vendedor da Ficha'
+      'WC0014-Pode Visualizar TAC'
+      'WC0015-Pode Alterar Cliente da Ficha'
+      'WC0016 -Enxerga Ficha Apenas Aprovada Pelo Ger. '
+      'WC0018-Enxerga Todas as Fichas'
+      'WC0019-Pode Visualizar CENTRAL DE FACILIDADES'
+      'WC0020-Pode Visualizar FORMAS DE PAGAMENTO'
+      'WC0021-Pode Visualizar VALORES DA NEGOCIA'#199#195'O'
+      'WC0030-Mant'#233'm tabela de usuarios x or'#237'gens'
+      'WC0031-Pode Excluir Ficha(N'#227'o Aprovada)'
+      'WC0032-Pode desaprovar Operador'
+      'WC0033-Pode desaprovar Gerente'
+      'WC0034-Pode desaprovar Acess'#243'rios'
+      'WC0035-Pode desaprovar todos(Reabrir processo)'
+      'WC0036-Pode visualizar segunda linha dos valores do neg'#243'cio'
+      'WC0037-Pode visualizar '#225'rea de acess'#243'rios'
+      'WC0038-Pode visualizar '#225'rea do F&I'
+      'WC0039-Pode Editar valor de DESPACHANTE/ACESS'#211'RIOS'
+      'WC0040-Pode Capturar Ficha F&I'
+      'WC0041-Acesso a Fila de Acess'#243'rios'
+      'WC0042-Acesso a Fila de F&I'
+      'WC0043-Acesso a Todas as Filas'
+      'WC0045-Pode escolher vendedor na tela de Fichas'
+      'WC0046-Pode escolher Empresa na tela de fichas'
+      'WC0047-Pode Exibir Hist'#243'rico de Financiamentos'
+      'WC0048-Pode Escolher vendedor na cria'#231#227'o da simula'#231#227'o'
+      'WC0049-Pode Acessar Mesa'
+      'WC0050-Pode acessar Databases'
+      'WC0051-Pode alterar valores de Opcionais (N1)'
+      'WC0052-Pode alterar tabela(Operador)'
+      'WC0053-Pode cruzar proposta nbs')
+    NoSelectionText = ''
+  end
+  object combo_usuarios: TIWDBLookupComboBox [3]
+    Left = 24
+    Top = 117
+    Width = 121
+    Height = 21
+    Css = 'form-control'
+    RenderSize = False
+    StyleRenderOptions.RenderSize = False
+    StyleRenderOptions.RenderPosition = False
+    StyleRenderOptions.RenderFont = False
+    StyleRenderOptions.RenderZIndex = False
+    StyleRenderOptions.RenderVisibility = False
+    StyleRenderOptions.RenderStatus = False
+    StyleRenderOptions.RenderAbsolute = False
+    StyleRenderOptions.RenderPadding = False
+    StyleRenderOptions.RenderBorder = False
+    Font.Color = clNone
+    Font.Size = 10
+    Font.Style = []
+    TabOrder = 3
+    AutoEditable = False
+    FriendlyName = 'combo_usuarios'
+    KeyField = 'NOME'
+    ListField = 'NOME'
+    ListSource = ds_q_usuarios
+    DisableWhenEmpty = True
+    NoSelectionText = 'Sel. um Usu'#225'rio'
+  end
+  object BTNADD: TIWButton [4]
+    Left = 40
+    Top = 344
+    Width = 120
+    Height = 30
+    Css = 'form-control'
+    RenderSize = False
+    StyleRenderOptions.RenderSize = False
+    StyleRenderOptions.RenderPosition = False
+    StyleRenderOptions.RenderFont = False
+    StyleRenderOptions.RenderZIndex = False
+    StyleRenderOptions.RenderVisibility = False
+    StyleRenderOptions.RenderStatus = False
+    StyleRenderOptions.RenderAbsolute = False
+    StyleRenderOptions.RenderPadding = False
+    StyleRenderOptions.RenderBorder = False
+    Caption = '>>'
+    Color = clBtnFace
+    Font.Color = clNone
+    Font.Size = 10
+    Font.Style = []
+    FriendlyName = 'BTNADD'
+    TabOrder = 4
+    OnAsyncClick = BTNADDAsyncClick
+  end
+  object BTNDEL: TIWButton [5]
+    Left = 40
+    Top = 380
+    Width = 120
+    Height = 30
+    Css = 'form-control'
+    RenderSize = False
+    StyleRenderOptions.RenderSize = False
+    StyleRenderOptions.RenderPosition = False
+    StyleRenderOptions.RenderFont = False
+    StyleRenderOptions.RenderZIndex = False
+    StyleRenderOptions.RenderVisibility = False
+    StyleRenderOptions.RenderStatus = False
+    StyleRenderOptions.RenderAbsolute = False
+    StyleRenderOptions.RenderPadding = False
+    StyleRenderOptions.RenderBorder = False
+    Caption = '<<'
+    Color = clBtnFace
+    Font.Color = clNone
+    Font.Size = 10
+    Font.Style = []
+    FriendlyName = 'BTNADD'
+    TabOrder = 5
+    OnAsyncClick = BTNDELAsyncClick
+  end
+  object LISTA_SELECAO: TIWListbox [6]
+    Left = 351
+    Top = 144
+    Width = 305
+    Height = 193
+    Css = 'form-control'
+    RenderSize = False
+    StyleRenderOptions.RenderSize = False
+    StyleRenderOptions.RenderPosition = False
+    StyleRenderOptions.RenderFont = False
+    StyleRenderOptions.RenderZIndex = False
+    StyleRenderOptions.RenderVisibility = False
+    StyleRenderOptions.RenderStatus = False
+    StyleRenderOptions.RenderAbsolute = False
+    StyleRenderOptions.RenderPadding = False
+    StyleRenderOptions.RenderBorder = False
+    Font.Color = clNone
+    Font.Size = 10
+    Font.Style = []
+    RequireSelection = False
+    TabOrder = 6
+    FriendlyName = 'LISTA_ACESSOS'
+    Items.Strings = (
+      '')
+    NoSelectionText = ''
+  end
+  object btn_salvar_m: TIWButton [7]
+    Left = 40
+    Top = 416
+    Width = 120
+    Height = 30
+    Css = 'btn btn-default'
+    RenderSize = False
+    StyleRenderOptions.RenderSize = False
+    StyleRenderOptions.RenderPosition = False
+    StyleRenderOptions.RenderFont = False
+    StyleRenderOptions.RenderZIndex = False
+    StyleRenderOptions.RenderVisibility = False
+    StyleRenderOptions.RenderStatus = False
+    StyleRenderOptions.RenderAbsolute = False
+    StyleRenderOptions.RenderPadding = False
+    StyleRenderOptions.RenderBorder = False
+    Caption = 'Salvar'
+    Color = clBtnFace
+    Font.Color = clNone
+    Font.Size = 10
+    Font.Style = []
+    FriendlyName = 'BTNADD'
+    TabOrder = 7
+    OnAsyncClick = btn_salvar_mAsyncClick
+  end
+  object lista_guardar: TIWListbox [8]
+    Left = 184
+    Top = 472
+    Width = 97
+    Height = 30
+    Css = 'form-control'
+    RenderSize = False
+    StyleRenderOptions.RenderSize = False
+    StyleRenderOptions.RenderPosition = False
+    StyleRenderOptions.RenderFont = False
+    StyleRenderOptions.RenderZIndex = False
+    StyleRenderOptions.RenderVisibility = False
+    StyleRenderOptions.RenderStatus = False
+    StyleRenderOptions.RenderAbsolute = False
+    StyleRenderOptions.RenderPadding = False
+    StyleRenderOptions.RenderBorder = False
+    Font.Color = clNone
+    Font.Size = 10
+    Font.Style = []
+    RequireSelection = False
+    TabOrder = 8
+    FriendlyName = 'LISTA_ACESSOS'
+    Items.Strings = (
+      'WC0001-Pode Criar Nova Simula'#231#227'o de Venda'
+      'WC0002-Mant'#233'm Tabelas de Usuarios x Empresas'
+      'WC0003-Mant'#233'm Tabelas de Usu'#225'rios x Acessos'
+      'WC0004-Mant'#233'm Tabelas de Recusa'
+      'WC0005-Mant'#233'm Tabelas de Status'
+      'WC0006-Mant'#233'm Controle de Fichas'
+      'WC0007-Pode Acessar Detalhe da Ficha'
+      'WC0008-Pode Aprovar Gerente'
+      'WC0009-Pode Aprovar Operador'
+      'WC0010-Pode AprovarAcessorios'
+      'WC0011-Pode Alterar Vendedor'
+      'WC0012-Pode Visualizar Detalhe da Ficha'
+      'WC0013-Pode Alterar Vendedor da Ficha'
+      'WC0014-Pode Visualizar TAC'
+      'WC0015-Pode Alterar Cliente da Ficha'
+      'WC0016 -Enxerga Ficha Apenas Aprovada Pelo Ger. '
+      'WC0018-Enxerga Todas as Fichas'
+      'WC0019-Pode Visualizar CENTRAL DE FACILIDADES'
+      'WC0020-Pode Visualizar FORMAS DE PAGAMENTO'
+      'WC0021-Pode Visualizar VALORES DA NEGOCIA'#199#195'O'
+      'WC0030-Mant'#233'm tabela de usuarios x or'#237'gens'
+      'WC0031-Pode Excluir Ficha(N'#227'o Aprovada)'
+      'WC0032-Pode desaprovar Operador'
+      'WC0033-Pode desaprovar Gerente'
+      'WC0034-Pode desaprovar Acess'#243'rios'
+      'WC0035-Pode desaprovar todos(Reabrir processo)'
+      'WC0036-Pode visualizar segunda linha dos valores do neg'#243'cio'
+      'WC0037-Pode visualizar '#225'rea de acess'#243'rios'
+      'WC0038-Pode visualizar '#225'rea do F&I'
+      'WC0039-Pode Editar valor de DESPACHANTE/ACESS'#211'RIOS'
+      'WC0040-Pode Capturar Ficha F&I'
+      'WC0041-Acesso a Fila de Acess'#243'rios'
+      'WC0042-Acesso a Fila de F&I'
+      'WC0043-Acesso a Todas as Filas'
+      'WC0045-Pode escolher vendedor na tela de Fichas'
+      'WC0046-Pode escolher Empresa na tela de fichas'
+      'WC0047-Pode Exibir Hist'#243'rico de Financiamentos'
+      'WC0048-Pode Escolher vendedor na cria'#231#227'o da simula'#231#227'o')
+    NoSelectionText = ''
+  end
+  object combo_funcoes: TIWDBLookupComboBox [9]
+    Left = 24
+    Top = 88
+    Width = 121
+    Height = 21
+    Css = 'form-control'
+    RenderSize = False
+    StyleRenderOptions.RenderSize = False
+    StyleRenderOptions.RenderPosition = False
+    StyleRenderOptions.RenderFont = False
+    StyleRenderOptions.RenderZIndex = False
+    StyleRenderOptions.RenderVisibility = False
+    StyleRenderOptions.RenderStatus = False
+    StyleRenderOptions.RenderAbsolute = False
+    StyleRenderOptions.RenderPadding = False
+    StyleRenderOptions.RenderBorder = False
+    Font.Color = clNone
+    Font.Size = 10
+    Font.Style = []
+    OnAsyncChange = combo_funcoesAsyncChange
+    TabOrder = 9
+    AutoEditable = False
+    FriendlyName = 'combo_funcoes'
+    KeyField = 'COD_FUNCAO'
+    ListField = 'DESCRICAO'
+    ListSource = ds_q_funcoes
+    DisableWhenEmpty = True
+    NoSelectionText = 'Todas'
+  end
+  object lb_index: TIWLabel [10]
+    Left = 160
+    Top = 104
+    Width = 51
+    Height = 16
+    Font.Color = clNone
+    Font.Size = 10
+    Font.Style = []
+    HasTabOrder = False
+    FriendlyName = 'lb_index'
+    Caption = 'lb_index'
+  end
+  object q_datatable: TFDQuery
+    Connection = DM.banco
+    Left = 440
+    Top = 56
+  end
+  object q_usuarios: TFDQuery
+    Connection = DM.banco
+    SQL.Strings = (
+      'select nome, nome_completo from empresas_usuarios a'
+      'where nvl(a.demitido,'#39'N'#39')='#39'N'#39
+      'order by a.nome')
+    Left = 440
+    Top = 104
+    object q_usuariosNOME: TStringField
+      FieldName = 'NOME'
+      Origin = 'NOME'
+      ProviderFlags = [pfInUpdate, pfInWhere, pfInKey]
+      Required = True
+      Size = 10
+    end
+    object q_usuariosNOME_COMPLETO: TStringField
+      FieldName = 'NOME_COMPLETO'
+      Origin = 'NOME_COMPLETO'
+      Size = 40
+    end
+  end
+  object ds_q_usuarios: TDataSource
+    DataSet = q_usuarios
+    Left = 360
+    Top = 48
+  end
+  object q_geral: TFDQuery
+    Connection = DM.banco
+    Left = 448
+    Top = 368
+  end
+  object q_funcoes: TFDQuery
+    Connection = DM.banco
+    SQL.Strings = (
+      'select cod_funcao,descricao from empresas_funcoes'
+      'order by descricao')
+    Left = 208
+    Top = 56
+    object q_funcoesCOD_FUNCAO: TFMTBCDField
+      FieldName = 'COD_FUNCAO'
+      Origin = 'COD_FUNCAO'
+      ProviderFlags = [pfInUpdate, pfInWhere, pfInKey]
+      Required = True
+      Precision = 38
+      Size = 0
+    end
+    object q_funcoesDESCRICAO: TStringField
+      FieldName = 'DESCRICAO'
+      Origin = 'DESCRICAO'
+      Required = True
+      Size = 30
+    end
+  end
+  object ds_q_funcoes: TDataSource
+    DataSet = q_funcoes
+    Left = 208
+    Top = 16
+  end
+end

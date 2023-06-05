@@ -1,0 +1,20 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<Relation class="oracle.dbtools.crest.model.design.logical.Relation" name="fk_id_imagem" directorySegmentName="seg_0" id="0861DA46-D891-6EE4-DA5D-969E5877FF30">
+<createdBy>eduardo</createdBy>
+<createdTime>2020-05-08 20:08:57 UTC</createdTime>
+<generatorID>8D275202-DC27-3A33-A101-2BFEA92B5A57</generatorID>
+<ownerDesignName>Autonunes</ownerDesignName>
+<engineerTo>
+<item key="9904A792-F10E-D72F-A8ED-D0643674DC08" value="true"/>
+</engineerTo>
+<sourcePk>163D1A93-DCC4-6FD5-3567-AE3EE63240BF</sourcePk>
+<identifying>false</identifying>
+<optionalSource>true</optionalSource>
+<optionalTarget>false</optionalTarget>
+<sourceCardinality>1</sourceCardinality>
+<sourceEntity>AAC7EBB5-6569-F5C7-6714-B7AE3000F7D5</sourceEntity>
+<targetCardinalityString>*</targetCardinalityString>
+<targetEntity>C4F8F437-F91F-80A4-3922-AE39F372E8F1</targetEntity>
+<transferable>true</transferable>
+<deleteRule>NO ACTION</deleteRule>
+</Relation>

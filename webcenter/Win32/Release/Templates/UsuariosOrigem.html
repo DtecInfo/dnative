@@ -1,0 +1,321 @@
+<html>
+
+<head>
+</head>
+
+<body>
+    <div class="clearfix" style="display:none">{%BTN_DELETAR%}</div>
+
+    <section class="content-header">
+        <h1>
+            Usuários x Orígem
+            <small>Listagem e Manutenção...</small>
+        </h1>
+        <ol class="breadcrumb">
+            <li><a href="javascript: SetaAcao('Menu', 'Iniciar');"><i class="fa fa-home"></i> Usuários x Orígem</a></li>
+            <li class="active">Usuários x Orígem</li>
+        </ol>
+    </section>
+    <section class="content container-fluid">
+        <div class="col-md-12">
+            <div class="box box-primary">
+                <div class="box-header with-border">
+                    <i class="fa fa-fw fa-users"></i>
+                    <h3 class="box-title">Usuarios x Origens</h3>
+                    <div class="box-tools pull-right">
+                        <div class="btn-group">
+
+                            <button type="buttom" class="btn btn-primary" onclick="SetaAcao('Inclu');">
+                                <i class="fa fa-plus" aria-hidden="true"></i><span class="hidden-xs hidden-sm">
+                                    Incluir</span>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+                <div class="box-body">
+                    <div class="box box-default">
+                        <div class="row">
+                            <div class="col-md-12">
+                                <br />
+
+                                <div class="table-responsive">
+                                    <div class="container-fluid">
+                                        <div class="row">
+                                            <div class="col-xs-12">
+                                                <br />
+                                                <table id="UsuariosO" class="table table-hover" style="width:100%">
+                                                    <thead>
+                                                        <tr>
+                                                            <th>Id</th>
+                                                            <th>Usuário </th>
+                                                            <th>Origem</th>
+                                                            <th>Ação</th>
+                                                        </tr>
+                                                    </thead>
+                                                </table>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Modal -->
+    <div class="modal fade" id="ShowOrigens" role="dialog" data-backdrop="static" data-keyboard="false">
+        <div class="modal-dialog modal-lg">
+            <!-- Modal content-->
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h4 class="modal-title"><i class="fa fa-fw fa-cog"></i>Cruzamento</h4>
+                </div>
+                <div class="modal-body">
+                    <div class="box-body">
+                        <div class="box box-default">
+                            <div class="row">
+                                <div class="col-md-12">
+                                    <br />
+
+                                    <table class="table table-condensed">
+                                        <thead>
+                                            <tr>
+                                                <th>Usuário</th>
+                                                <th>
+                                                    <form class="form-inline">Lista Origens{%BTN_SHOW_OR%}</form>
+                                                </th>
+                                                <th>Ação</th>
+                                                <th>Selecionados</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            <tr>
+                                                <td> {%combo_usuarios%}</td>
+                                                <td>{%LISTA_ORIGENS%}</td>
+                                                <td>{%BTNADD%}{%BTNDEL%}</td>
+                                                <td>{%lista_selecao%}</td>
+                                            </tr>
+
+
+                                        </tbody>
+                                    </table>
+
+
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+
+
+
+                </div>
+
+                <div class="modal-footer">
+                    {%btn_salvar_m%}
+                    <button type="button" class="btn btn-default" data-dismiss="modal"
+                        id="BTNCANCELAR">Cancelar</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Modal  -->
+    <!-- Modal  Cadastro de origens-->
+    <div class="modal fade" id="ShowORcad" role="dialog" data-backdrop="static" data-keyboard="false">
+        <div class="modal-dialog modal-lg">
+            <!-- Modal content-->
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h4 class="modal-title"><i class="fa fa-cog"></i>Manutenção de Origens</h4>
+                    
+                </div>
+                <div class="modal-body">
+                    <div class="box-body">
+                        
+                        <div class="box box-default">
+                            <div class="box-tools pull-right">
+                                <div class="btn-group">
+        
+                                    <button type="buttom" class="btn btn-primary" onclick="SetaAcao('OInse');">
+                                        <i class="fa fa-plus" aria-hidden="true"></i><span class="hidden-xs hidden-sm">
+                                            Incluir</span>
+                                    </button>
+                                </div>
+                            </div>
+                            
+                            <div class="row">
+                                <div class="col-md-12">
+                                    <br />
+
+                                    <div class="table-responsive">
+                                        <div class="container-fluid">
+                                            <div class="row">
+                                                <div class="col-xs-12">
+                                                    <br />
+                                                    <table id="Origens" class="table table-hover" style="width:100%">
+                                                        <thead>
+                                                            <tr>
+                                                                <th>Id</th>
+                                                                <th>Descricao </th>
+                                                                <th>Ativo</th>
+                                                                <th>Aprova Acessórios a</th>
+                                                                <th>Ação</th>
+                                                            </tr>
+                                                        </thead>
+                                                    </table>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    
+
+
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+
+
+
+                </div>
+
+                <div class="modal-footer">
+
+                    <button type="button" class="btn btn-default" data-dismiss="modal"
+                        id="BTNCANCELAR">Cancelar</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Modal  -->
+    <!-- Modal  Edição de origens-->
+    <div class="modal fade" id="ShowEditOR" role="dialog" data-backdrop="static" data-keyboard="false">
+        <div class="modal-dialog modal-lg">
+            <!-- Modal content-->
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h4 class="modal-title"><i class="fa fa-cog"></i>Manutenção de Origens - {%lb_acao%}</h4>
+                </div>
+                <div class="modal-body">
+                    <div class="box-body">
+                        <div class="box box-default">
+                            <div class="row">
+                                <div class="col-md-12">
+                                    <br />
+
+                                    <form class="form-inline">
+                                        Id:{%edit_id%}&nbsp;&nbsp;Origem:{%edit_origem%}&nbsp;&nbsp;
+                                        {%ck_aprova_a%}&nbsp;&nbsp;{%ck_ativo%}
+                                    </form>
+                                   <br>
+                                   <hr>
+                                   <i class="fa fa-cog"></i><b>Origem x Documentos</b>
+                                    <table class="table table-condensed">
+                                        <thead>
+                                            <tr>
+                                                
+                                                <th>
+                                                    Lista documentos
+                                                </th>
+                                                <th>
+                                                    Ação
+                                                </th>
+                                                <th>
+                                                    Selecionados
+                                                </th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            <tr>
+                                                
+                                                <td>{%LIST_DOCS_SELECAO%}</td>
+                                                <td>{%BTN_ADD_DOC%}{%BTN_DEL_DOC%}</td>
+                                                <td>{%LIST_DOCS_SELECIONADOS%}</td>
+                                            </tr>
+
+
+                                        </tbody>
+                                    </table>
+
+
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+
+
+
+                </div>
+
+                <div class="modal-footer">
+                   {%BTN_SALVAR_OR%}
+                    <button type="button" class="btn btn-default" data-dismiss="modal"
+                        id="BTNCANCELAR">Cancelar</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Modal  -->
+
+    <script>
+
+
+
+
+
+        $(document).ready(function () {
+            $('#UsuariosO').DataTable(
+                {
+                    responsive: true,
+                    "pageLength": 10,
+                    "language": {
+                        "url": "//cdn.datatables.net/plug-ins/1.10.19/i18n/Portuguese-Brasil.json"
+                    },
+                    "paging": true,
+                    "ordering": true,
+                    "searching": true,
+                    serverSide: true,
+                    processing: true,
+                    ajax: "/$/callback?callback=UsuariosO"
+                });
+
+        });
+
+        $(document).ready(function () {
+            $('#Origens').DataTable(
+                {
+                    responsive: true,
+                    "pageLength": 10,
+                    "language": {
+                        "url": "//cdn.datatables.net/plug-ins/1.10.19/i18n/Portuguese-Brasil.json"
+                    },
+                    "paging": true,
+                    "ordering": true,
+                    "searching": true,
+                    serverSide: true,
+                    processing: true,
+                    ajax: "/$/callback?callback=Origens"
+                });
+
+        });
+
+
+    </script>
+
+
+
+     
+
+
+
+</body>
+
+</html>

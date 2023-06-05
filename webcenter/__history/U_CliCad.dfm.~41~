@@ -1,0 +1,645 @@
+inherited FormCliCad: TFormCliCad
+  Width = 1069
+  Height = 778
+  OnShow = IWAppFormShow
+  Css = 'form-control'
+  ExplicitWidth = 1069
+  ExplicitHeight = 778
+  DesignLeft = 2
+  DesignTop = 2
+  object COMBO_TIPO: TIWComboBox [2]
+    Left = 176
+    Top = 20
+    Width = 121
+    Height = 21
+    Css = 'form-control'
+    RenderSize = False
+    StyleRenderOptions.RenderSize = False
+    StyleRenderOptions.RenderPosition = False
+    StyleRenderOptions.RenderFont = False
+    StyleRenderOptions.RenderZIndex = False
+    StyleRenderOptions.RenderVisibility = False
+    StyleRenderOptions.RenderStatus = False
+    StyleRenderOptions.RenderAbsolute = False
+    StyleRenderOptions.RenderPadding = False
+    StyleRenderOptions.RenderBorder = False
+    Font.Color = clNone
+    Font.Size = 10
+    Font.Style = []
+    OnChange = COMBO_TIPOChange
+    TabOrder = 2
+    ItemIndex = 0
+    Items.Strings = (
+      'Fisico'
+      'Juridico')
+    FriendlyName = 'COMBO_TIPO'
+    NoSelectionText = '-- No Selection --'
+  end
+  object COMBO_CLASSE: TIWComboBox [3]
+    Left = 176
+    Top = 47
+    Width = 121
+    Height = 21
+    Css = 'form-control'
+    RenderSize = False
+    StyleRenderOptions.RenderSize = False
+    StyleRenderOptions.RenderPosition = False
+    StyleRenderOptions.RenderFont = False
+    StyleRenderOptions.RenderZIndex = False
+    StyleRenderOptions.RenderVisibility = False
+    StyleRenderOptions.RenderStatus = False
+    StyleRenderOptions.RenderAbsolute = False
+    StyleRenderOptions.RenderPadding = False
+    StyleRenderOptions.RenderBorder = False
+    Font.Color = clNone
+    Font.Size = 10
+    Font.Style = []
+    TabOrder = 3
+    ItemIndex = -1
+    Items.Strings = (
+      'Cliente'
+      'Fornecedor'
+      'Ambos')
+    FriendlyName = 'COMBO_CLASSE'
+    NoSelectionText = '-- No Selection --'
+  end
+  object EDIT_COD_CLIENTE_PJ: TIWEdit [4]
+    Left = 176
+    Top = 74
+    Width = 121
+    Height = 32
+    Visible = False
+    OnHTMLTag = EDIT_COD_CLIENTE_PJHTMLTag
+    Css = 'form-control'
+    Anchors = [akLeft, akTop, akRight]
+    RenderSize = False
+    StyleRenderOptions.RenderSize = False
+    StyleRenderOptions.RenderPosition = False
+    StyleRenderOptions.RenderFont = False
+    StyleRenderOptions.RenderZIndex = False
+    StyleRenderOptions.RenderVisibility = False
+    StyleRenderOptions.RenderStatus = False
+    StyleRenderOptions.RenderPadding = False
+    StyleRenderOptions.RenderBorder = False
+    Font.Color = clNone
+    Font.Size = 10
+    Font.Style = []
+    FriendlyName = 'EDIT_COD_CLIENTE_PJ'
+    SubmitOnAsyncEvent = True
+    TabOrder = 4
+  end
+  object EDIT_NOME: TIWEdit [5]
+    Left = 176
+    Top = 112
+    Width = 121
+    Height = 32
+    Css = 'form-control'
+    Anchors = [akLeft, akTop, akRight]
+    RenderSize = False
+    StyleRenderOptions.RenderSize = False
+    StyleRenderOptions.RenderPosition = False
+    StyleRenderOptions.RenderFont = False
+    StyleRenderOptions.RenderZIndex = False
+    StyleRenderOptions.RenderVisibility = False
+    StyleRenderOptions.RenderStatus = False
+    StyleRenderOptions.RenderAbsolute = False
+    StyleRenderOptions.RenderPadding = False
+    StyleRenderOptions.RenderBorder = False
+    Font.Color = clNone
+    Font.Size = 10
+    Font.Style = []
+    FriendlyName = 'EDIT_NOME'
+    SubmitOnAsyncEvent = True
+    TabOrder = 5
+  end
+  object edit_cod_cliente_pf: TIWEdit [6]
+    Left = 303
+    Top = 74
+    Width = 82
+    Height = 32
+    OnHTMLTag = edit_cod_cliente_pfHTMLTag
+    Css = 'form-control'
+    Anchors = [akLeft, akTop, akRight]
+    RenderSize = False
+    StyleRenderOptions.RenderSize = False
+    StyleRenderOptions.RenderPosition = False
+    StyleRenderOptions.RenderFont = False
+    StyleRenderOptions.RenderZIndex = False
+    StyleRenderOptions.RenderVisibility = False
+    StyleRenderOptions.RenderStatus = False
+    StyleRenderOptions.RenderPadding = False
+    StyleRenderOptions.RenderBorder = False
+    Font.Color = clNone
+    Font.Size = 10
+    Font.Style = []
+    FriendlyName = 'EDIT_COD_CLIENTE_PJ'
+    SubmitOnAsyncEvent = True
+    TabOrder = 6
+  end
+  object combo_uf: TIWDBLookupComboBox [7]
+    Left = 176
+    Top = 150
+    Width = 121
+    Height = 21
+    Css = 'form-control'
+    StyleRenderOptions.RenderBorder = False
+    Font.Color = clNone
+    Font.Size = 10
+    Font.Style = []
+    OnChange = combo_ufChange
+    TabOrder = 7
+    AutoEditable = False
+    DataSource = ds_uf
+    FriendlyName = 'combo_uf'
+    KeyField = 'UF'
+    ListField = 'UF'
+    ListSource = ds_uf
+    DisableWhenEmpty = True
+    NoSelectionText = '-- No Selection --'
+  end
+  object combo_cidades: TIWDBLookupComboBox [8]
+    Left = 176
+    Top = 177
+    Width = 121
+    Height = 21
+    Css = 'form-control'
+    StyleRenderOptions.RenderBorder = False
+    Font.Color = clNone
+    Font.Size = 10
+    Font.Style = []
+    TabOrder = 8
+    AutoEditable = False
+    DataSource = ds_cidades
+    FriendlyName = 'IWDBLookupComboBox1'
+    KeyField = 'COD_CIDADE'
+    ListField = 'DESCRICAO'
+    ListSource = ds_cidades
+    DisableWhenEmpty = True
+    NoSelectionText = '-- No Selection --'
+  end
+  object edit_endereco: TIWEdit [9]
+    Left = 176
+    Top = 204
+    Width = 121
+    Height = 21
+    Css = 'form-control'
+    RenderSize = False
+    StyleRenderOptions.RenderSize = False
+    StyleRenderOptions.RenderPosition = False
+    StyleRenderOptions.RenderFont = False
+    StyleRenderOptions.RenderZIndex = False
+    StyleRenderOptions.RenderVisibility = False
+    StyleRenderOptions.RenderStatus = False
+    StyleRenderOptions.RenderAbsolute = False
+    StyleRenderOptions.RenderPadding = False
+    StyleRenderOptions.RenderBorder = False
+    Font.Color = clNone
+    Font.Size = 10
+    Font.Style = []
+    FriendlyName = 'edit_endereco'
+    SubmitOnAsyncEvent = True
+    TabOrder = 9
+  end
+  object edit_complemento: TIWEdit [10]
+    Left = 176
+    Top = 231
+    Width = 121
+    Height = 21
+    Css = 'form-control'
+    RenderSize = False
+    StyleRenderOptions.RenderSize = False
+    StyleRenderOptions.RenderPosition = False
+    StyleRenderOptions.RenderFont = False
+    StyleRenderOptions.RenderZIndex = False
+    StyleRenderOptions.RenderVisibility = False
+    StyleRenderOptions.RenderStatus = False
+    StyleRenderOptions.RenderAbsolute = False
+    StyleRenderOptions.RenderPadding = False
+    StyleRenderOptions.RenderBorder = False
+    Font.Color = clNone
+    Font.Size = 10
+    Font.Style = []
+    FriendlyName = 'edit_endereco'
+    SubmitOnAsyncEvent = True
+    TabOrder = 10
+  end
+  object edit_numero: TIWEdit [11]
+    Left = 176
+    Top = 258
+    Width = 121
+    Height = 21
+    Css = 'form-control'
+    RenderSize = False
+    StyleRenderOptions.RenderSize = False
+    StyleRenderOptions.RenderPosition = False
+    StyleRenderOptions.RenderFont = False
+    StyleRenderOptions.RenderZIndex = False
+    StyleRenderOptions.RenderVisibility = False
+    StyleRenderOptions.RenderStatus = False
+    StyleRenderOptions.RenderAbsolute = False
+    StyleRenderOptions.RenderPadding = False
+    StyleRenderOptions.RenderBorder = False
+    Font.Color = clNone
+    Font.Size = 10
+    Font.Style = []
+    FriendlyName = 'edit_endereco'
+    SubmitOnAsyncEvent = True
+    TabOrder = 11
+  end
+  object edit_cep: TIWEdit [12]
+    Left = 176
+    Top = 285
+    Width = 121
+    Height = 21
+    OnHTMLTag = edit_cepHTMLTag
+    Css = 'form-control'
+    RenderSize = False
+    StyleRenderOptions.RenderSize = False
+    StyleRenderOptions.RenderPosition = False
+    StyleRenderOptions.RenderFont = False
+    StyleRenderOptions.RenderZIndex = False
+    StyleRenderOptions.RenderVisibility = False
+    StyleRenderOptions.RenderStatus = False
+    StyleRenderOptions.RenderAbsolute = False
+    StyleRenderOptions.RenderPadding = False
+    StyleRenderOptions.RenderBorder = False
+    Font.Color = clNone
+    Font.Size = 10
+    Font.Style = []
+    FriendlyName = 'edit_endereco'
+    SubmitOnAsyncEvent = True
+    TabOrder = 12
+  end
+  object edit_ddd1: TIWEdit [13]
+    Left = 176
+    Top = 312
+    Width = 121
+    Height = 21
+    OnHTMLTag = edit_ddd1HTMLTag
+    Css = 'form-control'
+    RenderSize = False
+    StyleRenderOptions.RenderSize = False
+    StyleRenderOptions.RenderPosition = False
+    StyleRenderOptions.RenderFont = False
+    StyleRenderOptions.RenderZIndex = False
+    StyleRenderOptions.RenderVisibility = False
+    StyleRenderOptions.RenderStatus = False
+    StyleRenderOptions.RenderAbsolute = False
+    StyleRenderOptions.RenderPadding = False
+    StyleRenderOptions.RenderBorder = False
+    Font.Color = clNone
+    Font.Size = 10
+    Font.Style = []
+    FriendlyName = 'edit_endereco'
+    SubmitOnAsyncEvent = True
+    TabOrder = 13
+  end
+  object edit_ddd2: TIWEdit [14]
+    Left = 176
+    Top = 339
+    Width = 121
+    Height = 21
+    OnHTMLTag = edit_ddd2HTMLTag
+    Css = 'form-control'
+    RenderSize = False
+    StyleRenderOptions.RenderSize = False
+    StyleRenderOptions.RenderPosition = False
+    StyleRenderOptions.RenderFont = False
+    StyleRenderOptions.RenderZIndex = False
+    StyleRenderOptions.RenderVisibility = False
+    StyleRenderOptions.RenderStatus = False
+    StyleRenderOptions.RenderAbsolute = False
+    StyleRenderOptions.RenderPadding = False
+    StyleRenderOptions.RenderBorder = False
+    Font.Color = clNone
+    Font.Size = 10
+    Font.Style = []
+    FriendlyName = 'edit_endereco'
+    SubmitOnAsyncEvent = True
+    TabOrder = 14
+  end
+  object edit_ddd3: TIWEdit [15]
+    Left = 176
+    Top = 366
+    Width = 121
+    Height = 21
+    OnHTMLTag = edit_ddd3HTMLTag
+    Css = 'form-control'
+    RenderSize = False
+    StyleRenderOptions.RenderSize = False
+    StyleRenderOptions.RenderPosition = False
+    StyleRenderOptions.RenderFont = False
+    StyleRenderOptions.RenderZIndex = False
+    StyleRenderOptions.RenderVisibility = False
+    StyleRenderOptions.RenderStatus = False
+    StyleRenderOptions.RenderAbsolute = False
+    StyleRenderOptions.RenderPadding = False
+    StyleRenderOptions.RenderBorder = False
+    Font.Color = clNone
+    Font.Size = 10
+    Font.Style = []
+    FriendlyName = 'edit_endereco'
+    SubmitOnAsyncEvent = True
+    TabOrder = 15
+  end
+  object edit_fone1: TIWEdit [16]
+    Left = 176
+    Top = 393
+    Width = 121
+    Height = 21
+    OnHTMLTag = edit_fone1HTMLTag
+    Css = 'form-control'
+    RenderSize = False
+    StyleRenderOptions.RenderSize = False
+    StyleRenderOptions.RenderPosition = False
+    StyleRenderOptions.RenderFont = False
+    StyleRenderOptions.RenderZIndex = False
+    StyleRenderOptions.RenderVisibility = False
+    StyleRenderOptions.RenderStatus = False
+    StyleRenderOptions.RenderAbsolute = False
+    StyleRenderOptions.RenderPadding = False
+    StyleRenderOptions.RenderBorder = False
+    Font.Color = clNone
+    Font.Size = 10
+    Font.Style = []
+    FriendlyName = 'edit_endereco'
+    SubmitOnAsyncEvent = True
+    TabOrder = 16
+  end
+  object edit_fone2: TIWEdit [17]
+    Left = 176
+    Top = 420
+    Width = 121
+    Height = 21
+    OnHTMLTag = edit_fone2HTMLTag
+    Css = 'form-control'
+    RenderSize = False
+    StyleRenderOptions.RenderSize = False
+    StyleRenderOptions.RenderPosition = False
+    StyleRenderOptions.RenderFont = False
+    StyleRenderOptions.RenderZIndex = False
+    StyleRenderOptions.RenderVisibility = False
+    StyleRenderOptions.RenderStatus = False
+    StyleRenderOptions.RenderAbsolute = False
+    StyleRenderOptions.RenderPadding = False
+    StyleRenderOptions.RenderBorder = False
+    Font.Color = clNone
+    Font.Size = 10
+    Font.Style = []
+    FriendlyName = 'edit_endereco'
+    SubmitOnAsyncEvent = True
+    TabOrder = 17
+  end
+  object edit_fone3: TIWEdit [18]
+    Left = 176
+    Top = 447
+    Width = 121
+    Height = 21
+    OnHTMLTag = edit_fone3HTMLTag
+    Css = 'form-control'
+    RenderSize = False
+    StyleRenderOptions.RenderSize = False
+    StyleRenderOptions.RenderPosition = False
+    StyleRenderOptions.RenderFont = False
+    StyleRenderOptions.RenderZIndex = False
+    StyleRenderOptions.RenderVisibility = False
+    StyleRenderOptions.RenderStatus = False
+    StyleRenderOptions.RenderAbsolute = False
+    StyleRenderOptions.RenderPadding = False
+    StyleRenderOptions.RenderBorder = False
+    Font.Color = clNone
+    Font.Size = 10
+    Font.Style = []
+    FriendlyName = 'edit_endereco'
+    SubmitOnAsyncEvent = True
+    TabOrder = 18
+  end
+  object edit_bairro: TIWEdit [19]
+    Left = 176
+    Top = 474
+    Width = 121
+    Height = 21
+    Css = 'form-control'
+    RenderSize = False
+    StyleRenderOptions.RenderSize = False
+    StyleRenderOptions.RenderPosition = False
+    StyleRenderOptions.RenderFont = False
+    StyleRenderOptions.RenderZIndex = False
+    StyleRenderOptions.RenderVisibility = False
+    StyleRenderOptions.RenderStatus = False
+    StyleRenderOptions.RenderAbsolute = False
+    StyleRenderOptions.RenderPadding = False
+    StyleRenderOptions.RenderBorder = False
+    Font.Color = clNone
+    Font.Size = 10
+    Font.Style = []
+    FriendlyName = 'edit_endereco'
+    SubmitOnAsyncEvent = True
+    TabOrder = 19
+  end
+  object combo_sexo: TIWComboBox [20]
+    Left = 320
+    Top = 20
+    Width = 121
+    Height = 21
+    Css = 'form-control'
+    StyleRenderOptions.RenderBorder = False
+    Font.Color = clNone
+    Font.Size = 10
+    Font.Style = []
+    TabOrder = 20
+    ItemIndex = -1
+    Items.Strings = (
+      'Masculino'
+      'Feminino'
+      'Outros')
+    FriendlyName = 'combo_sexo'
+    NoSelectionText = '-- No Selection --'
+  end
+  object edit_data_nasc: TIWEdit [21]
+    Left = 447
+    Top = 20
+    Width = 97
+    Height = 21
+    Css = 'form-control'
+    RenderSize = False
+    StyleRenderOptions.RenderSize = False
+    StyleRenderOptions.RenderPosition = False
+    StyleRenderOptions.RenderFont = False
+    StyleRenderOptions.RenderZIndex = False
+    StyleRenderOptions.RenderVisibility = False
+    StyleRenderOptions.RenderStatus = False
+    StyleRenderOptions.RenderAbsolute = False
+    StyleRenderOptions.RenderPadding = False
+    StyleRenderOptions.RenderBorder = False
+    Font.Color = clNone
+    Font.Size = 10
+    Font.Style = []
+    FriendlyName = 'edit_data_nasc'
+    SubmitOnAsyncEvent = True
+    TabOrder = 21
+    DataType = stDate
+  end
+  object edit_rg: TIWEdit [22]
+    Left = 176
+    Top = 501
+    Width = 121
+    Height = 21
+    Css = 'form-control'
+    RenderSize = False
+    StyleRenderOptions.RenderSize = False
+    StyleRenderOptions.RenderPosition = False
+    StyleRenderOptions.RenderFont = False
+    StyleRenderOptions.RenderZIndex = False
+    StyleRenderOptions.RenderVisibility = False
+    StyleRenderOptions.RenderStatus = False
+    StyleRenderOptions.RenderAbsolute = False
+    StyleRenderOptions.RenderPadding = False
+    StyleRenderOptions.RenderBorder = False
+    Font.Color = clNone
+    Font.Size = 10
+    Font.Style = []
+    FriendlyName = 'edit_endereco'
+    SubmitOnAsyncEvent = True
+    TabOrder = 22
+  end
+  object combo_estado_cv: TIWComboBox [23]
+    Left = 424
+    Top = 80
+    Width = 121
+    Height = 21
+    Css = 'form-control'
+    RenderSize = False
+    StyleRenderOptions.RenderSize = False
+    StyleRenderOptions.RenderPosition = False
+    StyleRenderOptions.RenderFont = False
+    StyleRenderOptions.RenderZIndex = False
+    StyleRenderOptions.RenderVisibility = False
+    StyleRenderOptions.RenderStatus = False
+    StyleRenderOptions.RenderAbsolute = False
+    StyleRenderOptions.RenderPadding = False
+    StyleRenderOptions.RenderBorder = False
+    Font.Color = clNone
+    Font.Size = 10
+    Font.Style = []
+    TabOrder = 23
+    ItemIndex = -1
+    Items.Strings = (
+      'Solteiro'
+      'Casado'
+      'Outros')
+    FriendlyName = 'combo_estado_cv'
+    NoSelectionText = '-- No Selection --'
+  end
+  object edit_insc_mun: TIWEdit [24]
+    Left = 176
+    Top = 528
+    Width = 121
+    Height = 21
+    Visible = False
+    Css = 'form-control'
+    RenderSize = False
+    StyleRenderOptions.RenderSize = False
+    StyleRenderOptions.RenderPosition = False
+    StyleRenderOptions.RenderFont = False
+    StyleRenderOptions.RenderZIndex = False
+    StyleRenderOptions.RenderVisibility = False
+    StyleRenderOptions.RenderStatus = False
+    StyleRenderOptions.RenderAbsolute = False
+    StyleRenderOptions.RenderPadding = False
+    StyleRenderOptions.RenderBorder = False
+    Font.Color = clNone
+    Font.Size = 10
+    Font.Style = []
+    FriendlyName = 'edit_endereco'
+    SubmitOnAsyncEvent = True
+    TabOrder = 24
+  end
+  object edit_insc_est: TIWEdit [25]
+    Left = 176
+    Top = 555
+    Width = 121
+    Height = 21
+    Visible = False
+    Css = 'form-control'
+    RenderSize = False
+    StyleRenderOptions.RenderSize = False
+    StyleRenderOptions.RenderPosition = False
+    StyleRenderOptions.RenderFont = False
+    StyleRenderOptions.RenderZIndex = False
+    StyleRenderOptions.RenderVisibility = False
+    StyleRenderOptions.RenderStatus = False
+    StyleRenderOptions.RenderAbsolute = False
+    StyleRenderOptions.RenderPadding = False
+    StyleRenderOptions.RenderBorder = False
+    Font.Color = clNone
+    Font.Size = 10
+    Font.Style = []
+    FriendlyName = 'edit_endereco'
+    SubmitOnAsyncEvent = True
+    TabOrder = 25
+  end
+  object BTN_GRAVAR_DADOS: TIWButton [26]
+    Left = 608
+    Top = 576
+    Width = 120
+    Height = 30
+    Caption = 'BTN_GRAVAR_DADOS'
+    Color = clBtnFace
+    Font.Color = clNone
+    Font.Size = 10
+    Font.Style = []
+    FriendlyName = 'BTN_GRAVAR_DADOS'
+    TabOrder = 26
+    OnClick = BTN_GRAVAR_DADOSClick
+  end
+  object ds_uf: TDataSource
+    DataSet = q_uf
+    Left = 320
+    Top = 144
+  end
+  object ds_cidades: TDataSource
+    DataSet = q_cidades
+    Left = 320
+    Top = 200
+  end
+  object q_uf: TFDQuery
+    Connection = DM.banco
+    SQL.Strings = (
+      'select distinct uf from cidades order by uf')
+    Left = 400
+    Top = 144
+    object q_ufUF: TStringField
+      FieldName = 'UF'
+      Origin = 'UF'
+      Required = True
+      Size = 2
+    end
+  end
+  object q_cidades: TFDQuery
+    Connection = DM.banco
+    SQL.Strings = (
+      'select cod_cidade,descricao from cidades'
+      'where uf = :uf')
+    Left = 400
+    Top = 200
+    ParamData = <
+      item
+        Name = 'UF'
+        ParamType = ptInput
+      end>
+    object q_cidadesCOD_CIDADE: TFMTBCDField
+      FieldName = 'COD_CIDADE'
+      Origin = 'COD_CIDADE'
+      ProviderFlags = [pfInUpdate, pfInWhere, pfInKey]
+      Required = True
+      Precision = 38
+      Size = 0
+    end
+    object q_cidadesDESCRICAO: TStringField
+      FieldName = 'DESCRICAO'
+      Origin = 'DESCRICAO'
+      Size = 150
+    end
+  end
+end

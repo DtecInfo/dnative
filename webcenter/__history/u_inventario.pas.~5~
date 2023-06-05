@@ -1,0 +1,317 @@
+unit u_inventario;
+
+interface
+
+uses
+  Winapi.Windows, Winapi.Messages, System.SysUtils, System.Variants, System.Classes, Vcl.Graphics,
+  Vcl.Controls, Vcl.Forms, Vcl.Dialogs, U_FrmPadrao, IWVCLComponent,
+  IWBaseLayoutComponent, IWBaseContainerLayout, IWContainerLayout,
+  IWTemplateProcessorHTML, IWCompButton, IWVCLBaseControl, IWBaseControl,
+  IWBaseHTMLControl, IWControl, IWCompEdit, FireDAC.Stan.Intf,
+  FireDAC.Stan.Option, FireDAC.Stan.Param, FireDAC.Stan.Error, FireDAC.DatS,
+  FireDAC.Phys.Intf, FireDAC.DApt.Intf, FireDAC.Stan.Async, FireDAC.DApt,
+  Data.DB, FireDAC.Comp.DataSet, FireDAC.Comp.Client;
+
+type
+  Tform_inventario = class(TFrmPadrao)
+    q_datatable: TFDQuery;
+    q_geral: TFDQuery;
+    q_aux: TFDQuery;
+    procedure IWAppFormCreate(Sender: TObject);
+  private
+    procedure TBContagem(aParams: TStrings; out aResult: string);
+  public
+    { Public declarations }
+  end;
+
+var
+  form_inventario: Tform_inventario;
+
+implementation
+
+{$R *.dfm}
+
+uses ServerController, SweetAlerts, UserSessionUnit, U_DM;
+
+procedure Tform_inventario.IWAppFormCreate(Sender: TObject);
+begin
+  inherited;
+RegisterCallBack('TBContagem', TBContagem);
+end;
+
+procedure Tform_inventario.TBContagem(aParams: TStrings; out aResult: string);
+var
+  wresult: string;
+  wtotal: integer;
+  btn1: string;
+  btn2: string;
+  btn3: string;
+  btn4: string;
+  id: string;
+  status1,status2,status3,v_classe,v_icone :string;
+begin
+  q_datatable.close;
+  q_datatable.SQL.Clear;
+ // edit_cod_controle_item.Text:='0';
+
+  q_datatable.SQL.Add(' select count(*) as total  ');
+  q_datatable.SQL.Add(' from interface_itens   ');
+  q_datatable.SQL.Add(' where cod_empresa=  '+ inttostr(controller.xcod_empresa));
+  q_datatable.SQL.Add(' and cod_controle=' + edit_cod_controle_item.Text);
+
+   if CK_ITENS_OK.Checked=true then
+  begin
+
+     q_datatable.SQL.Add(' and not exists (select 1 from itens where itens.codigo_barras= interface_itens.cod_produto)' );
+
+
+  end;
+
+
+
+
+  q_datatable.SQL.Add('and ( cod_produto like ''%' +
+    stringreplace(UpperCase(aParams.Values['search[value]']), ' ', '%',
+    [rfReplaceAll]) + '%'' ');
+  q_datatable.SQL.Add('      OR  descricao_prod like ''%' +
+    stringreplace(UpperCase(aParams.Values['search[value]']), ' ', '%',
+    [rfReplaceAll]) + '%''  ');
+
+  q_datatable.SQL.Add('      OR  id like ''%' +
+    stringreplace(UpperCase(aParams.Values['search[value]']), ' ', '%',
+    [rfReplaceAll]) + '%'' ) ');
+
+//  q_datatable.SQL.Add('      OR   ncm like ''%' +
+//    stringreplace(UpperCase(aParams.Values['search[value]']), ' ', '%',
+//    [rfReplaceAll]) + '%'' ) ');
+
+  q_datatable.FetchOptions.RecsMax := -1;
+  q_datatable.FetchOptions.RecsSkip := -1;
+
+  q_datatable.Open;
+
+  wtotal := q_datatable.FieldByName('total').AsInteger;
+
+  //
+  // Select para montar o resultado do ajax na solicitacao do DATATABLE
+  //
+  q_datatable.close;
+
+  q_datatable.SQL.Clear;
+  q_datatable.sql.add('select id, cod_controle,');
+  q_datatable.sql.add('cod_produto,');
+  q_datatable.sql.add('descricao_prod,');
+  q_datatable.sql.add('ncm,');
+  q_datatable.sql.add('locacao,');
+  q_datatable.sql.add('cod_natureza,');
+  q_datatable.sql.add('un,');
+  q_datatable.sql.add('qtde,');
+  q_datatable.sql.add('valor_unitario,');
+  q_datatable.sql.add('cst,');
+  q_datatable.sql.add('bc_icms,');
+  q_datatable.sql.add('aliq_icms,');
+  q_datatable.sql.add('valor_icms,');
+  q_datatable.sql.add('bc_ipi,');
+  q_datatable.sql.add('aliq_ipi,');
+  q_datatable.sql.add('valor_ipi,');
+  q_datatable.sql.add('bc_st,');
+  q_datatable.sql.add('aliq_icms_st,');
+  q_datatable.sql.add('valor_icms_st');
+  q_datatable.sql.add('from interface_itens');
+
+  q_datatable.sql.add(' where cod_empresa =' + inttostr(controller.xcod_empresa));
+  q_datatable.SQL.Add(' and cod_controle=' + edit_cod_controle_item.Text);
+
+ if CK_ITENS_OK.Checked=true then
+  begin
+
+     q_datatable.SQL.Add(' and not exists (select 1 from itens where itens.codigo_barras= interface_itens.cod_produto)' );
+
+
+  end;
+
+
+  q_datatable.SQL.Add('and ( cod_produto like ''%' +
+    stringreplace(UpperCase(aParams.Values['search[value]']), ' ', '%',
+    [rfReplaceAll]) + '%'' ');
+
+  q_datatable.SQL.Add('      OR  descricao_prod like ''%' +
+    stringreplace(UpperCase(aParams.Values['search[value]']), ' ', '%',
+    [rfReplaceAll]) + '%''  ');
+
+  q_datatable.SQL.Add('      OR  id like ''%' +
+    stringreplace(UpperCase(aParams.Values['search[value]']), ' ', '%',
+    [rfReplaceAll]) + '%'' ) ');
+
+  // definindo a ordenação
+  case aParams.Values['order[0][column]'].ToInteger of
+    0:
+      q_datatable.SQL.Add('Order by descricao_prod ' + aParams.Values
+        ['order[0][dir]'] + ' ');
+    1:
+      q_datatable.SQL.Add('Order by  cod_produto ' + aParams.Values
+        ['order[0][dir]'] + ' ');
+
+  end;
+
+  q_datatable.FetchOptions.RecsMax := strtoint(aParams.Values['length']);
+  q_datatable.FetchOptions.RecsSkip := strtoint(aParams.Values['start']);
+
+  q_datatable.Open;
+
+  //
+  // Montagem da variavel com o JASON de resultado da consulta
+  //
+  wresult := '{' + '"draw": ' + StrToIntDef(aParams.Values['draw'], 0).ToString
+    + ', ' + '"recordsTotal": ' + wtotal.ToString + ', ' + '"recordsFiltered": '
+    + wtotal.ToString + ', ' + '"data": [';
+  q_datatable.First;
+  btn2 := '';
+  btn3 := '';
+  id := '';
+  while not q_datatable.Eof do
+  begin
+
+    id := q_datatable.FieldByName('id').AsString;
+
+
+    btn1 := '"<button type=\"buttom\" class=\"btn btn-xs btn-success\" data-toggle=\"tooltip\" data-placement=\"top\" title=\"Aceitar\" data-dismiss=\"modal\" onclick=\"SetaAcao(''AceiL'''
+      + ',' + quotedstr(id) + ')\" > <i class=\"fa fa-level-down\"> </i> </button>" ';
+
+    btn2 := '<button type=\"buttom\" class=\"btn btn-xs btn-warning\" data-toggle=\"tooltip\" data-placement=\"top\" title=\"Editar\" onclick=\"SetaAcao(''EditI'''
+      + ',' + id + ')\" > <i class=\"fa fa-pencil\"> </i> </button> "';
+    btn3 := '<button type=\"buttom\" class=\"btn btn-xs btn-info\"  data-toggle=\"tooltip\" data-placement=\"top\" title=\"Aprovar Operador\" onclick=\"SetaAcao(''aprOp'''
+      + ',' + id + ')\"> <i class=\"fa fa-thumbs-o-up\"> </i> </button> ';
+
+    btn4 := '<button type=\"buttom\" class=\"btn btn-xs btn-default\"  data-toggle=\"tooltip\" data-placement=\"top\" title=\"Gerar proposta no NBS\" onclick=\"SetaAcao(''ExcDo'''
+      + ',' + id + ')\"> <i class=\"fa fa-database\"> </i> </button> "';
+
+
+    //Verifica se o item esta cadastrado
+
+    q_geral.Close;
+    q_geral.SQL.Clear;
+    q_geral.sql.add('select a.cod_produto,');
+    q_geral.sql.add('nvl((select b.cod_item');
+    q_geral.sql.add('from itens b');
+    q_geral.sql.add('where b.codigo_barras = a.cod_produto),');
+    q_geral.sql.add('''N'') as existe');
+    q_geral.sql.add('from interface_itens a');
+    q_geral.sql.add('where a.cod_produto = :cod_produto ');
+    q_geral.ParamByName('cod_produto').AsString:=q_datatable.FieldByName('cod_produto').AsString;
+    q_geral.Open();
+
+
+    if q_geral.FieldByName('existe').AsString='N' then
+    begin
+      v_classe:= 'class=\"btn btn-xs btn-danger\"';
+      v_icone :=  '<i class=\"fa fa-thumbs-o-down\"> </i> ' ;
+
+    end
+    else
+    begin
+      v_classe:= 'class=\"btn btn-xs btn-success\"';
+      v_icone :=  '<i class=\"fa fa-thumbs-o-up\"> </i> ' ;
+    end;
+
+
+
+
+
+      status1 := '" <button type=\"buttom\" '+ v_classe + ' data-toggle=\"tooltip\" data-placement=\"top\" title=\"Cadastro de Produto\" data-dismiss=\"modal\" onclick=\"SetaAcao(''CADPR'''
+      + ',' + quotedstr(id) + ')\" >  '+ v_icone + '  </button> "';
+
+
+
+
+
+
+    //
+    wresult := wresult + '[' + '"' +
+      stringreplace(Trim(q_datatable.FieldByName('id').AsString), '"', '\"',
+      [rfReplaceAll]) + '", ' +
+    // Separador de colunas ------------------------------STATUS
+
+          status1 + status2 + status3   + ',' +
+    // Separador de colunas ------------------------------
+
+      '"' + stringreplace(Trim(q_datatable.FieldByName('cod_produto').AsString),
+      '"', '\"', [rfReplaceAll]) + '", ' +
+    // Separador de colunas ------------------------------
+     '"' + stringreplace(Trim(q_datatable.FieldByName('descricao_prod').AsString),
+      '"', '\"', [rfReplaceAll]) + '", ' +
+    // Separador de colunas ------------------------------
+     '"' + stringreplace(Trim(q_datatable.FieldByName('ncm').AsString),
+      '"', '\"', [rfReplaceAll]) + '", ' +
+    // Separador de colunas ------------------------------
+     '"' + stringreplace(Trim(q_datatable.FieldByName('locacao').AsString),
+      '"', '\"', [rfReplaceAll]) + '", ' +
+    // Separador de colunas ------------------------------
+    '"' + stringreplace(Trim(q_datatable.FieldByName('cod_natureza').AsString),
+      '"', '\"', [rfReplaceAll]) + '", ' +
+    // Separador de colunas ------------------------------
+     '"' + stringreplace(Trim(q_datatable.FieldByName('un').AsString),
+      '"', '\"', [rfReplaceAll]) + '", ' +
+    // Separador de colunas ------------------------------
+     '"' + stringreplace(Trim(q_datatable.FieldByName('qtde').AsString),
+      '"', '\"', [rfReplaceAll]) + '", ' +
+    // Separador de colunas ------------------------------
+     '"' + stringreplace(Trim(q_datatable.FieldByName('valor_unitario').AsString),
+      '"', '\"', [rfReplaceAll]) + '", ' +
+    // Separador de colunas ------------------------------
+     '"' + stringreplace(Trim(q_datatable.FieldByName('cst').AsString),
+      '"', '\"', [rfReplaceAll]) + '", ' +
+    // Separador de colunas ------------------------------
+     '"' + stringreplace(Trim(q_datatable.FieldByName('bc_icms').AsString),
+      '"', '\"', [rfReplaceAll]) + '", ' +
+    // Separador de colunas ------------------------------
+     '"' + stringreplace(Trim(q_datatable.FieldByName('aliq_icms').AsString),
+      '"', '\"', [rfReplaceAll]) + '", ' +
+    // Separador de colunas ------------------------------
+     '"' + stringreplace(Trim(q_datatable.FieldByName('valor_icms').AsString),
+      '"', '\"', [rfReplaceAll]) + '", ' +
+    // Separador de colunas ------------------------------
+     '"' + stringreplace(Trim(q_datatable.FieldByName('bc_ipi').AsString),
+      '"', '\"', [rfReplaceAll]) + '", ' +
+    // Separador de colunas ------------------------------
+     '"' + stringreplace(Trim(q_datatable.FieldByName('aliq_ipi').AsString),
+      '"', '\"', [rfReplaceAll]) + '", ' +
+    // Separador de colunas ------------------------------
+     '"' + stringreplace(Trim(q_datatable.FieldByName('valor_ipi').AsString),
+      '"', '\"', [rfReplaceAll]) + '", ' +
+    // Separador de colunas ------------------------------
+     '"' + stringreplace(Trim(q_datatable.FieldByName('bc_st').AsString),
+      '"', '\"', [rfReplaceAll]) + '", ' +
+    // Separador de colunas ------------------------------
+     '"' + stringreplace(Trim(q_datatable.FieldByName('aliq_icms_st').AsString),
+      '"', '\"', [rfReplaceAll]) + '", ' +
+    // Separador de colunas ------------------------------
+
+
+      '"' + stringreplace(Trim(q_datatable.FieldByName('valor_icms_st').AsString),
+      '"', '\"', [rfReplaceAll]) + '", ' +
+
+
+    // Separador de colunas ------------------------------
+
+       btn1      + '],';
+    q_datatable.Next;
+
+  end;
+  q_datatable.close;
+
+  if wtotal <= 0 then
+    wresult := wresult + ']}'
+  else
+    wresult := LeftStr(Trim(wresult), Length(Trim(wresult)) - 1) + ']}';
+
+  //
+  // Envia o resultado para o ajax do DataTable
+  aResult := wresult;
+
+  // abco
+
+
+end;
+
+end.

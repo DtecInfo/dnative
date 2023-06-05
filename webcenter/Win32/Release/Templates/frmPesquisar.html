@@ -1,0 +1,90 @@
+<html>
+<head>
+</head>
+<body>
+    <div class="clearfix" style="display:none">{%BTNGRAVARATENDIMENTO%}{%BTNENCERRAR%}{%BTNREABRIR%}</div>
+
+    <section class="content-header">
+        <h1>
+            Pesquisa de Chamados Técnicos
+            <small>Pesquisando Chamados já Efetuados.</small>
+        </h1>
+        <ol class="breadcrumb">
+            <li><a href="javascript: SetaAcao('Menu', 'Iniciar');"><i class="fa fa-home"></i> Início</a></li>
+            <li class="active">Pesquisa Chamados</li>
+        </ol>
+    </section>
+    <section class="content container-fluid">
+        <div class="row">
+            <div class="col-xs-12">
+                <div class="box box-primary">
+                    <div class="box-header with-border">
+                        <i class="fa fa-fw fa-commenting-o"></i>
+                        <h3 class="box-title">Aplicar Filtro a Pesquisa de Chamados do HelpDesk</h3>
+                    </div>
+                    <div class="box-body">
+                        <div class="row">
+                            <div class="col-sm-6 col-md-5">
+                                <div class="form-group">
+                                    <label>Digite parte do Problema</label>
+                                    {%PesquisaProblema%}
+                                </div>
+                            </div>
+                            <div class="col-sm-6 col-md-5">
+                                <div class="form-group">
+                                    <label>Digite parte da Solução</label>
+                                    {%PesquisaSolucao%}
+                                </div>
+                            </div>
+                            <div class="col-sm-12 col-md-2">
+                                <br class="hidden-xs hidden-sm" />
+                                <button type="button" class="btn btn-primary btn-block" onclick="Pesquisar();">Aplicar Filtro</button>
+                            </div>
+                        </div>
+                        <br />
+                        <div class="row">
+                            <div class="col-sm-12">
+                                <div class="box box-primary">
+                                    <div class="box-header with-border">
+                                        <i class="fa fa-fw fa-commenting-o"></i>
+                                        <h3 class="box-title">Listagem de Chamados Filtrados</h3>
+                                    </div>
+                                    <div class="box-body">
+                                        <br />
+                                        {%Chamados%}
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+        
+    <script>
+        //
+        //  FUNCAO DE VALIDACAO DE CAMPOS ANTES DE FILTRAR
+        //
+        function Pesquisar(){
+            debugger;
+            var str = document.getElementById('PESQUISAPROBLEMA').value;
+            var n = str.length;
+            
+            str = document.getElementById('PESQUISASOLUCAO').value;
+            var n2 = str.length;
+            if (n == 0 && n2 == 0){
+                swal('Atenção!!!', 'Um dos campos de Pesquisa deve ser preenchido !', 'warning');
+                document.getElementById('IWACAO').value = 'Limpa';
+                AddChangedControl('IWACAO');   // colocar essa linha sempre que usar o onAsyncClick pois colocar o campo como alterado
+                IWBTNACAO.click();
+            }
+            else {
+                document.getElementById('IWACAO').value = 'Pesqu';
+                AddChangedControl('IWACAO');   // colocar essa linha sempre que usar o onAsyncClick pois colocar o campo como alterado
+                IWBTNACAO.click();
+            }
+        }
+    </script>
+</body>
+</html>

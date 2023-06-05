@@ -1,0 +1,779 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+
+</head>
+
+<body>
+    <div class="clearfix" style="display:none"> {%BTN_IMP_VENDA_SIM%}{%BTN_IMP_VENDA_NAO%}</div>
+    <br>
+    <br>
+    <br>
+    <div class="nav-tabs-custom">
+        <ul class="nav nav-tabs">
+            <li class="active"><a href="#tab_1" data-toggle="tab"><i class="fa fa-search"> </i> Geral</a></li>
+            <li><a href="#tab_2" data-toggle="tab"><i class="fa fa-cart-plus"></i> Escolhidos</a></li>
+            <li><a href="#tab_3" data-toggle="tab"><i class="fa fa-money"> </i> Fechamento</a></li>
+            <li class="dropdown">
+                <a class="dropdown-toggle" data-toggle="dropdown" href="#">
+                    <i class="fa fa-print"> </i> Relatórios <span class="caret"></span>
+                </a>
+                <ul class="dropdown-menu">
+                    <li role="presentation"><a role="menuitem" tabindex="-1" href="#">Em DEV</a></li>
+                    <li role="presentation"><a role="menuitem" tabindex="-1" href="#">Em Dev</a></li>
+                    <li role="presentation"><a role="menuitem" tabindex="-1" href="#">Em DEV</a></li>
+                    <li role="presentation" class="divider"></li>
+                    <li role="presentation"><a role="menuitem" tabindex="-1" href="#">Em Dev</a></li>
+                </ul>
+            </li>
+            <li class="pull-right"><a href="#" class="text-muted"><i class="fa fa-gear"></i></a></li>
+        </ul>
+        <div class="tab-content">
+            <div class="tab-pane active" id="tab_1">
+                <div class="row">
+                    <div class="col-xs-4">
+
+                        <b>Operação</b> :{%combo_operacao%}
+                    </div>
+                    <div class="col-xs-4">
+
+                        <div class="form-group col-xs-12">
+                            <label for="label4">Cliente:</label>
+                            <div class="input-group ">
+                                {%edit_cliente%}
+                                <span class="input-group-btn">
+                                    <button type="button" id="BTN_CLIENTE" class="btn btn-info btn-flat input-sm"
+                                        title="Pesquisar Fornecedor"><i class="fa   fa-search">
+                                        </i></button>
+
+                                </span>
+                            </div>
+
+                        </div>
+                    </div>
+                    <div class="col-xs-4">
+
+                        <b>Vendedor</b> :{%combo_vendedor%}
+                    </div>
+
+
+                </div>
+                <div class="row">
+                    <div class="col-xs-12">
+                        <div class="box">
+                            <div class="box-header with-border">
+                                <h3 class="box-title">{%produto%}</h3>
+                            </div>
+                            <!-- /.box-header -->
+                            <div class="box-body">
+
+                                <div class="table-responsive">
+                                    <div class="container-fluid">
+                                        <div class="row">
+                                            <div class="col-xs-12">
+                                                <br />
+                                                <table id="TBItensBusca"
+                                                    class="table table-hover table-striped table-bordered table-condensed"
+                                                    style="width:100%">
+                                                    <thead>
+                                                        <tr class="success">
+                                                            <th>Ação</th>
+                                                            <th>Item</th>
+                                                            <th>Descrição</th>
+                                                            <th>Preço R$</th>
+                                                            <th>Fornecedor</th>
+                                                            <th>Grupo</th>
+                                                            <th>Estoque</th>
+                                                            <th>Reservado</th>
+                                                            <th>Disponível</th>
+                                                            <th>Locação</th>
+                                                        </tr>
+                                                    </thead>
+                                                </table>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                            </div>
+                            <!-- /.box-body -->
+                            <div class="box-footer clearfix">
+
+                            </div>
+                        </div>
+                    </div>
+
+
+                </div>
+                <div class="row">
+
+
+                    <div class="col-xs-6">
+                        <div class="box box-success">
+                            <div class="box-header with-border">
+                                <h3 class="box-title">Filtros</h3>
+                            </div>
+                            <!-- /.box-header -->
+                            <div class="box-body">
+                                <div class="row">
+
+                                    <div class="col-xs-6">
+                                        {%rb_estoque%}
+                                    </div>
+                                    <div class="col-xs-6">
+                                        {%rb_todos%}
+                                    </div>
+
+                                </div>
+                            </div>
+                            <!-- /.box-body -->
+                            <div class="box-footer clearfix">
+
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-xs-6">
+                        <div class="box box-primary">
+                            <div class="box-header with-border">
+                                <h3 class="box-title">Estoque Remoto</h3>
+                            </div>
+                            <!-- /.box-header -->
+                            <div class="box-body">
+
+                                <div class="table-responsive">
+                                    <div class="container-fluid">
+                                        <div class="row">
+                                            <div class="col-xs-12">
+                                                <br />
+                                                <table id="TBRemoto"
+                                                    class="table table-hover table-striped table-bordered table-condensed"
+                                                    style="width:100%">
+                                                    <thead>
+                                                        <tr class="info">
+                                                            <th>Id</th>
+                                                            <th>Empresa</th>
+                                                            <th>Qtde</th>
+                                                            <th>Reservado</th>
+                                                        </tr>
+                                                    </thead>
+                                                </table>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                            </div>
+                            <!-- /.box-body -->
+                            <div class="box-footer clearfix">
+
+                            </div>
+                        </div>
+                    </div>
+
+
+                </div>
+
+
+            </div>
+            <!-- /.tab-pane -->
+            <div class="tab-pane" id="tab_2">
+                <div class="box">
+                    <div class="box-header with-border">
+                        <h3 class="box-title">{%id_edicao%}</h3>
+                    </div>
+                    <!-- /.box-header -->
+                    <div class="box-body">
+                        <div class="row">
+
+                            <div col-xs-12>
+                                <div class="table-responsive">
+                                    <div class="container-fluid">
+                                        <div class="row">
+                                            <div class="col-xs-12">
+                                                <br />
+                                                <table id="TBEscolhidos"
+                                                    class="table table-hover table-striped table-bordered table-condensed"
+                                                    style="width:100%">
+                                                    <thead>
+                                                        <tr class="info">
+                                                            <th>Ação</th>
+                                                            <th>Cod item</th>
+                                                            <th>Descrição</th>
+                                                            <th>Preço UN.</th>
+                                                            <th>Qtde.</th>
+                                                            <th>Desc.Vlr.</th>
+                                                            <th>Desc. %</th>
+                                                            <th>Total</th>
+                                                            <th>Fornecedor</th>
+
+                                                        </tr>
+                                                    </thead>
+                                                </table>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+
+
+
+                            <div class="box box-success">
+                                <div class="box-header">
+                                    <h3 class="box-title">Opções</h3>
+                                </div>
+                                <div class="box-body">
+
+                                    <div class="row">
+
+
+                                        <div class="col-xs-3">
+                                            <b>Tipo Desconto:</b> {%combo_tipo_desconto%}
+
+                                        </div>
+                                        <div class="col-xs-3">
+
+                                            <div class="form-group col-xs-12">
+                                                <label for="label4">Desconto Geral:</label>
+                                                <div class="input-group ">
+                                                    {%edit_desc_valor%}
+                                                    <span class="input-group-btn">
+                                                        <button type="button" id="BTN_APLICAR_DESC"
+                                                            class="btn btn-info btn-flat input-sm"
+                                                            title="Aplicar Desconto"><i class="fa   fa-scissors">
+                                                            </i></button>
+
+                                                    </span>
+                                                </div>
+
+                                            </div>
+
+                                        </div>
+                                        <div class="col-xs-2">
+                                            <b>Total dos Produtos:</b> {%edit_total%}
+
+                                        </div>
+                                        <div class="col-xs-2">                                            
+
+                                            <div class="form-group col-xs-12">
+                                                <label for="label4">Total dos Serviços:</label>
+                                                <div class="input-group ">
+                                                    {%edit_total_serv%}
+                                                    <span class="input-group-btn">
+                                                        <button type="button" id="BTN_SHOW_SERV"
+                                                            class="btn btn-info btn-flat input-sm"
+                                                            title="Aplicar Desconto"><i class="fa   fa-edit">
+                                                            </i></button>
+
+                                                    </span>
+                                                </div>
+
+                                            </div>
+
+                                        </div>
+                                        <div class="col-xs-2">
+                                            <b>Total Geral:</b> {%edit_total_geral%}
+
+                                        </div>
+
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-xs-12">
+                                            <div class="box box-success">
+
+                                                <div class="box-body">
+
+                                                    <button type="button" class="btn btn-success" id="BTN_CONF_ESC"
+                                                        data-dismiss="modal"><i class="fa fa-check-square-o"></i>
+                                                        Confirmar</button>
+
+                                                    <button type="button" class="btn btn-danger" id="BTN_CANC_ESC"
+                                                        data-dismiss="modal"><i class="fa fa-trash"></i>
+                                                        Cancelar</button>
+
+                                                </div>
+                                            </div>
+
+                                        </div>
+
+                                    </div>
+
+
+
+                                </div>
+                                <!-- /.box-body -->
+                                <div class="box-footer">
+
+                                </div>
+                            </div>
+
+
+
+                        </div>
+
+                    </div>
+                    <!-- /.box-body -->
+                    <div class="box-footer clearfix">
+
+                    </div>
+                </div>
+            </div>
+            <!-- /.tab-pane -->
+            <div class="tab-pane" id="tab_3">
+                <div class="box box-success">
+                    <div class="box-header">
+                        <h3 class="box-title">Filtros:</h3>
+                    </div>
+                    <div class="box-body">
+                        <div class="row">
+                            <div class="col-xs-4">
+                                <b>Operação:</b> {%combo_filtro_op%}
+                            </div>
+                            <div class="col-xs-4">
+                                <b>Status:</b> {%combo_filtro_status%}
+
+                            </div>
+                            <div class="col-xs-4">
+
+                            </div>
+                        </div>
+
+
+                    </div>
+
+                </div>
+                <div class="box box-info">
+
+                    <div class="box-body">
+
+                        <div class="table-responsive">
+                            <div class="container-fluid">
+                                <div class="row">
+                                    <div class="col-xs-12">
+                                        <br />
+                                        <table id="TBVendas"
+                                            class="table table-hover table-striped table-bordered table-condensed"
+                                            style="width:100%">
+                                            <thead>
+                                                <tr class="success">
+                                                    <th>Ação</th>
+                                                    <th>Controle </th>
+                                                    <th>Cod. Cliente </th>
+                                                    <th>Cliente</th>
+                                                    <th>Emissão </th>
+                                                    <th>Data Venda </th>
+                                                    <th>Status </th>
+                                                    <th>Operação </th>
+                                                    <th>Tot. Prod. </th>
+                                                    <th>Tot. Serv. </th>
+                                                    <th>Total Nota </th>
+
+
+                                                </tr>
+                                            </thead>
+                                        </table>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+
+
+                    </div>
+
+                </div>
+                <div class="box box-primary">
+                    <div class="box-header">
+                        <h3 class="box-title">Opções</h3>
+                    </div>
+                    <div class="box-body">
+
+
+
+                    </div>
+
+                </div>
+            </div>
+            <!-- /.tab-pane -->
+        </div>
+        <!-- /.tab-content -->
+    </div>
+
+    <!-- Modal Transferência -->
+    <div class="modal fade" id="MDOP" role="dialog" data-backdrop="static" data-keyboard="false">
+        <div class="modal-dialog  ">
+            <!-- Modal content-->
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h4 class="modal-title"><i class="fa fa-fw fa-users"></i> Selecione uma empresa de destino</h4>
+                </div>
+                <div class="modal-body">
+                    Empresa:{%combo_empresas%}
+
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default" onclick="SetaAcao('CancM');" data-dismiss="modal"
+                        id="BTNCANCELAR">OK</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!--FIM  Modal transferência -->
+
+    <!-- Modal Serviços -->
+    <div class="modal fade" id="MDServi" role="dialog" data-backdrop="static" data-keyboard="false">
+        <div class="modal-dialog  ">
+            <!-- Modal content-->
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h4 class="modal-title"><i class="fa fa-fw  fa-wrench"></i> Dados do Serviço</h4>
+                </div>
+                <div class="modal-body">
+                    <div class="row">
+                        <div class="col-xs-3">
+                            <b>Agente: </b>{%combo_agente_serv%}
+                        </div>
+                        <div class="col-xs-2">
+                            <b>Código: </b>{%edit_cod_mo%}
+                        </div>
+                        <div class="col-xs-4">
+                            <b>Descrição: </b>{%edit_descricao_mo%}
+                        </div>
+                        <div class="col-xs-3">
+                            <b>Valor: </b>{%edit_valor_mo%}
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-xs-12">
+                            <b>Observações: </b> {%memo_obs_serv%}
+                        </div>
+                    </div>
+
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default"   data-dismiss="modal"
+                        id="BTNOKSERV">OK</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!--FIM  Modal Serviços -->
+
+    <!-- Modal Cliente -->
+    <div class="modal fade" id="MDClientes" role="dialog" data-backdrop="static" data-keyboard="false">
+        <div class="modal-dialog modal-lg">
+            <!-- Modal content-->
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h4 class="modal-title"><i class="fa fa-fw fa-users"></i> Pesquisa de Cliente/Fornecedor</h4>
+                </div>
+                <div class="modal-body">
+                    <div class="table-responsive">
+                        <div class="container-fluid">
+                            <div class="row">
+                                <div class="col-xs-12">
+                                    <br />
+                                    <table id="TBClientes"
+                                        class="table table-hover table-striped table-bordered table-condensed"
+                                        style="width:100%">
+                                        <thead>
+                                            <tr class="success">
+                                                <th>Ação</th>
+                                                <th>CPF/CNPJ</th>
+                                                <th>Nome </th>
+                                                <th>Endereço</th>
+                                                <th>Bairro</th>
+                                                <th>Cidade</th>
+                                                <th>UF</th>
+
+                                            </tr>
+                                        </thead>
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default" onclick="SetaAcao('CancM');" data-dismiss="modal"><i
+                            class="fa fa-sign-out"></i> Sair</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!--FIM  Modal Cliente -->
+
+    <!-- Modal Itens Para Escolhidos -->
+    <div class="modal fade" id="MDToEscolhidos" role="dialog" data-backdrop="static" data-keyboard="false">
+        <div class="modal-dialog  ">
+            <!-- Modal content-->
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h4 class="modal-title"><i class="fa fa-fw fa-cart-plus"></i> Informe a quantidade</h4>
+                </div>
+                <div class="modal-body">
+                    <div class="row">
+                        <div class="col-xs-4">
+
+                        </div>
+                        <div class="col-xs-4">
+                            {%edit_qtde_to_esc%}
+                        </div>
+                        <div class="col-xs-4">
+                            <button type="button" class="btn btn-info" id="BTN_CONFI_ESCO" data-dismiss="modal"><i
+                                    class="fa fa-check-square-o"></i></button>
+
+                        </div>
+                    </div>
+
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default" onclick="SetaAcao('CancM');" data-dismiss="modal"
+                        id="BTNCANCELAR">Sair</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!--FIM  Modal Itens para escolhidos -->
+
+    <!-- Modal Desconto Unitário -->
+    <div class="modal fade" id="MDDescUN" role="dialog" data-backdrop="static" data-keyboard="false">
+        <div class="modal-dialog  ">
+            <!-- Modal content-->
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h4 class="modal-title"><i class="fa fa-fw fa-cart-plus"></i> Desconto Unitário</h4>
+                </div>
+                <div class="modal-body">
+                    <div class="row">
+                        <div class="col-xs-4">
+                            Tipo Desconto:{%combo_tipo_desc_un%}
+                        </div>
+                        <div class="col-xs-4">
+                            Desconto Unitário:{%edit_desc_un%}
+                        </div>
+                        <div class="col-xs-4">
+
+
+                        </div>
+                    </div>
+
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-info" id="BTN_APLY_DESC_UN" data-dismiss="modal"><i
+                            class="fa fa-check-square-o"> Aplicar</i></button>
+                    <button type="button" class="btn btn-default" onclick="SetaAcao('CancM');" data-dismiss="modal"
+                        id="BTNCANCELAR">Sair</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!--FIM  Modal Desconto Unittário -->
+
+    <!-- Modal Fechamento -->
+    <div class="modal fade" id="MDFechamento" role="dialog" data-backdrop="static" data-keyboard="false">
+        <div class="modal-dialog  ">
+            <!-- Modal content-->
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h4 class="modal-title"><i class="fa fa-fw fa-credit-card"></i> Fechamento</h4>
+                </div>
+                <div class="modal-body">
+
+
+                    <div class="row">
+                        <div class="col-xs-6">
+                            Cliente:{%cliente%}
+                        </div>
+                        <div class="col-xs-6">
+                            Vendedor:{%vendedor%}
+                        </div>
+
+                    </div>
+                    <div class="box box-success">
+                        <div class="box-header">
+                            <h3 class="box-title">Formas de Pagamento</h3>
+                        </div>
+                        <div class="box-body">
+
+                            <div class="row">
+
+
+                                <div class="col-xs-4">
+                                    PGTO: {%combo_formas_pgto%}
+
+                                </div>
+                                <div class="col-xs-4">
+                                    Valor:{%edit_valor_pgto%}
+                                    <button type="button" class="btn btn-info" id="BTN_ADD_PGTO"><i
+                                            class="fa fa-check-square-o"> </i>
+                                    </button>
+                                    <button type="button" class="btn btn-danger" id="BTN_DEL_PGTO"><i
+                                            class="fa fa-trash"></i>
+                                    </button>
+
+                                </div>
+                                <div class="col-xs-4">
+                                    Seleção:{%memo_pgto%}
+                                </div>
+
+                            </div>
+                            <div class="row">
+                                <div class="col-xs-12">           
+                                    <img src="../../dist/img/credit/visa.png" alt="Visa">
+                                    <img src="../../dist/img/credit/mastercard.png" alt="Mastercard">
+                                    <img src="../../dist/img/credit/american-express.png" alt="American Express">
+                                    <img src="../../dist/img/credit/paypal2.png" alt="Paypal">          
+                                  </div>
+                            </div>
+
+
+
+                        </div>
+                        <!-- /.box-body -->
+                        <div class="box-footer">
+                            <div class="row">
+                                <div class="col-xs-4">
+                                    Saldo PGTO:{%SALDO_PGTO%}
+                                </div>
+                                <div class="col-xs-4">
+                                    Obs: {%memo_obs_pgto%}
+                                </div>
+                                <div class="col-xs-4">
+                                    Total PGTO:{%TOTAL_PGTO%}
+                                </div>
+                            </div>
+
+
+                        </div>
+                    </div>
+
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-info" id="BTN_CONFIRMAR_VENDA" data-dismiss="modal"><i
+                            class="fa fa-check-square-o"> Confirmar</i></button>
+                    <button type="button" class="btn btn-default" onclick="SetaAcao('CancM');" data-dismiss="modal"
+                        id="BTNCANCELAR">Sair</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!--FIM  Modal Fechamento -->
+
+
+
+
+
+    <script>
+        $(document).ready(function () {
+            $('#TBItensBusca').DataTable(
+                {
+                    responsive: true,
+                    "pageLength": 5,
+                    "language": {
+                        "url": "//cdn.datatables.net/plug-ins/1.10.19/i18n/Portuguese-Brasil.json"
+                    },
+                    "paging": true,
+                    "ordering": true,
+                    "searching": true,
+                    serverSide: true,
+                    processing: true,
+                    ajax: "/$/callback?callback=TBItensBusca"
+                });
+
+        });
+
+    </script>
+    <script>
+        $(document).ready(function () {
+            $('#TBRemoto').DataTable(
+                {
+                    responsive: true,
+                    "pageLength": 10,
+                    "language": {
+                        "url": "//cdn.datatables.net/plug-ins/1.10.19/i18n/Portuguese-Brasil.json"
+                    },
+                    "paging": false,
+                    "ordering": true,
+                    "searching": false,
+
+                    serverSide: true,
+                    processing: true,
+                    ajax: "/$/callback?callback=TBRemoto"
+                });
+
+        });
+
+    </script>
+
+    <script>
+        $(document).ready(function () {
+            $('#TBClientes').DataTable(
+                {
+                    responsive: true,
+                    "pageLength": 10,
+                    "language": {
+                        "url": "//cdn.datatables.net/plug-ins/1.10.19/i18n/Portuguese-Brasil.json"
+                    },
+                    "paging": true,
+                    "ordering": true,
+                    "searching": true,
+                    serverSide: true,
+                    processing: true,
+                    ajax: "/$/callback?callback=TBClientes"
+                });
+
+        });
+
+
+    </script>
+    <script>
+        $(document).ready(function () {
+            $('#TBEscolhidos').DataTable(
+                {
+                    responsive: true,
+                    "pageLength": 10,
+                    "language": {
+                        "url": "//cdn.datatables.net/plug-ins/1.10.19/i18n/Portuguese-Brasil.json"
+                    },
+                    "paging": true,
+                    "ordering": true,
+                    "searching": true,
+                    serverSide: true,
+                    processing: true,
+                    ajax: "/$/callback?callback=TBEscolhidos"
+                });
+
+        });
+
+
+    </script>
+    <script>
+        $(document).ready(function () {
+            $('#TBVendas').DataTable(
+                {
+                    responsive: true,
+                    "pageLength": 10,
+                    "language": {
+                        "url": "//cdn.datatables.net/plug-ins/1.10.19/i18n/Portuguese-Brasil.json"
+                    },
+                    "paging": true,
+                    "ordering": true,
+                    "searching": true,
+                    serverSide: true,
+                    processing: true,
+                    ajax: "/$/callback?callback=TBVendas"
+                });
+
+        });
+
+
+    </script>
+
+
+</body>
+
+</html>

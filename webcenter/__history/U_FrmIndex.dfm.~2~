@@ -1,0 +1,16 @@
+inherited FrmIndex: TFrmIndex
+  DesignLeft = 8
+  DesignTop = 8
+  object IWLabel1: TIWLabel [2]
+    Left = 304
+    Top = 144
+    Width = 58
+    Height = 16
+    Font.Color = clNone
+    Font.Size = 10
+    Font.Style = []
+    HasTabOrder = False
+    FriendlyName = 'IWLabel1'
+    Caption = 'IWLabel1'
+  end
+end

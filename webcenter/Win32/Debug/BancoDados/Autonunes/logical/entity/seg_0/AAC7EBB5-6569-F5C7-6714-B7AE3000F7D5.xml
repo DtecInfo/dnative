@@ -1,0 +1,1033 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<Entity class="oracle.dbtools.crest.model.design.logical.Entity" directorySegmentName="seg_0" id="AAC7EBB5-6569-F5C7-6714-B7AE3000F7D5" name="wc simulacao venda">
+<createdBy>eduardo</createdBy>
+<createdTime>2020-05-08 20:08:57 UTC</createdTime>
+<generatorID>9BEDDB09-07E7-B2EE-EDCF-F6565A60251F</generatorID>
+<ownerDesignName>Autonunes</ownerDesignName>
+<engineerTo>
+<item key="9904A792-F10E-D72F-A8ED-D0643674DC08" value="true"/>
+</engineerTo>
+<adequatelyNormalized>NO</adequatelyNormalized>
+<expectedVolumes>0</expectedVolumes>
+<fwdEngineeringStrategyName>Single Table</fwdEngineeringStrategyName>
+<growthPercent>0</growthPercent>
+<growthType>Year</growthType>
+<maxVolumes>9999999</maxVolumes>
+<minVolumes>0</minVolumes>
+<normalForm>Third</normalForm>
+<attributes itemClass="oracle.dbtools.crest.model.design.logical.Attribute">
+<Attribute name="id" id="92B3B474-7CBD-4BEF-E4D1-4104201BC356">
+<createdBy>eduardo</createdBy>
+<createdTime>2020-05-08 20:08:57 UTC</createdTime>
+<generatorID>60A0B932-38CA-B131-687F-7945D80CDAF3</generatorID>
+<ownerDesignName>Autonunes</ownerDesignName>
+<engineerTo>
+<item key="9904A792-F10E-D72F-A8ED-D0643674DC08" value="true"/>
+</engineerTo>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT011</logicalDatatype>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+</Attribute>
+<Attribute name="cod empresa" id="87A5A266-0905-85E2-8191-4119F8B08440">
+<createdBy>eduardo</createdBy>
+<createdTime>2020-05-08 20:08:57 UTC</createdTime>
+<generatorID>567FE80F-C03B-08FF-0980-4384584CBF82</generatorID>
+<ownerDesignName>Autonunes</ownerDesignName>
+<engineerTo>
+<item key="9904A792-F10E-D72F-A8ED-D0643674DC08" value="true"/>
+</engineerTo>
+<nullsAllowed>true</nullsAllowed>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT011</logicalDatatype>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+</Attribute>
+<Attribute name="vendedor" id="11BCDF49-3034-3E8E-C671-8C45F1D25438">
+<createdBy>eduardo</createdBy>
+<createdTime>2020-05-08 20:08:57 UTC</createdTime>
+<generatorID>10043776-2FFD-F2FA-2833-E174FABB7F8C</generatorID>
+<ownerDesignName>Autonunes</ownerDesignName>
+<engineerTo>
+<item key="9904A792-F10E-D72F-A8ED-D0643674DC08" value="true"/>
+</engineerTo>
+<nullsAllowed>true</nullsAllowed>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT024</logicalDatatype>
+<dataTypeSize>100</dataTypeSize>
+<ownDataTypeParameters>100,,</ownDataTypeParameters>
+</Attribute>
+<Attribute name="origem" id="E9F1B2C6-53A9-C358-FA2A-E4D9DC2C5B7D">
+<createdBy>eduardo</createdBy>
+<createdTime>2020-05-08 20:08:57 UTC</createdTime>
+<generatorID>9F3C6D5E-9211-1201-9AFB-147277D49F75</generatorID>
+<ownerDesignName>Autonunes</ownerDesignName>
+<engineerTo>
+<item key="9904A792-F10E-D72F-A8ED-D0643674DC08" value="true"/>
+</engineerTo>
+<nullsAllowed>true</nullsAllowed>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT024</logicalDatatype>
+<dataTypeSize>20</dataTypeSize>
+<ownDataTypeParameters>20,,</ownDataTypeParameters>
+</Attribute>
+<Attribute name="cod cliente" id="6A9DA8B1-206F-9AB6-01C0-A52F8E2002F5">
+<createdBy>eduardo</createdBy>
+<createdTime>2020-05-08 20:08:57 UTC</createdTime>
+<generatorID>C922F399-2D73-9134-0AD9-ED2DCB828FE8</generatorID>
+<ownerDesignName>Autonunes</ownerDesignName>
+<engineerTo>
+<item key="9904A792-F10E-D72F-A8ED-D0643674DC08" value="true"/>
+</engineerTo>
+<nullsAllowed>true</nullsAllowed>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT011</logicalDatatype>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+</Attribute>
+<Attribute name="nome cliente" id="B3CF7756-2F4E-2435-3597-08BE27268B30">
+<createdBy>eduardo</createdBy>
+<createdTime>2020-05-08 20:08:57 UTC</createdTime>
+<generatorID>501C4FBF-2977-85AC-8D2C-4718D8082CC5</generatorID>
+<ownerDesignName>Autonunes</ownerDesignName>
+<engineerTo>
+<item key="9904A792-F10E-D72F-A8ED-D0643674DC08" value="true"/>
+</engineerTo>
+<nullsAllowed>true</nullsAllowed>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT024</logicalDatatype>
+<dataTypeSize>100</dataTypeSize>
+<ownDataTypeParameters>100,,</ownDataTypeParameters>
+</Attribute>
+<Attribute name="fone" id="AC7C8E5A-4F3F-99F1-0C74-5F35B553A2F3">
+<createdBy>eduardo</createdBy>
+<createdTime>2020-05-08 20:08:57 UTC</createdTime>
+<generatorID>11CE52B7-3E8F-7DF8-3F84-75FA888EB5AF</generatorID>
+<ownerDesignName>Autonunes</ownerDesignName>
+<engineerTo>
+<item key="9904A792-F10E-D72F-A8ED-D0643674DC08" value="true"/>
+</engineerTo>
+<nullsAllowed>true</nullsAllowed>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT024</logicalDatatype>
+<dataTypeSize>11</dataTypeSize>
+<ownDataTypeParameters>11,,</ownDataTypeParameters>
+</Attribute>
+<Attribute name="cliente cadastro" id="A32E169E-FF50-FC30-5DBE-0F6DD703AED7">
+<createdBy>eduardo</createdBy>
+<createdTime>2020-05-08 20:08:57 UTC</createdTime>
+<generatorID>6274DA28-27CC-E874-1629-5BC580EC3D30</generatorID>
+<ownerDesignName>Autonunes</ownerDesignName>
+<engineerTo>
+<item key="9904A792-F10E-D72F-A8ED-D0643674DC08" value="true"/>
+</engineerTo>
+<nullsAllowed>true</nullsAllowed>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT024</logicalDatatype>
+<dataTypeSize>1</dataTypeSize>
+<ownDataTypeParameters>1,,</ownDataTypeParameters>
+</Attribute>
+<Attribute name="cnh" id="BFCFFF08-3B15-CAA5-4C0E-2446A5B6750B">
+<createdBy>eduardo</createdBy>
+<createdTime>2020-05-08 20:08:57 UTC</createdTime>
+<generatorID>169EEDA2-03E9-A1EE-82D5-A69684DBBEC0</generatorID>
+<ownerDesignName>Autonunes</ownerDesignName>
+<engineerTo>
+<item key="9904A792-F10E-D72F-A8ED-D0643674DC08" value="true"/>
+</engineerTo>
+<nullsAllowed>true</nullsAllowed>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT024</logicalDatatype>
+<dataTypeSize>1</dataTypeSize>
+<ownDataTypeParameters>1,,</ownDataTypeParameters>
+</Attribute>
+<Attribute name="tipo" id="F5A1A3DA-81A6-58C5-1DE1-E987D7FB82DB">
+<createdBy>eduardo</createdBy>
+<createdTime>2020-05-08 20:08:57 UTC</createdTime>
+<generatorID>106BD5D5-F824-4C20-6E43-B01FBE624AAE</generatorID>
+<ownerDesignName>Autonunes</ownerDesignName>
+<engineerTo>
+<item key="9904A792-F10E-D72F-A8ED-D0643674DC08" value="true"/>
+</engineerTo>
+<nullsAllowed>true</nullsAllowed>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT024</logicalDatatype>
+<dataTypeSize>1</dataTypeSize>
+<ownDataTypeParameters>1,,</ownDataTypeParameters>
+</Attribute>
+<Attribute name="tipo proposta" id="B4D2940D-98F1-16DB-91B8-EB021C34597F">
+<createdBy>eduardo</createdBy>
+<createdTime>2020-05-08 20:08:57 UTC</createdTime>
+<generatorID>CC57EF77-EC2C-3EEA-B081-3949919F02E3</generatorID>
+<ownerDesignName>Autonunes</ownerDesignName>
+<engineerTo>
+<item key="9904A792-F10E-D72F-A8ED-D0643674DC08" value="true"/>
+</engineerTo>
+<nullsAllowed>true</nullsAllowed>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT024</logicalDatatype>
+<dataTypeSize>1</dataTypeSize>
+<ownDataTypeParameters>1,,</ownDataTypeParameters>
+</Attribute>
+<Attribute name="cod marca" id="AE867926-BEB9-FB10-0FF8-E2597E1BB77F">
+<createdBy>eduardo</createdBy>
+<createdTime>2020-05-08 20:08:57 UTC</createdTime>
+<generatorID>E265418C-F8D9-FB1F-B82A-45255F950D57</generatorID>
+<ownerDesignName>Autonunes</ownerDesignName>
+<engineerTo>
+<item key="9904A792-F10E-D72F-A8ED-D0643674DC08" value="true"/>
+</engineerTo>
+<nullsAllowed>true</nullsAllowed>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT011</logicalDatatype>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+</Attribute>
+<Attribute name="cod produto" id="0569DD01-EC5D-28FC-70AE-2567A0EA9BF5">
+<createdBy>eduardo</createdBy>
+<createdTime>2020-05-08 20:08:57 UTC</createdTime>
+<generatorID>6392EC95-DC05-059E-F940-67F310D8BA2C</generatorID>
+<ownerDesignName>Autonunes</ownerDesignName>
+<engineerTo>
+<item key="9904A792-F10E-D72F-A8ED-D0643674DC08" value="true"/>
+</engineerTo>
+<nullsAllowed>true</nullsAllowed>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT011</logicalDatatype>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+</Attribute>
+<Attribute name="cod modelo" id="0F8CDDFA-3F5F-B02A-7A60-784DDC81348E">
+<createdBy>eduardo</createdBy>
+<createdTime>2020-05-08 20:08:57 UTC</createdTime>
+<generatorID>5D24BBF0-CDDF-8337-D686-757C084DF553</generatorID>
+<ownerDesignName>Autonunes</ownerDesignName>
+<engineerTo>
+<item key="9904A792-F10E-D72F-A8ED-D0643674DC08" value="true"/>
+</engineerTo>
+<nullsAllowed>true</nullsAllowed>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT011</logicalDatatype>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+</Attribute>
+<Attribute name="ano modelo" id="E66E3E81-762C-AE80-9D42-BF598962C615">
+<createdBy>eduardo</createdBy>
+<createdTime>2020-05-08 20:08:57 UTC</createdTime>
+<generatorID>6CB87793-3B5E-CFED-BA1A-287113DC2014</generatorID>
+<ownerDesignName>Autonunes</ownerDesignName>
+<engineerTo>
+<item key="9904A792-F10E-D72F-A8ED-D0643674DC08" value="true"/>
+</engineerTo>
+<nullsAllowed>true</nullsAllowed>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT024</logicalDatatype>
+<dataTypeSize>10</dataTypeSize>
+<ownDataTypeParameters>10,,</ownDataTypeParameters>
+</Attribute>
+<Attribute name="cor externa" id="679B7907-452C-14E7-5788-1E6C6EE40C32">
+<createdBy>eduardo</createdBy>
+<createdTime>2020-05-08 20:08:57 UTC</createdTime>
+<generatorID>CE565244-3BF7-88D4-6975-72C270BABA82</generatorID>
+<ownerDesignName>Autonunes</ownerDesignName>
+<engineerTo>
+<item key="9904A792-F10E-D72F-A8ED-D0643674DC08" value="true"/>
+</engineerTo>
+<nullsAllowed>true</nullsAllowed>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT011</logicalDatatype>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+</Attribute>
+<Attribute name="renavam" id="2E3766BB-F509-ADD5-03E7-E34E1A6A6802">
+<createdBy>eduardo</createdBy>
+<createdTime>2020-05-08 20:08:57 UTC</createdTime>
+<generatorID>3E07C3FD-F637-04F8-5F5F-5B82F3EE4061</generatorID>
+<ownerDesignName>Autonunes</ownerDesignName>
+<engineerTo>
+<item key="9904A792-F10E-D72F-A8ED-D0643674DC08" value="true"/>
+</engineerTo>
+<nullsAllowed>true</nullsAllowed>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT024</logicalDatatype>
+<dataTypeSize>30</dataTypeSize>
+<ownDataTypeParameters>30,,</ownDataTypeParameters>
+</Attribute>
+<Attribute name="chassi" id="03A47FF9-0731-7F1F-BAD3-9EC01F04FBC7">
+<createdBy>eduardo</createdBy>
+<createdTime>2020-05-08 20:08:57 UTC</createdTime>
+<generatorID>BDD2811E-AC55-07DD-97F1-40F773CEF3BC</generatorID>
+<ownerDesignName>Autonunes</ownerDesignName>
+<engineerTo>
+<item key="9904A792-F10E-D72F-A8ED-D0643674DC08" value="true"/>
+</engineerTo>
+<nullsAllowed>true</nullsAllowed>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT024</logicalDatatype>
+<dataTypeSize>30</dataTypeSize>
+<ownDataTypeParameters>30,,</ownDataTypeParameters>
+</Attribute>
+<Attribute name="opcionais" id="B0F8B070-AC48-22EC-E1D2-DB4E53180609">
+<createdBy>eduardo</createdBy>
+<createdTime>2020-05-08 20:08:57 UTC</createdTime>
+<generatorID>81BF38EA-663D-DCBC-85AA-D8C1D980527C</generatorID>
+<ownerDesignName>Autonunes</ownerDesignName>
+<engineerTo>
+<item key="9904A792-F10E-D72F-A8ED-D0643674DC08" value="true"/>
+</engineerTo>
+<nullsAllowed>true</nullsAllowed>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT024</logicalDatatype>
+<dataTypeSize>100</dataTypeSize>
+<ownDataTypeParameters>100,,</ownDataTypeParameters>
+</Attribute>
+<Attribute name="s valor veic" id="B29D32BD-9A2A-846A-55A0-51527B6DC9E7">
+<createdBy>eduardo</createdBy>
+<createdTime>2020-05-08 20:08:57 UTC</createdTime>
+<generatorID>77BC9C56-44D7-233C-984F-2E65D53B1559</generatorID>
+<ownerDesignName>Autonunes</ownerDesignName>
+<engineerTo>
+<item key="9904A792-F10E-D72F-A8ED-D0643674DC08" value="true"/>
+</engineerTo>
+<nullsAllowed>true</nullsAllowed>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT019</logicalDatatype>
+<dataTypePrecision>9</dataTypePrecision>
+<dataTypeScale>2</dataTypeScale>
+<ownDataTypeParameters>,9,2</ownDataTypeParameters>
+</Attribute>
+<Attribute name="s entrada" id="CA2F25EF-8951-1805-DE10-410DF6993D66">
+<createdBy>eduardo</createdBy>
+<createdTime>2020-05-08 20:08:57 UTC</createdTime>
+<generatorID>CEEDDE6C-BB56-D77D-E7B6-482822D25254</generatorID>
+<ownerDesignName>Autonunes</ownerDesignName>
+<engineerTo>
+<item key="9904A792-F10E-D72F-A8ED-D0643674DC08" value="true"/>
+</engineerTo>
+<nullsAllowed>true</nullsAllowed>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT019</logicalDatatype>
+<dataTypePrecision>9</dataTypePrecision>
+<dataTypeScale>2</dataTypeScale>
+<ownDataTypeParameters>,9,2</ownDataTypeParameters>
+</Attribute>
+<Attribute name="s valor fin" id="319B6F28-CAB5-A038-7B26-076CEAB3495B">
+<createdBy>eduardo</createdBy>
+<createdTime>2020-05-08 20:08:57 UTC</createdTime>
+<generatorID>5EAD5ECC-D414-3F4F-CBE7-DE23FC5951FB</generatorID>
+<ownerDesignName>Autonunes</ownerDesignName>
+<engineerTo>
+<item key="9904A792-F10E-D72F-A8ED-D0643674DC08" value="true"/>
+</engineerTo>
+<nullsAllowed>true</nullsAllowed>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT019</logicalDatatype>
+<dataTypePrecision>9</dataTypePrecision>
+<dataTypeScale>2</dataTypeScale>
+<ownDataTypeParameters>,9,2</ownDataTypeParameters>
+</Attribute>
+<Attribute name="s prazo" id="7BD672B0-EF0F-C37F-0453-B7B3A34B4AF7">
+<createdBy>eduardo</createdBy>
+<createdTime>2020-05-08 20:08:57 UTC</createdTime>
+<generatorID>40F74D02-166B-0428-AA27-37E4EC7B7E47</generatorID>
+<ownerDesignName>Autonunes</ownerDesignName>
+<engineerTo>
+<item key="9904A792-F10E-D72F-A8ED-D0643674DC08" value="true"/>
+</engineerTo>
+<nullsAllowed>true</nullsAllowed>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT011</logicalDatatype>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+</Attribute>
+<Attribute name="s parcela" id="49A98106-0138-4FFE-1D32-7A254D9656EB">
+<createdBy>eduardo</createdBy>
+<createdTime>2020-05-08 20:08:57 UTC</createdTime>
+<generatorID>A9204016-29E9-4CB7-DAFD-1090BB65884B</generatorID>
+<ownerDesignName>Autonunes</ownerDesignName>
+<engineerTo>
+<item key="9904A792-F10E-D72F-A8ED-D0643674DC08" value="true"/>
+</engineerTo>
+<nullsAllowed>true</nullsAllowed>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT019</logicalDatatype>
+<dataTypePrecision>9</dataTypePrecision>
+<dataTypeScale>2</dataTypeScale>
+<ownDataTypeParameters>,9,2</ownDataTypeParameters>
+</Attribute>
+<Attribute name="s tabela" id="310283C0-7674-BEC5-D12D-509B890066B9">
+<createdBy>eduardo</createdBy>
+<createdTime>2020-05-08 20:08:57 UTC</createdTime>
+<generatorID>C5B0A02C-2AC6-686A-1B0F-5BD34A13F949</generatorID>
+<ownerDesignName>Autonunes</ownerDesignName>
+<engineerTo>
+<item key="9904A792-F10E-D72F-A8ED-D0643674DC08" value="true"/>
+</engineerTo>
+<nullsAllowed>true</nullsAllowed>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT024</logicalDatatype>
+<dataTypeSize>30</dataTypeSize>
+<ownDataTypeParameters>30,,</ownDataTypeParameters>
+</Attribute>
+<Attribute name="s cod fipe" id="958A3A64-9E26-4585-821D-567E6E14EDCF">
+<createdBy>eduardo</createdBy>
+<createdTime>2020-05-08 20:08:57 UTC</createdTime>
+<generatorID>91DE639E-2A72-0DFD-972E-B19FF8C9EAA0</generatorID>
+<ownerDesignName>Autonunes</ownerDesignName>
+<engineerTo>
+<item key="9904A792-F10E-D72F-A8ED-D0643674DC08" value="true"/>
+</engineerTo>
+<nullsAllowed>true</nullsAllowed>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT024</logicalDatatype>
+<dataTypeSize>30</dataTypeSize>
+<ownDataTypeParameters>30,,</ownDataTypeParameters>
+</Attribute>
+<Attribute name="s coeficiente" id="58DAB425-E7FE-C410-53B5-47374428111E">
+<createdBy>eduardo</createdBy>
+<createdTime>2020-05-08 20:08:57 UTC</createdTime>
+<generatorID>BED49A66-F290-4370-6FDA-2DDE7708E2EB</generatorID>
+<ownerDesignName>Autonunes</ownerDesignName>
+<engineerTo>
+<item key="9904A792-F10E-D72F-A8ED-D0643674DC08" value="true"/>
+</engineerTo>
+<nullsAllowed>true</nullsAllowed>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT019</logicalDatatype>
+<dataTypePrecision>2</dataTypePrecision>
+<dataTypeScale>9</dataTypeScale>
+<ownDataTypeParameters>,2,9</ownDataTypeParameters>
+</Attribute>
+<Attribute name="s2 valor veic" id="E8DD1526-34F2-AA35-C24E-373561C0BD2C">
+<createdBy>eduardo</createdBy>
+<createdTime>2020-05-08 20:08:57 UTC</createdTime>
+<generatorID>1BA84EC8-F821-A64C-B42D-810239091523</generatorID>
+<ownerDesignName>Autonunes</ownerDesignName>
+<engineerTo>
+<item key="9904A792-F10E-D72F-A8ED-D0643674DC08" value="true"/>
+</engineerTo>
+<nullsAllowed>true</nullsAllowed>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT019</logicalDatatype>
+<dataTypePrecision>9</dataTypePrecision>
+<dataTypeScale>2</dataTypeScale>
+<ownDataTypeParameters>,9,2</ownDataTypeParameters>
+</Attribute>
+<Attribute name="s2 entrada" id="3CE1D573-B728-A423-AEC2-D0587AEF0DDB">
+<createdBy>eduardo</createdBy>
+<createdTime>2020-05-08 20:08:57 UTC</createdTime>
+<generatorID>FAC06C74-CF18-C934-158E-5332348DE78E</generatorID>
+<ownerDesignName>Autonunes</ownerDesignName>
+<engineerTo>
+<item key="9904A792-F10E-D72F-A8ED-D0643674DC08" value="true"/>
+</engineerTo>
+<nullsAllowed>true</nullsAllowed>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT019</logicalDatatype>
+<dataTypePrecision>9</dataTypePrecision>
+<dataTypeScale>2</dataTypeScale>
+<ownDataTypeParameters>,9,2</ownDataTypeParameters>
+</Attribute>
+<Attribute name="s2 valor fin" id="F1DA80C4-514C-B4C2-8E6E-0537012257D7">
+<createdBy>eduardo</createdBy>
+<createdTime>2020-05-08 20:08:57 UTC</createdTime>
+<generatorID>FAEBF57E-B733-DE6C-14FB-F96FD3935734</generatorID>
+<ownerDesignName>Autonunes</ownerDesignName>
+<engineerTo>
+<item key="9904A792-F10E-D72F-A8ED-D0643674DC08" value="true"/>
+</engineerTo>
+<nullsAllowed>true</nullsAllowed>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT019</logicalDatatype>
+<dataTypePrecision>9</dataTypePrecision>
+<dataTypeScale>2</dataTypeScale>
+<ownDataTypeParameters>,9,2</ownDataTypeParameters>
+</Attribute>
+<Attribute name="s2 entrada 1" id="58B2D730-162C-A7F5-A28D-ABBABAC95D74">
+<createdBy>eduardo</createdBy>
+<createdTime>2020-05-08 20:08:57 UTC</createdTime>
+<generatorID>644940CE-ABFE-D7BC-16F6-5EF13C169C27</generatorID>
+<ownerDesignName>Autonunes</ownerDesignName>
+<engineerTo>
+<item key="9904A792-F10E-D72F-A8ED-D0643674DC08" value="true"/>
+</engineerTo>
+<nullsAllowed>true</nullsAllowed>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT019</logicalDatatype>
+<dataTypePrecision>9</dataTypePrecision>
+<dataTypeScale>2</dataTypeScale>
+<ownDataTypeParameters>,9,2</ownDataTypeParameters>
+</Attribute>
+<Attribute name="s participacao" id="8D28E752-4DC2-DE66-A41F-EC4C28A47C77">
+<createdBy>eduardo</createdBy>
+<createdTime>2020-05-08 20:08:57 UTC</createdTime>
+<generatorID>C4ADF82E-77A7-277D-4B9C-CB74CA57C189</generatorID>
+<ownerDesignName>Autonunes</ownerDesignName>
+<engineerTo>
+<item key="9904A792-F10E-D72F-A8ED-D0643674DC08" value="true"/>
+</engineerTo>
+<nullsAllowed>true</nullsAllowed>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT019</logicalDatatype>
+<dataTypePrecision>9</dataTypePrecision>
+<dataTypeScale>2</dataTypeScale>
+<ownDataTypeParameters>,9,2</ownDataTypeParameters>
+</Attribute>
+<Attribute name="s despachante" id="00A333F8-C82F-62CA-FE82-226AD9C41CF7">
+<createdBy>eduardo</createdBy>
+<createdTime>2020-05-08 20:08:57 UTC</createdTime>
+<generatorID>39072EDB-612C-6B34-C78E-6D2479E12145</generatorID>
+<ownerDesignName>Autonunes</ownerDesignName>
+<engineerTo>
+<item key="9904A792-F10E-D72F-A8ED-D0643674DC08" value="true"/>
+</engineerTo>
+<nullsAllowed>true</nullsAllowed>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT019</logicalDatatype>
+<dataTypePrecision>9</dataTypePrecision>
+<dataTypeScale>2</dataTypeScale>
+<ownDataTypeParameters>,9,2</ownDataTypeParameters>
+</Attribute>
+<Attribute name="pg contra apresentacao" id="702DD245-887C-6C31-F78A-905A274835F1">
+<createdBy>eduardo</createdBy>
+<createdTime>2020-05-08 20:08:57 UTC</createdTime>
+<generatorID>143E0F86-782A-C14C-8DF2-F37AABD9A065</generatorID>
+<ownerDesignName>Autonunes</ownerDesignName>
+<engineerTo>
+<item key="9904A792-F10E-D72F-A8ED-D0643674DC08" value="true"/>
+</engineerTo>
+<nullsAllowed>true</nullsAllowed>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT019</logicalDatatype>
+<dataTypePrecision>9</dataTypePrecision>
+<dataTypeScale>2</dataTypeScale>
+<ownDataTypeParameters>,9,2</ownDataTypeParameters>
+</Attribute>
+<Attribute name="pg cartao" id="67E65378-D56E-0A5B-E96A-E2BD47D25109">
+<createdBy>eduardo</createdBy>
+<createdTime>2020-05-08 20:08:57 UTC</createdTime>
+<generatorID>200D43EF-0D42-56F4-1F2B-347EFACBCB0D</generatorID>
+<ownerDesignName>Autonunes</ownerDesignName>
+<engineerTo>
+<item key="9904A792-F10E-D72F-A8ED-D0643674DC08" value="true"/>
+</engineerTo>
+<nullsAllowed>true</nullsAllowed>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT019</logicalDatatype>
+<dataTypePrecision>9</dataTypePrecision>
+<dataTypeScale>2</dataTypeScale>
+<ownDataTypeParameters>,9,2</ownDataTypeParameters>
+</Attribute>
+<Attribute name="pb cheque" id="D02E29FB-BEEA-DF80-2157-D13C4A0D6070">
+<createdBy>eduardo</createdBy>
+<createdTime>2020-05-08 20:08:57 UTC</createdTime>
+<generatorID>7BAF17E2-DBE7-FA0A-CA93-21B6E41A9BD0</generatorID>
+<ownerDesignName>Autonunes</ownerDesignName>
+<engineerTo>
+<item key="9904A792-F10E-D72F-A8ED-D0643674DC08" value="true"/>
+</engineerTo>
+<nullsAllowed>true</nullsAllowed>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT019</logicalDatatype>
+<dataTypePrecision>9</dataTypePrecision>
+<dataTypeScale>2</dataTypeScale>
+<ownDataTypeParameters>,9,2</ownDataTypeParameters>
+</Attribute>
+<Attribute name="pg usado" id="806A6F32-5037-26DD-903B-94A6C8443E54">
+<createdBy>eduardo</createdBy>
+<createdTime>2020-05-08 20:08:57 UTC</createdTime>
+<generatorID>CC10F6D4-1B09-8C73-3ADA-094C28ABEC6A</generatorID>
+<ownerDesignName>Autonunes</ownerDesignName>
+<engineerTo>
+<item key="9904A792-F10E-D72F-A8ED-D0643674DC08" value="true"/>
+</engineerTo>
+<nullsAllowed>true</nullsAllowed>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT019</logicalDatatype>
+<dataTypePrecision>9</dataTypePrecision>
+<dataTypeScale>2</dataTypeScale>
+<ownDataTypeParameters>,9,2</ownDataTypeParameters>
+</Attribute>
+<Attribute name="pg outras pg" id="FDFDB433-E462-088A-53B5-1249A45945AB">
+<createdBy>eduardo</createdBy>
+<createdTime>2020-05-08 20:08:57 UTC</createdTime>
+<generatorID>FAB12F3B-0014-4582-0EB8-4DC852955680</generatorID>
+<ownerDesignName>Autonunes</ownerDesignName>
+<engineerTo>
+<item key="9904A792-F10E-D72F-A8ED-D0643674DC08" value="true"/>
+</engineerTo>
+<nullsAllowed>true</nullsAllowed>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT019</logicalDatatype>
+<dataTypePrecision>9</dataTypePrecision>
+<dataTypeScale>2</dataTypeScale>
+<ownDataTypeParameters>,9,2</ownDataTypeParameters>
+</Attribute>
+<Attribute name="pg consorcio" id="8E6CA86D-7CD3-3CF2-3F4C-CE321E559D4B">
+<createdBy>eduardo</createdBy>
+<createdTime>2020-05-08 20:08:57 UTC</createdTime>
+<generatorID>486541CE-2D80-74DC-97DD-553FE4B41197</generatorID>
+<ownerDesignName>Autonunes</ownerDesignName>
+<engineerTo>
+<item key="9904A792-F10E-D72F-A8ED-D0643674DC08" value="true"/>
+</engineerTo>
+<nullsAllowed>true</nullsAllowed>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT019</logicalDatatype>
+<dataTypePrecision>9</dataTypePrecision>
+<dataTypeScale>2</dataTypeScale>
+<ownDataTypeParameters>,9,2</ownDataTypeParameters>
+</Attribute>
+<Attribute name="pg fin externo" id="B541D10D-E645-39EC-027E-4354D06E914C">
+<createdBy>eduardo</createdBy>
+<createdTime>2020-05-08 20:08:57 UTC</createdTime>
+<generatorID>02119AB6-6F24-ACC3-90B2-EB9F132FE3AE</generatorID>
+<ownerDesignName>Autonunes</ownerDesignName>
+<engineerTo>
+<item key="9904A792-F10E-D72F-A8ED-D0643674DC08" value="true"/>
+</engineerTo>
+<nullsAllowed>true</nullsAllowed>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT019</logicalDatatype>
+<dataTypePrecision>9</dataTypePrecision>
+<dataTypeScale>2</dataTypeScale>
+<ownDataTypeParameters>,9,2</ownDataTypeParameters>
+</Attribute>
+<Attribute name="pg tr usado" id="DDA4E009-4BF6-8DF2-BEB1-1539666430FF">
+<createdBy>eduardo</createdBy>
+<createdTime>2020-05-08 20:08:57 UTC</createdTime>
+<generatorID>337CBE0E-7C0F-FA1A-44D9-D4AED7E2C629</generatorID>
+<ownerDesignName>Autonunes</ownerDesignName>
+<engineerTo>
+<item key="9904A792-F10E-D72F-A8ED-D0643674DC08" value="true"/>
+</engineerTo>
+<nullsAllowed>true</nullsAllowed>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT019</logicalDatatype>
+<dataTypePrecision>9</dataTypePrecision>
+<dataTypeScale>2</dataTypeScale>
+<ownDataTypeParameters>,9,2</ownDataTypeParameters>
+</Attribute>
+<Attribute name="pg tr acessorio" id="8E7CD1F2-1275-D3B9-6570-9E698DC9844B">
+<createdBy>eduardo</createdBy>
+<createdTime>2020-05-08 20:08:57 UTC</createdTime>
+<generatorID>5E8E3552-4A40-23F6-B746-D29793083468</generatorID>
+<ownerDesignName>Autonunes</ownerDesignName>
+<engineerTo>
+<item key="9904A792-F10E-D72F-A8ED-D0643674DC08" value="true"/>
+</engineerTo>
+<nullsAllowed>true</nullsAllowed>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT019</logicalDatatype>
+<dataTypePrecision>9</dataTypePrecision>
+<dataTypeScale>2</dataTypeScale>
+<ownDataTypeParameters>,9,2</ownDataTypeParameters>
+</Attribute>
+<Attribute name="pg tr emplacamento" id="C9AA8133-4D24-FC14-30EE-36216E3384A5">
+<createdBy>eduardo</createdBy>
+<createdTime>2020-05-08 20:08:57 UTC</createdTime>
+<generatorID>C6E117DC-5772-A4BF-BC5C-6427C5C6A2B8</generatorID>
+<ownerDesignName>Autonunes</ownerDesignName>
+<engineerTo>
+<item key="9904A792-F10E-D72F-A8ED-D0643674DC08" value="true"/>
+</engineerTo>
+<nullsAllowed>true</nullsAllowed>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT019</logicalDatatype>
+<dataTypePrecision>9</dataTypePrecision>
+<dataTypeScale>2</dataTypeScale>
+<ownDataTypeParameters>,9,2</ownDataTypeParameters>
+</Attribute>
+<Attribute name="pg tr ipva" id="9CC629E2-7CC0-1D12-73D0-1DA3F78C46AE">
+<createdBy>eduardo</createdBy>
+<createdTime>2020-05-08 20:08:57 UTC</createdTime>
+<generatorID>6BEE0116-5647-16D5-C0E8-D384EDBD7F0B</generatorID>
+<ownerDesignName>Autonunes</ownerDesignName>
+<engineerTo>
+<item key="9904A792-F10E-D72F-A8ED-D0643674DC08" value="true"/>
+</engineerTo>
+<nullsAllowed>true</nullsAllowed>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT019</logicalDatatype>
+<dataTypePrecision>9</dataTypePrecision>
+<dataTypeScale>2</dataTypeScale>
+<ownDataTypeParameters>,9,2</ownDataTypeParameters>
+</Attribute>
+<Attribute name="pg tr outros" id="0CB223A6-2050-AAAB-10B2-FC94F414C373">
+<createdBy>eduardo</createdBy>
+<createdTime>2020-05-08 20:08:57 UTC</createdTime>
+<generatorID>96990163-E1EA-E505-3307-0565875503AD</generatorID>
+<ownerDesignName>Autonunes</ownerDesignName>
+<engineerTo>
+<item key="9904A792-F10E-D72F-A8ED-D0643674DC08" value="true"/>
+</engineerTo>
+<nullsAllowed>true</nullsAllowed>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT019</logicalDatatype>
+<dataTypePrecision>9</dataTypePrecision>
+<dataTypeScale>2</dataTypeScale>
+<ownDataTypeParameters>,9,2</ownDataTypeParameters>
+</Attribute>
+<Attribute name="pg tr hn" id="E046325C-2146-F4CB-C0BD-2A5F7BA6CFDA">
+<createdBy>eduardo</createdBy>
+<createdTime>2020-05-08 20:08:57 UTC</createdTime>
+<generatorID>79D41D15-3C91-595B-FEA0-C753B9BE81CE</generatorID>
+<ownerDesignName>Autonunes</ownerDesignName>
+<engineerTo>
+<item key="9904A792-F10E-D72F-A8ED-D0643674DC08" value="true"/>
+</engineerTo>
+<nullsAllowed>true</nullsAllowed>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT019</logicalDatatype>
+<dataTypePrecision>9</dataTypePrecision>
+<dataTypeScale>2</dataTypeScale>
+<ownDataTypeParameters>,9,2</ownDataTypeParameters>
+</Attribute>
+<Attribute name="cortesia" id="DA01D12F-822C-207D-4B68-A9397EB04F8C">
+<createdBy>eduardo</createdBy>
+<createdTime>2020-05-08 20:08:57 UTC</createdTime>
+<generatorID>0CAA4EEC-24B8-0D27-7762-7291B1C370B4</generatorID>
+<ownerDesignName>Autonunes</ownerDesignName>
+<engineerTo>
+<item key="9904A792-F10E-D72F-A8ED-D0643674DC08" value="true"/>
+</engineerTo>
+<nullsAllowed>true</nullsAllowed>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT024</logicalDatatype>
+<dataTypeSize>200</dataTypeSize>
+<ownDataTypeParameters>200,,</ownDataTypeParameters>
+</Attribute>
+<Attribute name="obs cortesia" id="B56FC464-1F2C-E44D-AA4F-19DB4D00BDEF">
+<createdBy>eduardo</createdBy>
+<createdTime>2020-05-08 20:08:57 UTC</createdTime>
+<generatorID>0ED87313-4158-5BAE-472E-EC33788618E3</generatorID>
+<ownerDesignName>Autonunes</ownerDesignName>
+<engineerTo>
+<item key="9904A792-F10E-D72F-A8ED-D0643674DC08" value="true"/>
+</engineerTo>
+<nullsAllowed>true</nullsAllowed>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT024</logicalDatatype>
+<dataTypeSize>300</dataTypeSize>
+<ownDataTypeParameters>300,,</ownDataTypeParameters>
+</Attribute>
+<Attribute name="vendedor acessorio" id="344D56D5-71A3-C3A8-A881-CC3851E37DC4">
+<createdBy>eduardo</createdBy>
+<createdTime>2020-05-08 20:08:57 UTC</createdTime>
+<generatorID>5C959565-3576-B2C2-BD01-FBC1D25C743F</generatorID>
+<ownerDesignName>Autonunes</ownerDesignName>
+<engineerTo>
+<item key="9904A792-F10E-D72F-A8ED-D0643674DC08" value="true"/>
+</engineerTo>
+<nullsAllowed>true</nullsAllowed>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT024</logicalDatatype>
+<dataTypeSize>50</dataTypeSize>
+<ownDataTypeParameters>50,,</ownDataTypeParameters>
+</Attribute>
+<Attribute name="valor elegivel" id="B4ABC9E9-48F0-CD4B-2DE9-A02040F2A874">
+<createdBy>eduardo</createdBy>
+<createdTime>2020-05-08 20:08:57 UTC</createdTime>
+<generatorID>1CC654C2-8F7E-05A3-8F2F-6749B853DC74</generatorID>
+<ownerDesignName>Autonunes</ownerDesignName>
+<engineerTo>
+<item key="9904A792-F10E-D72F-A8ED-D0643674DC08" value="true"/>
+</engineerTo>
+<nullsAllowed>true</nullsAllowed>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT019</logicalDatatype>
+<dataTypePrecision>9</dataTypePrecision>
+<dataTypeScale>2</dataTypeScale>
+<ownDataTypeParameters>,9,2</ownDataTypeParameters>
+</Attribute>
+<Attribute name="taxa zero" id="3D337E1F-23AB-4FD5-504C-3CC6904F4C53">
+<createdBy>eduardo</createdBy>
+<createdTime>2020-05-08 20:08:57 UTC</createdTime>
+<generatorID>E747DA71-43AD-7F79-CB5E-27D309689D25</generatorID>
+<ownerDesignName>Autonunes</ownerDesignName>
+<engineerTo>
+<item key="9904A792-F10E-D72F-A8ED-D0643674DC08" value="true"/>
+</engineerTo>
+<nullsAllowed>true</nullsAllowed>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT024</logicalDatatype>
+<dataTypeSize>1</dataTypeSize>
+<ownDataTypeParameters>1,,</ownDataTypeParameters>
+</Attribute>
+<Attribute name="valor acessorios" id="9D9A31C1-1CDA-DF98-29C6-9BEBA5275172">
+<createdBy>eduardo</createdBy>
+<createdTime>2020-05-08 20:08:57 UTC</createdTime>
+<generatorID>9322728A-AB61-8D87-A582-412041B0E7E2</generatorID>
+<ownerDesignName>Autonunes</ownerDesignName>
+<engineerTo>
+<item key="9904A792-F10E-D72F-A8ED-D0643674DC08" value="true"/>
+</engineerTo>
+<nullsAllowed>true</nullsAllowed>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT019</logicalDatatype>
+<dataTypePrecision>9</dataTypePrecision>
+<dataTypeScale>2</dataTypeScale>
+<ownDataTypeParameters>,9,2</ownDataTypeParameters>
+</Attribute>
+<Attribute name="gmac plus" id="931E7B00-0786-B592-D869-386C1456B2B5">
+<createdBy>eduardo</createdBy>
+<createdTime>2020-05-08 20:08:57 UTC</createdTime>
+<generatorID>74DF1A15-5CC0-2561-C6B1-D854382D6AAA</generatorID>
+<ownerDesignName>Autonunes</ownerDesignName>
+<engineerTo>
+<item key="9904A792-F10E-D72F-A8ED-D0643674DC08" value="true"/>
+</engineerTo>
+<nullsAllowed>true</nullsAllowed>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT024</logicalDatatype>
+<dataTypeSize>1</dataTypeSize>
+<ownDataTypeParameters>1,,</ownDataTypeParameters>
+</Attribute>
+<Attribute name="gmac plus valor" id="BE92CCA1-4785-D53E-A5D2-5AD48B6C5F9D">
+<createdBy>eduardo</createdBy>
+<createdTime>2020-05-08 20:08:57 UTC</createdTime>
+<generatorID>D58742B7-FD56-07BF-6EC8-5E2CD8AF8123</generatorID>
+<ownerDesignName>Autonunes</ownerDesignName>
+<engineerTo>
+<item key="9904A792-F10E-D72F-A8ED-D0643674DC08" value="true"/>
+</engineerTo>
+<nullsAllowed>true</nullsAllowed>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT019</logicalDatatype>
+<dataTypePrecision>9</dataTypePrecision>
+<dataTypeScale>2</dataTypeScale>
+<ownDataTypeParameters>,9,2</ownDataTypeParameters>
+</Attribute>
+<Attribute name="emplacamento" id="8985E9ED-35DB-F097-9DC3-B4DC0EB36896">
+<createdBy>eduardo</createdBy>
+<createdTime>2020-05-08 20:08:57 UTC</createdTime>
+<generatorID>B2C81822-E26D-CBE0-C797-95FA7CA98A62</generatorID>
+<ownerDesignName>Autonunes</ownerDesignName>
+<engineerTo>
+<item key="9904A792-F10E-D72F-A8ED-D0643674DC08" value="true"/>
+</engineerTo>
+<nullsAllowed>true</nullsAllowed>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT019</logicalDatatype>
+<dataTypePrecision>9</dataTypePrecision>
+<dataTypeScale>2</dataTypeScale>
+<ownDataTypeParameters>,9,2</ownDataTypeParameters>
+</Attribute>
+<Attribute name="pmc" id="8D062827-96A5-EFF4-5F59-A25A1B47C343">
+<createdBy>eduardo</createdBy>
+<createdTime>2020-05-08 20:08:57 UTC</createdTime>
+<generatorID>1BB039F5-3017-03F8-19E6-8C10D013A3B2</generatorID>
+<ownerDesignName>Autonunes</ownerDesignName>
+<engineerTo>
+<item key="9904A792-F10E-D72F-A8ED-D0643674DC08" value="true"/>
+</engineerTo>
+<nullsAllowed>true</nullsAllowed>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT024</logicalDatatype>
+<dataTypeSize>1</dataTypeSize>
+<ownDataTypeParameters>1,,</ownDataTypeParameters>
+</Attribute>
+<Attribute name="pmc tipo" id="284996D8-2CCC-027F-0E14-4DF4138C5C53">
+<createdBy>eduardo</createdBy>
+<createdTime>2020-05-08 20:08:57 UTC</createdTime>
+<generatorID>943383FC-8767-72A3-8387-B4F32C8B86B7</generatorID>
+<ownerDesignName>Autonunes</ownerDesignName>
+<engineerTo>
+<item key="9904A792-F10E-D72F-A8ED-D0643674DC08" value="true"/>
+</engineerTo>
+<nullsAllowed>true</nullsAllowed>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT024</logicalDatatype>
+<dataTypeSize>30</dataTypeSize>
+<ownDataTypeParameters>30,,</ownDataTypeParameters>
+</Attribute>
+<Attribute name="pmc valor" id="882D30C4-E193-7875-19A2-EAC39431D7FB">
+<createdBy>eduardo</createdBy>
+<createdTime>2020-05-08 20:08:57 UTC</createdTime>
+<generatorID>5C77035C-9978-F34E-3B7A-5696DA0CE071</generatorID>
+<ownerDesignName>Autonunes</ownerDesignName>
+<engineerTo>
+<item key="9904A792-F10E-D72F-A8ED-D0643674DC08" value="true"/>
+</engineerTo>
+<nullsAllowed>true</nullsAllowed>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT019</logicalDatatype>
+<dataTypePrecision>9</dataTypePrecision>
+<dataTypeScale>2</dataTypeScale>
+<ownDataTypeParameters>,9,2</ownDataTypeParameters>
+</Attribute>
+<Attribute name="gap" id="5051627D-14CF-A243-6DE0-275B97416941">
+<createdBy>eduardo</createdBy>
+<createdTime>2020-05-08 20:08:57 UTC</createdTime>
+<generatorID>15C6E317-0AB4-DFBF-EBE9-1AFDF8FC5BEB</generatorID>
+<ownerDesignName>Autonunes</ownerDesignName>
+<engineerTo>
+<item key="9904A792-F10E-D72F-A8ED-D0643674DC08" value="true"/>
+</engineerTo>
+<nullsAllowed>true</nullsAllowed>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT024</logicalDatatype>
+<dataTypeSize>1</dataTypeSize>
+<ownDataTypeParameters>1,,</ownDataTypeParameters>
+</Attribute>
+<Attribute name="gap tipo" id="AEEF38FB-89C9-B243-2C0A-62F9E25D458B">
+<createdBy>eduardo</createdBy>
+<createdTime>2020-05-08 20:08:57 UTC</createdTime>
+<generatorID>150CE837-FF84-3E1A-893D-A1BC8BF8499F</generatorID>
+<ownerDesignName>Autonunes</ownerDesignName>
+<engineerTo>
+<item key="9904A792-F10E-D72F-A8ED-D0643674DC08" value="true"/>
+</engineerTo>
+<nullsAllowed>true</nullsAllowed>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT024</logicalDatatype>
+<dataTypeSize>30</dataTypeSize>
+<ownDataTypeParameters>30,,</ownDataTypeParameters>
+</Attribute>
+<Attribute name="gap valor" id="B7C54BAD-67A6-B247-EB57-71D07CBF379E">
+<createdBy>eduardo</createdBy>
+<createdTime>2020-05-08 20:08:57 UTC</createdTime>
+<generatorID>FEDA3DDA-5976-FAB1-7E85-6A56E464EA84</generatorID>
+<ownerDesignName>Autonunes</ownerDesignName>
+<engineerTo>
+<item key="9904A792-F10E-D72F-A8ED-D0643674DC08" value="true"/>
+</engineerTo>
+<nullsAllowed>true</nullsAllowed>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT019</logicalDatatype>
+<dataTypePrecision>9</dataTypePrecision>
+<dataTypeScale>2</dataTypeScale>
+<ownDataTypeParameters>,9,2</ownDataTypeParameters>
+</Attribute>
+<Attribute name="siga" id="42539970-2412-1CAF-0EF6-7320B1B8AB65">
+<createdBy>eduardo</createdBy>
+<createdTime>2020-05-08 20:08:57 UTC</createdTime>
+<generatorID>1055CFED-5F10-08A5-9662-0CB55A0758F8</generatorID>
+<ownerDesignName>Autonunes</ownerDesignName>
+<engineerTo>
+<item key="9904A792-F10E-D72F-A8ED-D0643674DC08" value="true"/>
+</engineerTo>
+<nullsAllowed>true</nullsAllowed>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT024</logicalDatatype>
+<dataTypeSize>1</dataTypeSize>
+<ownDataTypeParameters>1,,</ownDataTypeParameters>
+</Attribute>
+<Attribute name="siga tipo" id="A170130E-C6F1-4CD9-0FA6-D50CCCFE4524">
+<createdBy>eduardo</createdBy>
+<createdTime>2020-05-08 20:08:57 UTC</createdTime>
+<generatorID>565E34B8-E051-9643-1A6C-C59406C9E686</generatorID>
+<ownerDesignName>Autonunes</ownerDesignName>
+<engineerTo>
+<item key="9904A792-F10E-D72F-A8ED-D0643674DC08" value="true"/>
+</engineerTo>
+<nullsAllowed>true</nullsAllowed>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT024</logicalDatatype>
+<dataTypeSize>30</dataTypeSize>
+<ownDataTypeParameters>30,,</ownDataTypeParameters>
+</Attribute>
+<Attribute name="siga valor" id="7CB8FDE9-B58A-8FC6-8E2C-692B760DEBD3">
+<createdBy>eduardo</createdBy>
+<createdTime>2020-05-08 20:08:57 UTC</createdTime>
+<generatorID>2D6393E0-0306-FADB-CDB3-5F7CA1B82C6D</generatorID>
+<ownerDesignName>Autonunes</ownerDesignName>
+<engineerTo>
+<item key="9904A792-F10E-D72F-A8ED-D0643674DC08" value="true"/>
+</engineerTo>
+<nullsAllowed>true</nullsAllowed>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT019</logicalDatatype>
+<dataTypePrecision>9</dataTypePrecision>
+<dataTypeScale>2</dataTypeScale>
+<ownDataTypeParameters>,9,2</ownDataTypeParameters>
+</Attribute>
+<Attribute name="valor seguro" id="14C48533-2FC0-4290-11F4-7EC41FA9FB9E">
+<createdBy>eduardo</createdBy>
+<createdTime>2020-05-08 20:08:57 UTC</createdTime>
+<generatorID>84BC37DE-3F1C-3291-6070-EC0CED5A5148</generatorID>
+<ownerDesignName>Autonunes</ownerDesignName>
+<engineerTo>
+<item key="9904A792-F10E-D72F-A8ED-D0643674DC08" value="true"/>
+</engineerTo>
+<nullsAllowed>true</nullsAllowed>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT019</logicalDatatype>
+<dataTypePrecision>9</dataTypePrecision>
+<dataTypeScale>2</dataTypeScale>
+<ownDataTypeParameters>,9,2</ownDataTypeParameters>
+</Attribute>
+</attributes>
+<identifiers itemClass="oracle.dbtools.crest.model.design.logical.CandidateKey">
+<identifier id="163D1A93-DCC4-6FD5-3567-AE3EE63240BF" name="wc sim venda PK">
+<createdBy>eduardo</createdBy>
+<createdTime>2020-05-08 20:08:57 UTC</createdTime>
+<generatorID>24AA4A1F-7051-F8DA-403C-FBBDCB37D76A</generatorID>
+<ownerDesignName>Autonunes</ownerDesignName>
+<engineerTo>
+<item key="9904A792-F10E-D72F-A8ED-D0643674DC08" value="true"/>
+</engineerTo>
+<pk>true</pk>
+<usedAttributes>
+<attributeRef>92B3B474-7CBD-4BEF-E4D1-4104201BC356</attributeRef>
+</usedAttributes>
+</identifier>
+</identifiers>
+</Entity>

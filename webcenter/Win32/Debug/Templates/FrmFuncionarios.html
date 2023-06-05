@@ -1,0 +1,342 @@
+<html>
+<head>
+</head>
+<body>
+    <div class="clearfix" style="display:none">{%BTNEXCLUIR%}{%BTNSENHA%}{%BTNGRAVAR%}</div>
+
+    <section class="content-header">
+        <h1>
+            Listagem de Funcionários
+            <small>Listagem e Manutenção.</small>
+        </h1>
+        <ol class="breadcrumb">
+            <li><a href="javascript: SetaAcao('Menu', 'Iniciar');"><i class="fa fa-home"></i> Início</a></li>
+            <li class="active">Listagem Funcionários</li>
+        </ol>
+    </section>
+    <section class="content container-fluid">
+        <div class="col-md-12">
+            <div class="box box-primary">
+                <div class="box-header with-border">
+                    <i class="fa fa-fw fa-user"></i>
+                    <h3 class="box-title">Funcionários</h3>
+                    <div class="box-tools pull-right">
+                        <div class="btn-group">
+                            <button type="buttom" class="btn btn-primary" onclick="SetaAcao('Impr');">
+                                <i class="fa fa-print" aria-hidden="true"></i><span class="hidden-xs hidden-sm"> Imprimir</span>
+                            </button>
+                            <button type="buttom" class="btn btn-primary" onclick="SetaAcao('Inc');">
+                                <i class="fa fa-plus" aria-hidden="true"></i><span class="hidden-xs hidden-sm"> Cadastrar</span>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+                <div class="box-body">
+                    <div class="box box-default">
+                        <div class="row">
+                            <div class="col-md-12">
+                                <br />
+                                <div class="table-responsive">
+                                    {%Grid%}
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <!-- Modal -->
+    <div class="modal fade" id="Cadastro" role="dialog" data-backdrop="static" data-keyboard="false">
+        <div class="modal-dialog modal-lg">
+            <!-- Modal content-->
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h4 class="modal-title"><i class="fa fa-fw fa-user"></i> {%TituloModal%} de Funcionário</h4>
+                </div>
+                <div class="modal-body">
+                    <div class="row">
+                        <div class="col-xs-3 col-md-1">
+                            <div class="form-group">
+                                <label for="usr">Código</label>
+                                {%IDFUNCIONARIO%}
+                            </div>
+                        </div>
+                        <div class="col-xs-9 col-md-6">
+                            <div class="form-group">
+                                <label>Nome do Funcionário</label>
+                                {%NOMEFUNCIONARIO%}
+                            </div>
+                        </div>
+                        <div class="col-xs-6 col-md-3">
+                            <div class="form-group">
+                                <label for="usr">C.P.F.</label>
+                                {%CPF%}
+                            </div>
+                        </div>
+                        <div class="col-xs-6 col-md-2">
+                            <div class="form-group">
+                                <label for="usr">R.G.</label>
+                                {%RG%}
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-xs-12 col-md-2">
+                            <div class="form-group">
+                                <label for="CEP">CEP</label>
+                                {%CEP%}
+                            </div>
+                        </div>
+                        <div class="col-xs-9 col-md-8">
+                            <div class="form-group">
+                                <label for="Endereco">Endereço</label>
+                                {%Endereco%}
+                            </div>
+                        </div>
+                        <div class="col-xs-3 col-md-2">
+                            <div class="form-group">
+                                <label for="Endereco">Nº</label>
+                                {%Numero%}
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-xs-6 col-md-3">
+                            <div class="form-group">
+                                <label for="Bairro">Complemento</label>
+                                {%Complemento%}
+                            </div>
+                        </div>
+                        <div class="col-xs-6 col-md-4">
+                            <div class="form-group">
+                                <label for="Bairro">Bairro</label>
+                                {%Bairro%}
+                            </div>
+                        </div>
+                        <div class="col-xs-9 col-md-4">
+                            <div class="form-group">
+                                <label for="Cidade">Cidade</label>
+                                {%Cidade%}
+                            </div>
+                        </div>
+                        <div class="col-xs-3 col-md-1">
+                            <div class="form-group">
+                                <label for="Estado">UF</label>
+                                {%Estado%}
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-xs-6 col-md-4">
+                            <div class="form-group">
+                                <label for="Telefone">Fone Fixo</label>
+                                {%FoneFixo%}
+                            </div>
+                        </div>
+                        <div class="col-xs-6 col-md-4">
+                            <div class="form-group">
+                                <label for="Telefone">Celular</label>
+                                {%FoneCelular%}
+                            </div>
+                        </div>
+                        <div class="col-xs-12 col-md-4">
+                            <div class="form-group">
+                                <label for="edEmail">E-Mail</label>
+                                {%Email%}
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-xs-6 col-sm-6">
+                            <div class="form-group">
+                                <label for="usr">Usuário Web</label>
+                                {%edUSUARIO%}
+                            </div>
+                        </div>
+                        <div class="col-xs-6 col-sm-6">
+                            <div class="form-group">
+                                <label for="usr">Último Acesso</label>
+                                {%DATAULTACESSO%}
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default" onclick="Gravar();">Gravar Dados</button>
+                    <button type="button" class="btn btn-default"  data-dismiss="modal" id="BTNCANCELAR">Cancelar</button>	
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <!-- Modal Relatorios -->
+    <div class="modal fade" id="Relatorios" role="dialog" data-backdrop="static" data-keyboard="false">
+        <div class="modal-dialog">
+            <!-- Modal content-->
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h4 class="modal-title"><i class="fa fa-fw fa-print"></i> Filtro para Relatórios</h4>
+                </div>
+                <div class="modal-body">
+                    <div class="row">
+                        <br />
+                        <div class="col-xs-10 col-xs-offset-1 col-sm-8 col-sm-offset-2">
+                            <div class="form-group">
+                                <label for="usr">Filtrar por parte do Nome da Cidade</label>
+                                {%Filtro%}
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <br />
+                        <div class="col-xs-10 col-xs-offset-1 col-sm-8 col-sm-offset-2">
+                            <div class="form-group">
+                                <label for="usr">Escolha a Ordenação do Relatório</label>
+                                {%Ordenacao%}
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default" data-dismiss="modal" id="BTNIMPRIMIR">Imprimir Relatório</button>
+                    <button type="button" class="btn btn-default"  data-dismiss="modal">Cancelar</button>	
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        $(function () {
+            $('#GRID').DataTable({
+                language: {
+                    "sEmptyTable": "Nenhum registro encontrado",
+                    "sInfo": "Mostrando de _START_ até _END_ de _TOTAL_ registros",
+                    "sInfoEmpty": "Mostrando 0 até 0 de 0 registros",
+                    "sInfoFiltered": "(Filtrados de _MAX_ registros)",
+                    "sInfoPostFix": "",
+                    "sInfoThousands": ".",
+                    "sLengthMenu": "_MENU_ registros por página",
+                    "sLoadingRecords": "Carregando...",
+                    "sProcessing": "Processando...",
+                    "sZeroRecords": "Nenhum registro encontrado",
+                    "sSearch": "Pesquisar",
+                    "oPaginate": {
+                        "sNext": "Próximo",
+                        "sPrevious": "Anterior",
+                        "sFirst": "Primeiro",
+                        "sLast": "Último"
+                    },
+                    "oAria": {
+                        "sSortAscending": ": Ordenar colunas de forma ascendente",
+                        "sSortDescending": ": Ordenar colunas de forma descendente"
+                    },
+                    dom: 'Bfrtip',
+                    buttons: [
+                        'print'
+                    ]
+                }        
+            })
+        })
+    
+    
+        //
+        //  FUNCAO DE VALIDACAO DE CAMPOS ANTES DE GRAVAR
+        //
+        function Gravar(){
+            debugger;
+            var str = document.getElementById('NOMEFUNCIONARIO').value;
+            var n = str.length;
+            if (n < 5){
+                swal('Atenção!!!', 'Nome do Funcionário não possui tamanho mínimo de 5 caracteres !', 'warning');
+                document.getElementById('NOMEFUNCIONARIO').focus();
+            }
+            else BTNGRAVAR.click();
+        }
+
+        
+        //
+        // FUNCAO DE BUSCA DE CEP
+        //
+        function limpa_formulário_cep() {
+                //Limpa valores do formulário de cep.
+                document.getElementById('ENDERECO').value=("");
+                document.getElementById('BAIRRO').value=("");
+                document.getElementById('CIDADE').value=("");
+                document.getElementById('ESTADO').value=("");
+                //document.getElementById('IBGE').value=("");
+        }
+
+        function meu_callback(conteudo) {
+            if (!("erro" in conteudo)) {
+                //Atualiza os campos com os valores.
+                document.getElementById('ENDERECO').value=(conteudo.logradouro);
+                document.getElementById('BAIRRO').value=(conteudo.bairro);
+                document.getElementById('CIDADE').value=(conteudo.localidade);
+                document.getElementById('ESTADO').value=(conteudo.uf);
+                //document.getElementById('IBGE').value=(conteudo.ibge);
+                
+                // colocar essas linhas sempre que usar o onAsyncClick para colocar o campo como alterado
+                AddChangedControl('ENDERECO');
+                AddChangedControl('BAIRRO');
+                AddChangedControl('CIDADE');
+                AddChangedControl('ESTADO');
+                //AddChangedControl('IBGE');
+                
+                NUMERO.focus();
+            } //end if.
+            else {
+                //CEP não Encontrado.
+                limpa_formulário_cep();
+                alert("CEP não encontrado.");
+            }
+        }
+
+        function pesquisacep(valor) {
+            debugger;
+            //Nova variável "cep" somente com dígitos.
+            var cep = valor.replace(/\D/g, '');
+
+            //Verifica se campo cep possui valor informado.
+            if (cep != "") {
+
+                //Expressão regular para validar o CEP.
+                var validacep = /^[0-9]{8}$/;
+
+                //Valida o formato do CEP.
+                if(validacep.test(cep)) {
+
+                    //Preenche os campos com "..." enquanto consulta webservice.
+                    document.getElementById('ENDERECO').value="...";
+                    document.getElementById('BAIRRO').value="...";
+                    document.getElementById('CIDADE').value="...";
+                    document.getElementById('ESTADO').value="...";
+                    //document.getElementById('IBGE').value="...";
+
+                    //Cria um elemento javascript.
+                    var script = document.createElement('script');
+
+                    //Sincroniza com o callback.
+                    script.src = '//viacep.com.br/ws/'+ cep + '/json/?callback=meu_callback';
+
+                    //Insere script no documento e carrega o conteúdo.
+                    document.body.appendChild(script);
+
+                } //end if.
+                else {
+                    //cep é inválido.
+                    limpa_formulário_cep();
+                    alert("Formato de CEP inválido.");
+                }
+            } //end if.
+            else {
+                //cep sem valor, limpa formulário.
+                limpa_formulário_cep();
+            }
+        };
+</script>
+
+</body>
+</html>
+

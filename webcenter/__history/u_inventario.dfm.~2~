@@ -1,0 +1,20 @@
+inherited form_inventario: Tform_inventario
+  OnCreate = IWAppFormCreate
+  DesignLeft = 2
+  DesignTop = 2
+  object q_datatable: TFDQuery
+    Connection = DM.banco
+    Left = 56
+    Top = 144
+  end
+  object q_geral: TFDQuery
+    Connection = DM.banco
+    Left = 120
+    Top = 144
+  end
+  object q_aux: TFDQuery
+    Connection = DM.banco
+    Left = 128
+    Top = 200
+  end
+end

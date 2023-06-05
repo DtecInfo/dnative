@@ -1,0 +1,36 @@
+inherited Databases: TDatabases
+  OnCreate = IWAppFormCreate
+  DesignLeft = 2
+  DesignTop = 2
+  object q_datatable: TFDQuery
+    Connection = DM.ConexaoBD
+    SQL.Strings = (
+      'select user,pass,database,descricao from users_db')
+    Left = 512
+    Top = 88
+    object q_datatableUSER: TWideStringField
+      AutoGenerateValue = arDefault
+      FieldName = 'USER'
+      Origin = '"USER"'
+      ProviderFlags = []
+      ReadOnly = True
+      Size = 31
+    end
+    object q_datatablePASS: TWideStringField
+      FieldName = 'PASS'
+      Origin = 'PASS'
+      Required = True
+      Size = 15
+    end
+    object q_datatableDATABASE: TWideStringField
+      FieldName = 'DATABASE'
+      Origin = '"DATABASE"'
+      Required = True
+    end
+    object q_datatableDESCRICAO: TWideStringField
+      FieldName = 'DESCRICAO'
+      Origin = 'DESCRICAO'
+      Size = 14
+    end
+  end
+end

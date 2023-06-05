@@ -1,0 +1,29 @@
+unit u_inventario;
+
+interface
+
+uses
+  Winapi.Windows, Winapi.Messages, System.SysUtils, System.Variants, System.Classes, Vcl.Graphics,
+  Vcl.Controls, Vcl.Forms, Vcl.Dialogs, U_FrmPadrao, IWVCLComponent,
+  IWBaseLayoutComponent, IWBaseContainerLayout, IWContainerLayout,
+  IWTemplateProcessorHTML, IWCompButton, IWVCLBaseControl, IWBaseControl,
+  IWBaseHTMLControl, IWControl, IWCompEdit;
+
+type
+  Tform_inventario = class(TFrmPadrao)
+  private
+    { Private declarations }
+  public
+    { Public declarations }
+  end;
+
+var
+  form_inventario: Tform_inventario;
+
+implementation
+
+{$R *.dfm}
+
+uses ServerController, SweetAlerts, UserSessionUnit;
+
+end.
