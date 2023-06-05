@@ -1,0 +1,268 @@
+unit U_Databases;
+
+interface
+
+uses
+  Winapi.Windows, Winapi.Messages, System.SysUtils, System.Variants, System.Classes, Vcl.Graphics,
+  Vcl.Controls, Vcl.Forms, Vcl.Dialogs, U_FrmPadrao, IWVCLComponent,
+  IWBaseLayoutComponent, IWBaseContainerLayout, IWContainerLayout,
+  IWTemplateProcessorHTML, IWCompButton, IWVCLBaseControl, IWBaseControl,
+  IWBaseHTMLControl, IWControl, IWCompEdit, FireDAC.Stan.Intf,
+  FireDAC.Stan.Option, FireDAC.Stan.Param, FireDAC.Stan.Error, FireDAC.DatS,
+  FireDAC.Phys.Intf, FireDAC.DApt.Intf, FireDAC.Stan.Async, FireDAC.DApt,
+  Data.DB, FireDAC.Comp.DataSet, FireDAC.Comp.Client;
+
+type
+  TDatabases = class(TFrmPadrao)
+    q_datatable: TFDQuery;
+    edit_usuario: TIWEdit;
+    edit_senha: TIWEdit;
+    edit_servidor: TIWEdit;
+    edit_descricao: TIWEdit;
+    btn_salvar_db: TIWButton;
+    procedure IWAppFormCreate(Sender: TObject);
+    procedure IWBTNACAOAsyncClick(Sender: TObject; EventParams: TStringList);
+    procedure btn_salvar_dbAsyncClick(Sender: TObject;
+      EventParams: TStringList);
+  private
+    { Private declarations }
+    procedure TBDatabases(aParams: TStrings; out aResult: string);
+  public
+    { Public declarations }
+  end;
+
+var
+  Databases: TDatabases;
+
+implementation
+
+{$R *.dfm}
+
+uses  System.AnsiStrings, U_DM, SweetAlerts, UserSessionUnit, ServerController;
+
+procedure TDatabases.btn_salvar_dbAsyncClick(Sender: TObject;
+  EventParams: TStringList);
+  var id:integer;
+begin
+  inherited;
+  //pega maior ID
+
+  q_datatable.close;
+  q_datatable.SQL.Clear;
+  q_datatable.SQL.Add(' select max(id)+1 as id from users_db ');
+   q_datatable.Open();
+
+   id:= q_datatable.FieldByName('id').AsInteger;
+
+
+
+  q_datatable.close;
+  q_datatable.SQL.Clear;
+  q_datatable.SQL.Add(' insert into users_db(id,usuario,senha,database,descricao) values(:id , :usuario , :senha , :database , :descricao ) ');
+   q_datatable.ParamByName('id').AsInteger:=id;
+  q_datatable.ParamByName('usuario').AsString:= edit_usuario.Text;
+  q_datatable.ParamByName('senha').AsString:= edit_senha.Text;
+  q_datatable.ParamByName('database').AsString:=edit_servidor.Text;
+  q_datatable.ParamByName('descricao').AsString:=edit_descricao.Text;
+  q_datatable.ExecSQL;
+
+ AddToInitProc(swalSuccess('Confirmação',
+      ' Inserido com sucesso!'));
+    WebApplication.CallBackResponse.AddJavaScriptToExecute
+      ('$("#Databases").DataTable().ajax.reload();');
+
+end;
+
+procedure TDatabases.IWAppFormCreate(Sender: TObject);
+begin
+  inherited;
+
+RegisterCallBack('Databases', TBDatabases);
+
+end;
+
+procedure TDatabases.IWBTNACAOAsyncClick(Sender: TObject;
+  EventParams: TStringList);
+  var id:string;
+begin
+  inherited;
+if copy(iwacao.Text, 1, 5) = 'Inclu' then
+  begin
+
+    WebApplication.CallBackResponse.AddJavaScriptToExecute
+      ('$(''#Acesso'').modal(''show'');');
+
+
+  end;
+
+
+  if copy(iwacao.Text, 1, 5) = 'ExcAc' then
+  begin
+    id := copy(iwacao.Text, 6, Length(iwacao.Text));
+
+    q_datatable.Close;
+    q_datatable.SQL.Clear;
+    q_datatable.SQL.Add(' delete from users_db where id=' + id);
+    q_datatable.ExecSQL;
+     WebApplication.CallBackResponse.AddJavaScriptToExecute
+      ('$("#Databases").DataTable().ajax.reload();');
+    AddToInitProc(swalSuccess('Confirmação', ' Database ' + id +
+      ', excluído com sucesso !!!'));
+
+  end;
+end;
+
+procedure TDatabases.TBDatabases(aParams: TStrings; out aResult: string);
+var
+  wresult: string;
+  wtotal: integer;
+  btn1: string;
+  btn2: string;
+  btn3: string;
+  btn4: string;
+  id: string;
+begin
+
+  //
+  // Pegar o total de registros da tabela para montagem da paginação e o info no rodapé do datatable
+  //
+  q_datatable.Close;
+  q_datatable.SQL.Clear;
+
+  q_datatable.SQL.Add(' select count(*) as total  ');
+  q_datatable.SQL.Add(' from users_db   ');
+  q_datatable.SQL.Add(' where  1=1   ');
+
+  q_datatable.SQL.Add('and ( id like ''%' +
+    stringreplace(UpperCase(aParams.Values['search[value]']), ' ', '%',
+    [rfReplaceAll]) + '%'' ');
+  q_datatable.SQL.Add('      OR  descricao like ''%' +
+    stringreplace(UpperCase(aParams.Values['search[value]']), ' ', '%',
+    [rfReplaceAll]) + '%''  ');
+
+  q_datatable.SQL.Add('      OR  database like ''%' +
+    stringreplace(UpperCase(aParams.Values['search[value]']), ' ', '%',
+    [rfReplaceAll]) + '%''  ');
+
+  q_datatable.SQL.Add('      OR  USUARIO like ''%' +
+    stringreplace(UpperCase(aParams.Values['search[value]']), ' ', '%',
+    [rfReplaceAll]) + '%'' ) ');
+
+  q_datatable.FetchOptions.RecsMax := -1;
+  q_datatable.FetchOptions.RecsSkip := -1;
+
+  q_datatable.Open;
+
+  wtotal := q_datatable.FieldByName('total').AsInteger;
+
+  //
+  // Select para montar o resultado do ajax na solicitacao do DATATABLE
+  //
+  q_datatable.Close;
+
+  q_datatable.SQL.Clear;
+  q_datatable.SQL.Add
+    ('select id, USUARIO, descricao, database from users_db');
+
+  q_datatable.SQL.Add(' where   1=1   ');
+
+  q_datatable.SQL.Add('and ( id like ''%' +
+    stringreplace(UpperCase(aParams.Values['search[value]']), ' ', '%',
+    [rfReplaceAll]) + '%'' ');
+
+  q_datatable.SQL.Add('      OR  descricao like ''%' +
+    stringreplace(UpperCase(aParams.Values['search[value]']), ' ', '%',
+    [rfReplaceAll]) + '%''  ');
+
+  q_datatable.SQL.Add('      OR  database like ''%' +
+    stringreplace(UpperCase(aParams.Values['search[value]']), ' ', '%',
+    [rfReplaceAll]) + '%''  ');
+
+  q_datatable.SQL.Add('      OR  USUARIO like ''%' +
+    stringreplace(UpperCase(aParams.Values['search[value]']), ' ', '%',
+    [rfReplaceAll]) + '%'' ) ');
+
+  // definindo a ordenação
+  case aParams.Values['order[0][column]'].ToInteger of
+    0:
+      q_datatable.SQL.Add('Order by id ' + aParams.Values
+        ['order[0][dir]'] + ' ');
+    1:
+      q_datatable.SQL.Add('Order by  descricao ' + aParams.Values
+        ['order[0][dir]'] + ' ');
+
+  end;
+
+  q_datatable.FetchOptions.RecsMax := strtoint(aParams.Values['length']);
+  q_datatable.FetchOptions.RecsSkip := strtoint(aParams.Values['start']);
+
+  q_datatable.Open;
+
+  //
+  // Montagem da variavel com o JASON de resultado da consulta
+  //
+  wresult := '{' + '"draw": ' + StrToIntDef(aParams.Values['draw'], 0).ToString
+    + ', ' + '"recordsTotal": ' + wtotal.ToString + ', ' + '"recordsFiltered": '
+    + wtotal.ToString + ', ' + '"data": [';
+  q_datatable.First;
+  btn2 := '';
+  btn3 := '';
+  id := '';
+  while not q_datatable.Eof do
+  begin
+
+    id := q_datatable.FieldByName('id').AsString;
+    btn1 := '"<button type=\"buttom\" class=\"btn btn-xs btn-danger\" data-toggle=\"tooltip\" data-placement=\"top\" title=\"Excluir\" onclick=\"SetaAcao(''ExcAc'''
+      + ',' + id + ')\" > <i class=\"fa fa-trash\"> </i> </button>" ';
+
+    btn2 := '"<button type=\"buttom\" class=\"btn btn-xs btn-warning\" data-toggle=\"tooltip\" data-placement=\"top\" title=\"Editar\" onclick=\"SetaAcao(''aprGe'''
+      + ',' + id + ')\" > <i class=\"fa fa-pencil\"> </i> </button> ';
+    btn3 := '<button type=\"buttom\" class=\"btn btn-xs btn-info\"  data-toggle=\"tooltip\" data-placement=\"top\" title=\"Aprovar Operador\" onclick=\"SetaAcao(''aprOp'''
+      + ',' + id + ')\"> <i class=\"fa fa-thumbs-o-up\"> </i> </button> ';
+
+    btn4 := '<button type=\"buttom\" class=\"btn btn-xs btn-default\"  data-toggle=\"tooltip\" data-placement=\"top\" title=\"Gerar proposta no NBS\" onclick=\"SetaAcao(''ExcDo'''
+      + ',' + id + ')\"> <i class=\"fa fa-database\"> </i> </button> "';
+
+    //
+    wresult := wresult + '[' + '"' +
+      stringreplace(Trim(q_datatable.FieldByName('id').AsString), '"', '\"',
+      [rfReplaceAll]) + '", ' +
+    // Separador de colunas ------------------------------
+
+      '"' + stringreplace(Trim(q_datatable.FieldByName('usuario').AsString),
+      '"', '\"', [rfReplaceAll]) + '", ' +
+    // Separador de colunas ------------------------------
+
+      '"' + stringreplace(Trim(q_datatable.FieldByName('descricao').AsString),
+      '"', '\"', [rfReplaceAll]) + '", ' +
+    // Separador de colunas ------------------------------
+
+      '"' + stringreplace(Trim(q_datatable.FieldByName('database').AsString), '"',
+      '\"', [rfReplaceAll]) + '", ' +
+    // Separador de colunas ------------------------------
+
+      btn1 + '],';
+
+    q_datatable.Next;
+
+  end;
+  q_datatable.Close;
+
+  if wtotal <= 0 then
+    wresult := wresult + ']}'
+  else
+    wresult := LeftStr(Trim(wresult), Length(Trim(wresult)) - 1) + ']}';
+
+  //
+  // Envia o resultado para o ajax do DataTable
+  aResult := wresult;
+
+  // abco
+
+end;
+
+
+
+
+
+end.

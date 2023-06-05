@@ -1,0 +1,573 @@
+unit UserSessionUnit;
+
+{
+  This is a DataModule where you can add components or declare fields that are specific to
+  ONE user. Instead of creating global variables, it is better to use this datamodule. You can then
+  access the it using UserSession.
+}
+interface
+
+uses
+  IWUserSessionBase, SysUtils, Classes, IdHashMessageDigest,
+  System.Generics.Collections, IWAppForm, IWInit, IniFiles, U_DM,
+  System.Math, Vcl.Graphics, EncdDecd,   IWCompText,
+  FireDAC.Stan.Intf, FireDAC.Stan.Option, FireDAC.Stan.Error, FireDAC.UI.Intf,
+  FireDAC.Phys.Intf, FireDAC.Stan.Def, FireDAC.Stan.Pool, FireDAC.Stan.Async,
+  FireDAC.Phys, FireDAC.Phys.ODBC, FireDAC.Phys.ODBCDef, FireDAC.Phys.MSAccDef,
+  FireDAC.Stan.Param, FireDAC.DatS, FireDAC.DApt.Intf, FireDAC.DApt,
+  FireDAC.VCLUI.Wait, FireDAC.Comp.UI, Data.DB, FireDAC.Comp.DataSet,
+  FireDAC.Comp.Client, FireDAC.Phys.ODBCBase, FireDAC.Phys.MSAcc,System.DateUtils;
+
+type
+  TIWUserSession = class(TIWUserSessionBase)
+    dbfacts: TFDConnection;
+    FDPhysMSAccessDriverLink1: TFDPhysMSAccessDriverLink;
+    q_facts: TFDQuery;
+    FDGUIxWaitCursor1: TFDGUIxWaitCursor;
+    q_acesso: TFDQuery;
+    q_geral: TFDQuery;
+    procedure IWUserSessionBaseCreate(Sender: TObject);
+ //   procedure EMAILMailException(const AMail: TACBrMail; const E: Exception;
+ //     var ThrowIt: Boolean);
+    procedure FindReplaceMemo(const Enc, subs: String; var Texto: TIWText);
+
+  private
+    { Private declarations }
+
+  public
+    { Public declarations }
+
+    DM: TDM;
+
+    // Variaveis para recuperar dados
+    s_cpf: string;
+    s_nome_cliente: string;
+    s_ano_modelo: string;
+    s_chassi: string;
+    //
+
+    IDModulo: Integer;
+    GLBPK: Integer;
+    GLBPK2: Integer;
+    GLBPK3: string;
+    GLBCrud: string;
+    GLBNomeTela: String;
+    GLBNomeRelatorio: string;
+
+    MenuPrincipal: string;
+    acao_form: string;
+
+     xcod_cliente_alt : string;
+
+
+
+    //
+    // Variaveis Globais da Empresa em Uso
+    //
+
+
+    xUsuario: String;
+    xSenha : string;
+    xDatabase : string;
+    XidForm: String;
+    xDataUltimoAcesso: String;
+    xErro: String;
+    xTipoAcesso: String;
+    xCliente: String;
+    xCodCliente: Integer;
+    xcod_empresa: Integer;
+    xcod_controle: Integer;
+    xdelcod_cliente : string;
+    xUF: string;
+    caminho: string;
+    xerror : string;
+
+    function MontaPaginacao(PagAtual, ItensPag, TotalPag, TotalRegistros
+      : Integer): String;
+    function MD5(const Texto: string): string;
+    function AcaoMenu(Acao: String): String;
+    function IIf(Expressao: Variant; ParteTRUE, ParteFALSE: Variant): Variant;
+    function get_acesso(pacesso: string): Integer;
+
+    function get_aprovacao(id: string; tipo: string): Boolean;
+
+    procedure INICONF;
+  end;
+
+implementation
+
+{$R *.dfm}
+
+uses funcoes, ServerController, U_FrmLogin, U_FrmIndex, U_FrmConfiguracoes,
+  U_FrmClientes, U_FrmFuncionarios, U_FrmProdutos, U_FrmSolicitacoes,
+  U_FrmAcompChamados, U_FrmPesquisar, U_FrmIndexCliente, U_FrmClientesDBGrid,
+  U_FrmSimulacaoVenda, U_UsersEmp, U_motivos_recusa, U_ControleFichas,
+  U_Seguranca, SweetAlerts, U_UsuariosOrigem, U_Mesa, U_Databases,
+  U_Frm_Clientes, U_CliCad, U_Compras, U_Entrada_NF, U_Tabelas, U_Frm_Gerencia,
+  U_Saidas, U_usuarios, u_inventario;
+
+function TIWUserSession.MontaPaginacao(PagAtual, ItensPag, TotalPag,
+  TotalRegistros: Integer): String;
+var
+  html: String;
+  Pos1, Pos2: Integer;
+begin
+  Pos1 := ((ItensPag * (PagAtual - 1)) + 1);
+  Pos2 := Pos1 + (ItensPag - 1);
+  if Pos2 > TotalRegistros then
+    Pos2 := TotalRegistros;
+
+  html := '';
+  html := html + '<div class="row"> ' + SLineBreak;
+  html := html + '    <div class="col-xs-12 col-sm-5 text-left"> ' + SLineBreak;
+  html := html + '        <br /> ' + SLineBreak;
+  html := html + '        Mostrando de ' + Pos1.ToString + ' até ' +
+    Pos2.ToString + ' de ' + TotalRegistros.ToString + ' registros' +
+    SLineBreak;
+  html := html + '    </div> ' + SLineBreak;
+  html := html + '    <div class="col-xs-12 col-sm-7 text-right"> ' +
+    SLineBreak;
+  html := html + '        <ul class="sync-pagination pagination-sm"></ul> ' +
+    SLineBreak;
+  html := html + '    </div> ' + SLineBreak;
+  html := html + '</div> ' + SLineBreak;
+  html := html + '<script> ' + SLineBreak;
+  html := html + '    $(''.sync-pagination'').twbsPagination({ ' + SLineBreak;
+  html := html +
+    '        first: ''<i class="glyphicon glyphicon-fast-backward text-primary"></i>'', '
+    + SLineBreak;
+  html := html +
+    '        last: ''<i class="glyphicon glyphicon-fast-forward text-primary"></i>'', '
+    + SLineBreak;
+  html := html +
+    '        prev: ''<i class="glyphicon glyphicon-backward text-primary"></i>'', '
+    + SLineBreak;
+  html := html +
+    '        next: ''<i class="glyphicon glyphicon-forward text-primary"></i>'', '
+    + SLineBreak;
+  html := html + '        startPage: ' + PagAtual.ToString + ', ' + SLineBreak;
+  html := html + '        totalPages: ' + TotalPag.ToString + ', ' + SLineBreak;
+  html := html + '        visiblePages: 5, ' + SLineBreak;
+  html := html + '        onPageClick: function (event, page) { ' + SLineBreak;
+  html := html + '            SetaAcao(''TWBS '', page); ' + SLineBreak;
+  html := html + '        } ' + SLineBreak;
+  html := html + '    }); ' + SLineBreak;
+  html := html + ' ' + SLineBreak;
+  html := html + '</script> ' + SLineBreak;
+
+  Result := html;
+end;
+
+procedure TIWUserSession.FindReplaceMemo(const Enc, subs: String;
+  var Texto: TIWText);
+Var
+  i, Posicao: Integer;
+  Linha: string;
+Begin
+  For i := 0 to Texto.Lines.count - 1 do
+  begin
+    Linha := Texto.Lines[i];
+    Repeat
+      Posicao := Pos(Enc, Linha);
+      If Posicao > 0 then
+      Begin
+        Delete(Linha, Posicao, Length(Enc));
+        Insert(subs, Linha, Posicao);
+        Texto.Lines[i] := Linha;
+      end;
+    until Posicao = 0;
+  end;
+
+end;
+
+function TIWUserSession.get_acesso(pacesso: string): integer;
+begin
+
+  q_acesso.Close;
+  q_acesso.ParamByName('usuario').AsString := xUsuario;
+  q_acesso.ParamByName('acesso').AsString := pacesso;
+  q_acesso.Open();
+
+  Result := q_acesso.FieldByName('acesso').AsInteger;
+
+end;
+
+function TIWUserSession.get_aprovacao(id, tipo: string): Boolean;
+begin
+
+  q_geral.Close;
+  q_geral.SQL.Clear;
+  q_geral.SQL.Add
+    (' select nvl(a.gerente,0) gerente,nvl(a.acessorios,0) acessorios,nvl(a.operador,0) operador from wc_simulacao_venda a ');
+  q_geral.SQL.Add(' where id=' + id);
+
+  q_geral.Open();
+
+  if tipo = 'G' then
+  begin
+
+    if q_geral.FieldByName('gerente').AsString = '0' then
+    BEGIN
+      Result := FALSE;
+    END
+    ELSE
+      Result := TRUE;
+  end;
+  if tipo = 'A' then
+  begin
+
+    if q_geral.FieldByName('acessorios').AsString = '0' then
+    BEGIN
+      Result := FALSE;
+    END
+    ELSE
+      Result := TRUE;
+  end;
+
+  if tipo = 'O' then
+  begin
+
+    if q_geral.FieldByName('operador').AsString = '0' then
+    BEGIN
+      Result := FALSE;
+    END
+    ELSE
+      Result := TRUE;
+  end;
+
+end;
+
+//procedure TIWUserSession.EMAILMailException(const AMail: TACBrMail;
+//  const E: Exception; var ThrowIt: Boolean);
+//begin
+//  WebApplication.ShowMessage(E.Message);
+//  ThrowIt := FALSE;
+//end;
+
+function TIWUserSession.AcaoMenu(Acao: String): String;
+
+
+begin
+  acao_form := '';
+
+   if Acao = 'form_inventario' then
+  begin
+
+    if get_acesso('WC0013') = 0 then
+      begin
+        WebApplication.ShowMessage('Acesso não Permitido:WC0013');
+
+      end
+      else
+      begin
+
+         TIWAppForm(WebApplication.ActiveForm).Release;
+         Tform_inventario.Create(WebApplication).Show;
+      end;
+
+
+
+  end;
+
+
+
+  if Acao = 'form_usuarios' then
+  begin
+
+    if get_acesso('WC0012') = 0 then
+      begin
+        WebApplication.ShowMessage('Acesso não Permitido:WC0012');
+
+      end
+      else
+      begin
+
+         TIWAppForm(WebApplication.ActiveForm).Release;
+         Tform_usuarios.Create(WebApplication).Show;
+      end;
+
+
+
+  end;
+
+  if Acao = 'form_saidas' then
+  begin
+
+    if get_acesso('WC0007') = 0 then
+      begin
+        WebApplication.ShowMessage('Acesso não Permitido:WC0007');
+
+      end
+      else
+      begin
+
+         TIWAppForm(WebApplication.ActiveForm).Release;
+         Tform_saidas.Create(WebApplication).Show;
+      end;
+
+
+
+
+  end;
+
+   if Acao = 'Form_gerencia' then
+  begin
+    if get_acesso('WC0005') = 0 then
+      begin
+        WebApplication.ShowMessage('Acesso não Permitido:WC0005');
+
+      end
+      else
+      begin
+
+         TIWAppForm(WebApplication.ActiveForm).Release;
+         TForm_gerencia.Create(WebApplication).Show;
+      end;
+
+
+
+  end;
+
+   if Acao = 'FormTabelas' then
+  begin
+     if get_acesso('WC0004') = 0 then
+      begin
+        WebApplication.ShowMessage('Acesso não Permitido:WC0004');
+
+      end
+      else
+      begin
+
+         TIWAppForm(WebApplication.ActiveForm).Release;
+         TFormTabelas.Create(WebApplication).Show;
+      end;
+
+
+
+  end;
+
+  if Acao = 'FormEntrada_Nf' then
+  begin
+    if get_acesso('WC0013') = 0 then
+      begin
+        WebApplication.ShowMessage('Acesso não Permitido:WC0013');
+
+      end
+      else
+      begin
+
+         TIWAppForm(WebApplication.ActiveForm).Release;
+         TFormEntrada_Nf.Create(WebApplication).Show;
+      end;
+
+
+
+  end;
+
+
+  if Acao = 'FormCompras' then
+  begin
+
+    if get_acesso('WC0002') = 0 then
+      begin
+        WebApplication.ShowMessage('Acesso não Permitido:WC0002');
+
+      end
+      else
+      begin
+
+        TIWAppForm(WebApplication.ActiveForm).Release;
+        TFormCompras.Create(WebApplication).Show;
+      end;
+
+
+
+  end;
+
+
+
+
+
+
+
+  if Acao = 'Seguranca' then
+  begin
+    if xUsuario = 'DTEC' then
+    begin
+      TIWAppForm(WebApplication.ActiveForm).Release;
+      TSeguranca.Create(WebApplication).Show;
+    end
+    else
+    begin
+
+      if get_acesso('WC0003') = 0 then
+      begin
+        WebApplication.ShowMessage('Acesso não Permitido:WC0003');
+
+      end
+      else
+      begin
+
+        TIWAppForm(WebApplication.ActiveForm).Release;
+        TSeguranca.Create(WebApplication).Show;
+      end;
+    end;
+
+  end;
+
+  if Acao = 'Encerrar' then
+  begin
+    TIWAppForm(WebApplication.ActiveForm).Release;
+    TFrmLogin.Create(WebApplication).Show;
+  end;
+
+  if Acao = 'Iniciar' then
+  begin
+    TIWAppForm(WebApplication.ActiveForm).Release;
+    TFrmIndex.Create(WebApplication).Show;
+  end;
+  if Acao = 'ControleF' then
+  begin
+
+    TIWAppForm(WebApplication.ActiveForm).Release;
+    TControleFichas.Create(WebApplication).Show;
+
+  end;
+
+  if Acao = 'IniciarCliente' then
+  begin
+    TIWAppForm(WebApplication.ActiveForm).Release;
+    TFrmIndexCliente.Create(WebApplication).Show;
+  end;
+
+  if Acao = 'Funcionarios' then
+  begin
+    TIWAppForm(WebApplication.ActiveForm).Release;
+    TFrmFuncionarios.Create(WebApplication).Show;
+  end;
+  if Acao = 'EmpresasU' then
+  begin
+    if get_acesso('WC0002') = 0 then
+    begin
+      WebApplication.ShowMessage('Acesso não Permitido:WC0002');
+    end
+    else
+    begin
+
+      TIWAppForm(WebApplication.ActiveForm).Release;
+      TFormUsersEmp.Create(WebApplication).Show;
+    end;
+
+  end;
+  if Acao = 'UsuariosO' then
+  begin
+    if get_acesso('WC0030') = 0 then
+    begin
+      WebApplication.ShowMessage('Acesso não Permitido:WC0030');
+    end
+    else
+    begin
+
+      TIWAppForm(WebApplication.ActiveForm).Release;
+      TUsuariosOrigem.Create(WebApplication).Show;
+    end;
+
+  end;
+
+  if Acao = 'MotivosRecusa' then
+  begin
+    TIWAppForm(WebApplication.ActiveForm).Release;
+    TMotivosRecusa.Create(WebApplication).Show;
+  end;
+
+  if Acao = 'Clientes' then
+  begin
+    TIWAppForm(WebApplication.ActiveForm).Release;
+    TFrmClientes.Create(WebApplication).Show;
+  end;
+
+   if Acao = 'FormClientes' then
+  begin
+    TIWAppForm(WebApplication.ActiveForm).Release;
+    TFormClientes.Create(WebApplication).Show;
+  end;
+   if Acao = 'FormCliCad' then
+  begin
+    TIWAppForm(WebApplication.ActiveForm).Release;
+    TFormCliCad.Create(WebApplication).Show;
+  end;
+
+  if Acao = 'ClientesDBGrid' then
+  begin
+    TIWAppForm(WebApplication.ActiveForm).Release;
+    TFrmClientesDBGrid.Create(WebApplication).Show;
+  end;
+
+  if Acao = 'Produtos' then
+  begin
+    TIWAppForm(WebApplication.ActiveForm).Release;
+    TFrmProdutos.Create(WebApplication).Show;
+  end;
+
+  if Acao = 'Solicitacoes' then
+  begin
+    TIWAppForm(WebApplication.ActiveForm).Release;
+    TFrmSolicitacoes.Create(WebApplication).Show;
+  end;
+
+  if Acao = 'Acompanhamento' then
+  begin
+    TIWAppForm(WebApplication.ActiveForm).Release;
+    TFrmAcompChamados.Create(WebApplication).Show;
+  end;
+
+  if Acao = 'Configuracoes' then
+  begin
+    TIWAppForm(WebApplication.ActiveForm).Release;
+    TFrmConfiguracoes.Create(WebApplication).Show;
+  end;
+
+  if Acao = 'Pesquisa' then
+  begin
+    TIWAppForm(WebApplication.ActiveForm).Release;
+    TFrmPesquisar.Create(WebApplication).Show;
+  end;
+end;
+
+function TIWUserSession.MD5(const Texto: string): string;
+var
+  idmd5: TIdHashMessageDigest5;
+begin
+  idmd5 := TIdHashMessageDigest5.Create;
+  try
+    Result := idmd5.HashStringAsHex(Texto);
+  finally
+    idmd5.Free;
+  end;
+end;
+
+procedure TIWUserSession.IWUserSessionBaseCreate(Sender: TObject);
+begin
+  DM := TDM.Create(Self);
+end;
+
+function TIWUserSession.IIf(Expressao: Variant;
+  ParteTRUE, ParteFALSE: Variant): Variant;
+begin
+  if Expressao then
+    Result := ParteTRUE
+  else
+    Result := ParteFALSE;
+end;
+
+procedure TIWUserSession.INICONF;
+var
+  ArquivoINI: TIniFile;
+begin
+  ArquivoINI := TIniFile.Create('C:\webcenter\webcenterconf.ini');
+  caminho := ArquivoINI.ReadString('Configuracoes', 'Database', caminho);
+  ArquivoINI.Free;
+
+end;
+
+end.

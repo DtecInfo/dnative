@@ -1,0 +1,115 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<Table class="oracle.dbtools.crest.model.design.relational.Table" directorySegmentName="seg_0" id="C28B1D20-13DD-223E-4B1E-B0C5F2C1C8B1" name="wc_fin_documentos">
+<createdBy>eduardo</createdBy>
+<createdTime>2020-05-08 19:57:32 UTC</createdTime>
+<ownerDesignName>Autonunes</ownerDesignName>
+<ordsAlias>table_3</ordsAlias>
+<allowColumnReorder>false</allowColumnReorder>
+<existDependencyGenerateInDDl>true</existDependencyGenerateInDDl>
+<parsed>true</parsed>
+<columns itemClass="oracle.dbtools.crest.model.design.relational.Column">
+<Column name="id" id="2FBE9301-C798-E3E5-B2B9-3F88A627D2C5">
+<createdBy>eduardo</createdBy>
+<createdTime>2020-05-08 19:59:29 UTC</createdTime>
+<ownerDesignName>Autonunes</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT011</logicalDatatype>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="id_finan" id="067996C2-9873-8C67-903F-56A70F1CB5D5">
+<createdBy>eduardo</createdBy>
+<createdTime>2020-05-08 19:59:29 UTC</createdTime>
+<ownerDesignName>Autonunes</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT011</logicalDatatype>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+<associations>
+<colAssociation fkAssociation="F47A8C06-EAE9-FCA8-0694-D1DE60427ABF" referredColumn="60A0B932-38CA-B131-687F-7945D80CDAF3"/>
+</associations>
+</Column>
+<Column name="id_documento" id="8CEC9615-6CDC-EF3B-A911-33FA98A74DB8">
+<createdBy>eduardo</createdBy>
+<createdTime>2020-05-08 19:59:29 UTC</createdTime>
+<ownerDesignName>Autonunes</ownerDesignName>
+<nullsAllowed>true</nullsAllowed>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT011</logicalDatatype>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="descricao" id="19A9351C-AFFF-5B22-9173-09ED26220F40">
+<createdBy>eduardo</createdBy>
+<createdTime>2020-05-08 19:59:29 UTC</createdTime>
+<ownerDesignName>Autonunes</ownerDesignName>
+<nullsAllowed>true</nullsAllowed>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT024</logicalDatatype>
+<dataTypeSize>100</dataTypeSize>
+<ownDataTypeParameters>100,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="arq" id="AAE7DC53-E524-2708-AC7C-422AA7815E76">
+<createdBy>eduardo</createdBy>
+<createdTime>2020-05-08 19:59:29 UTC</createdTime>
+<ownerDesignName>Autonunes</ownerDesignName>
+<nullsAllowed>true</nullsAllowed>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT010</logicalDatatype>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="data" id="F996D7FF-7CA0-7AA9-7CAB-C4AF9AEEDFD7">
+<createdBy>eduardo</createdBy>
+<createdTime>2020-05-08 20:41:05 UTC</createdTime>
+<ownerDesignName>Autonunes</ownerDesignName>
+<nullsAllowed>true</nullsAllowed>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT007</logicalDatatype>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="nome_anexo" id="3EFA0791-0106-B6E5-E9F9-5922E2DFC15C">
+<createdBy>eduardo</createdBy>
+<createdTime>2020-05-16 06:38:24 UTC</createdTime>
+<ownerDesignName>Autonunes</ownerDesignName>
+<nullsAllowed>true</nullsAllowed>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT024</logicalDatatype>
+<dataTypeSize>100</dataTypeSize>
+<ownDataTypeParameters>100,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+</columns>
+<indexes itemClass="oracle.dbtools.crest.model.design.relational.Index">
+<ind_PK_UK id="193F2178-9FD3-CDB5-C6E5-FAFFE878ED87" name="pk_wc_doc_id">
+<createdBy>eduardo</createdBy>
+<createdTime>2020-05-08 20:00:03 UTC</createdTime>
+<ownerDesignName>Autonunes</ownerDesignName>
+<pk>true</pk>
+<indexState>Primary Constraint</indexState>
+<isSurrogateKey>false</isSurrogateKey>
+<indexColumnUsage>
+<colUsage columnID="2FBE9301-C798-E3E5-B2B9-3F88A627D2C5"/>
+</indexColumnUsage>
+</ind_PK_UK>
+<ind_PK_UK id="B5F4BE32-07AC-591F-1085-E04A3FA30008" name="FK_ID_FINAN_DOC">
+<createdBy>eduardo</createdBy>
+<createdTime>2020-05-08 20:00:03 UTC</createdTime>
+<ownerDesignName>Autonunes</ownerDesignName>
+<indexState>Foreign Key</indexState>
+<isSurrogateKey>false</isSurrogateKey>
+<indexColumnUsage>
+<colUsage columnID="067996C2-9873-8C67-903F-56A70F1CB5D5"/>
+</indexColumnUsage>
+</ind_PK_UK>
+</indexes>
+</Table>

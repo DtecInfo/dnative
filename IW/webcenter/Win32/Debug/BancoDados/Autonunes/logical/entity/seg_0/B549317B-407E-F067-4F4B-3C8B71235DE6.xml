@@ -1,0 +1,105 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<Entity class="oracle.dbtools.crest.model.design.logical.Entity" directorySegmentName="seg_0" id="B549317B-407E-F067-4F4B-3C8B71235DE6" name="wc fin documentos">
+<createdBy>eduardo</createdBy>
+<createdTime>2020-05-08 20:08:57 UTC</createdTime>
+<generatorID>C28B1D20-13DD-223E-4B1E-B0C5F2C1C8B1</generatorID>
+<ownerDesignName>Autonunes</ownerDesignName>
+<engineerTo>
+<item key="9904A792-F10E-D72F-A8ED-D0643674DC08" value="true"/>
+</engineerTo>
+<adequatelyNormalized>NO</adequatelyNormalized>
+<expectedVolumes>0</expectedVolumes>
+<fwdEngineeringStrategyName>Single Table</fwdEngineeringStrategyName>
+<growthPercent>0</growthPercent>
+<growthType>Year</growthType>
+<maxVolumes>9999999</maxVolumes>
+<minVolumes>0</minVolumes>
+<normalForm>Third</normalForm>
+<attributes itemClass="oracle.dbtools.crest.model.design.logical.Attribute">
+<Attribute name="id" id="44B293F4-3779-63AE-211D-F0554D749FA2">
+<createdBy>eduardo</createdBy>
+<createdTime>2020-05-08 20:08:57 UTC</createdTime>
+<generatorID>2FBE9301-C798-E3E5-B2B9-3F88A627D2C5</generatorID>
+<ownerDesignName>Autonunes</ownerDesignName>
+<engineerTo>
+<item key="9904A792-F10E-D72F-A8ED-D0643674DC08" value="true"/>
+</engineerTo>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT011</logicalDatatype>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+</Attribute>
+<Attribute name="id finan" id="19905CA7-F042-B8E5-FC8A-89083E327737">
+<createdBy>eduardo</createdBy>
+<createdTime>2020-05-08 20:08:57 UTC</createdTime>
+<generatorID>DAEC6332-F97E-C7AA-FE4D-4991B867FC5F</generatorID>
+<ownerDesignName>Autonunes</ownerDesignName>
+<engineerTo>
+<item key="9904A792-F10E-D72F-A8ED-D0643674DC08" value="true"/>
+</engineerTo>
+<referedAttribute>92B3B474-7CBD-4BEF-E4D1-4104201BC356</referedAttribute>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT011</logicalDatatype>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+</Attribute>
+<Attribute name="id documento" id="10D8764F-F052-CB7D-1CE3-A75BE1F23588">
+<createdBy>eduardo</createdBy>
+<createdTime>2020-05-08 20:08:57 UTC</createdTime>
+<generatorID>8CEC9615-6CDC-EF3B-A911-33FA98A74DB8</generatorID>
+<ownerDesignName>Autonunes</ownerDesignName>
+<engineerTo>
+<item key="9904A792-F10E-D72F-A8ED-D0643674DC08" value="true"/>
+</engineerTo>
+<nullsAllowed>true</nullsAllowed>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT011</logicalDatatype>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+</Attribute>
+<Attribute name="descricao" id="A4754831-5253-DCEA-E0C4-1FD6B321F47E">
+<createdBy>eduardo</createdBy>
+<createdTime>2020-05-08 20:08:57 UTC</createdTime>
+<generatorID>19A9351C-AFFF-5B22-9173-09ED26220F40</generatorID>
+<ownerDesignName>Autonunes</ownerDesignName>
+<engineerTo>
+<item key="9904A792-F10E-D72F-A8ED-D0643674DC08" value="true"/>
+</engineerTo>
+<nullsAllowed>true</nullsAllowed>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT024</logicalDatatype>
+<dataTypeSize>100</dataTypeSize>
+<ownDataTypeParameters>100,,</ownDataTypeParameters>
+</Attribute>
+<Attribute name="foto" id="029133D6-8AA7-DC6D-20F2-7901A6F8775C">
+<createdBy>eduardo</createdBy>
+<createdTime>2020-05-08 20:08:57 UTC</createdTime>
+<generatorID>AAE7DC53-E524-2708-AC7C-422AA7815E76</generatorID>
+<ownerDesignName>Autonunes</ownerDesignName>
+<engineerTo>
+<item key="9904A792-F10E-D72F-A8ED-D0643674DC08" value="true"/>
+</engineerTo>
+<nullsAllowed>true</nullsAllowed>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT010</logicalDatatype>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+</Attribute>
+</attributes>
+<identifiers itemClass="oracle.dbtools.crest.model.design.logical.CandidateKey">
+<identifier id="44AE2AA5-64B7-0ACD-FF9C-FBD926399CAA" name="pk wc doc id">
+<createdBy>eduardo</createdBy>
+<createdTime>2020-05-08 20:08:57 UTC</createdTime>
+<generatorID>193F2178-9FD3-CDB5-C6E5-FAFFE878ED87</generatorID>
+<ownerDesignName>Autonunes</ownerDesignName>
+<engineerTo>
+<item key="9904A792-F10E-D72F-A8ED-D0643674DC08" value="true"/>
+</engineerTo>
+<pk>true</pk>
+<usedAttributes>
+<attributeRef>44B293F4-3779-63AE-211D-F0554D749FA2</attributeRef>
+</usedAttributes>
+</identifier>
+</identifiers>
+</Entity>

@@ -1,0 +1,276 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<Entity class="oracle.dbtools.crest.model.design.logical.Entity" directorySegmentName="seg_0" id="BF4361DC-D16A-7E99-8193-22221378F13B" name="wc sim venda finan">
+<createdBy>eduardo</createdBy>
+<createdTime>2020-05-08 20:08:57 UTC</createdTime>
+<generatorID>80CFCE0F-053A-28FA-219E-2E7A30EE1D1F</generatorID>
+<ownerDesignName>Autonunes</ownerDesignName>
+<engineerTo>
+<item key="9904A792-F10E-D72F-A8ED-D0643674DC08" value="true"/>
+</engineerTo>
+<adequatelyNormalized>NO</adequatelyNormalized>
+<expectedVolumes>0</expectedVolumes>
+<fwdEngineeringStrategyName>Single Table</fwdEngineeringStrategyName>
+<growthPercent>0</growthPercent>
+<growthType>Year</growthType>
+<maxVolumes>9999999</maxVolumes>
+<minVolumes>0</minVolumes>
+<normalForm>Third</normalForm>
+<attributes itemClass="oracle.dbtools.crest.model.design.logical.Attribute">
+<Attribute name="id" id="13767C21-85EE-78E4-E17E-CC43021C6134">
+<createdBy>eduardo</createdBy>
+<createdTime>2020-05-08 20:08:57 UTC</createdTime>
+<generatorID>F4C7ECFE-A46D-4E7B-82EE-DDA15D57C1DE</generatorID>
+<ownerDesignName>Autonunes</ownerDesignName>
+<engineerTo>
+<item key="9904A792-F10E-D72F-A8ED-D0643674DC08" value="true"/>
+</engineerTo>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT011</logicalDatatype>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+</Attribute>
+<Attribute name="cod financiadora" id="65CD8DC2-D170-0C60-280E-610BCF7D2E8F">
+<createdBy>eduardo</createdBy>
+<createdTime>2020-05-08 20:08:57 UTC</createdTime>
+<generatorID>E85188CA-E530-13D0-9B48-2038ABBEBAAD</generatorID>
+<ownerDesignName>Autonunes</ownerDesignName>
+<engineerTo>
+<item key="9904A792-F10E-D72F-A8ED-D0643674DC08" value="true"/>
+</engineerTo>
+<nullsAllowed>true</nullsAllowed>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT011</logicalDatatype>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+</Attribute>
+<Attribute name="analista credito" id="DA86B39C-8119-AA1C-E98D-ADA05F0E4A18">
+<createdBy>eduardo</createdBy>
+<createdTime>2020-05-08 20:08:57 UTC</createdTime>
+<generatorID>ECF34274-304B-5BC0-800D-7FABE86D0068</generatorID>
+<ownerDesignName>Autonunes</ownerDesignName>
+<engineerTo>
+<item key="9904A792-F10E-D72F-A8ED-D0643674DC08" value="true"/>
+</engineerTo>
+<nullsAllowed>true</nullsAllowed>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT024</logicalDatatype>
+<dataTypeSize>50</dataTypeSize>
+<ownDataTypeParameters>50,,</ownDataTypeParameters>
+</Attribute>
+<Attribute name="status" id="314E1FAB-A8E0-7227-5B08-CA64CD5B52AC">
+<createdBy>eduardo</createdBy>
+<createdTime>2020-05-08 20:08:57 UTC</createdTime>
+<generatorID>D866254B-0E45-7E6C-7A2A-0C5A17A65786</generatorID>
+<ownerDesignName>Autonunes</ownerDesignName>
+<engineerTo>
+<item key="9904A792-F10E-D72F-A8ED-D0643674DC08" value="true"/>
+</engineerTo>
+<nullsAllowed>true</nullsAllowed>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT024</logicalDatatype>
+<dataTypeSize>30</dataTypeSize>
+<ownDataTypeParameters>30,,</ownDataTypeParameters>
+</Attribute>
+<Attribute name="motivo recusa" id="55FC8D1D-0956-9325-E3BB-6B017E7834C3">
+<createdBy>eduardo</createdBy>
+<createdTime>2020-05-08 20:08:57 UTC</createdTime>
+<generatorID>79CDB8DF-766E-B33F-596D-898A6E42F386</generatorID>
+<ownerDesignName>Autonunes</ownerDesignName>
+<engineerTo>
+<item key="9904A792-F10E-D72F-A8ED-D0643674DC08" value="true"/>
+</engineerTo>
+<nullsAllowed>true</nullsAllowed>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT024</logicalDatatype>
+<dataTypeSize>150</dataTypeSize>
+<ownDataTypeParameters>150,,</ownDataTypeParameters>
+</Attribute>
+<Attribute name="valor veiculo" id="EE822745-7313-0642-6CE0-C08931B394AD">
+<createdBy>eduardo</createdBy>
+<createdTime>2020-05-08 20:08:57 UTC</createdTime>
+<generatorID>DBD0C4BE-D7B9-FDDE-FFEB-795AD2065AD3</generatorID>
+<ownerDesignName>Autonunes</ownerDesignName>
+<engineerTo>
+<item key="9904A792-F10E-D72F-A8ED-D0643674DC08" value="true"/>
+</engineerTo>
+<nullsAllowed>true</nullsAllowed>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT019</logicalDatatype>
+<dataTypePrecision>9</dataTypePrecision>
+<dataTypeScale>2</dataTypeScale>
+<ownDataTypeParameters>,9,2</ownDataTypeParameters>
+</Attribute>
+<Attribute name="entrada" id="4BCA247C-0643-E1B2-C632-CDAFD487F4DC">
+<createdBy>eduardo</createdBy>
+<createdTime>2020-05-08 20:08:57 UTC</createdTime>
+<generatorID>19BFD9C9-4E25-5883-A9BE-E33F208F3DBA</generatorID>
+<ownerDesignName>Autonunes</ownerDesignName>
+<engineerTo>
+<item key="9904A792-F10E-D72F-A8ED-D0643674DC08" value="true"/>
+</engineerTo>
+<nullsAllowed>true</nullsAllowed>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT019</logicalDatatype>
+<dataTypePrecision>9</dataTypePrecision>
+<dataTypeScale>2</dataTypeScale>
+<ownDataTypeParameters>,9,2</ownDataTypeParameters>
+</Attribute>
+<Attribute name="valor fin" id="A651E2EA-8F03-D1AF-C112-B958665DFD8C">
+<createdBy>eduardo</createdBy>
+<createdTime>2020-05-08 20:08:57 UTC</createdTime>
+<generatorID>FD1F718D-C601-0FF8-26D0-E0DE40874B51</generatorID>
+<ownerDesignName>Autonunes</ownerDesignName>
+<engineerTo>
+<item key="9904A792-F10E-D72F-A8ED-D0643674DC08" value="true"/>
+</engineerTo>
+<nullsAllowed>true</nullsAllowed>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT019</logicalDatatype>
+<dataTypePrecision>9</dataTypePrecision>
+<dataTypeScale>2</dataTypeScale>
+<ownDataTypeParameters>,9,2</ownDataTypeParameters>
+</Attribute>
+<Attribute name="prazo" id="9EA2A57E-955D-A8DD-A0DE-E4B35CD9BB9F">
+<createdBy>eduardo</createdBy>
+<createdTime>2020-05-08 20:08:57 UTC</createdTime>
+<generatorID>0879CE83-8468-EADE-9300-569D7292F969</generatorID>
+<ownerDesignName>Autonunes</ownerDesignName>
+<engineerTo>
+<item key="9904A792-F10E-D72F-A8ED-D0643674DC08" value="true"/>
+</engineerTo>
+<nullsAllowed>true</nullsAllowed>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT011</logicalDatatype>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+</Attribute>
+<Attribute name="parcela" id="303B4F47-C2A4-1B18-E68F-A480B2A44642">
+<createdBy>eduardo</createdBy>
+<createdTime>2020-05-08 20:08:57 UTC</createdTime>
+<generatorID>82566B09-D1EF-7F23-FC33-9FC62C66E722</generatorID>
+<ownerDesignName>Autonunes</ownerDesignName>
+<engineerTo>
+<item key="9904A792-F10E-D72F-A8ED-D0643674DC08" value="true"/>
+</engineerTo>
+<nullsAllowed>true</nullsAllowed>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT019</logicalDatatype>
+<dataTypePrecision>9</dataTypePrecision>
+<dataTypeScale>2</dataTypeScale>
+<ownDataTypeParameters>,9,2</ownDataTypeParameters>
+</Attribute>
+<Attribute name="tabela" id="ADF024D4-6690-8FC1-D84E-EE5DBC28C590">
+<createdBy>eduardo</createdBy>
+<createdTime>2020-05-08 20:08:57 UTC</createdTime>
+<generatorID>6AD5574C-411D-9D82-E84E-BBC12DFD7E68</generatorID>
+<ownerDesignName>Autonunes</ownerDesignName>
+<engineerTo>
+<item key="9904A792-F10E-D72F-A8ED-D0643674DC08" value="true"/>
+</engineerTo>
+<nullsAllowed>true</nullsAllowed>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT024</logicalDatatype>
+<dataTypeSize>30</dataTypeSize>
+<ownDataTypeParameters>30,,</ownDataTypeParameters>
+</Attribute>
+<Attribute name="coeficiente" id="F7D51ACC-BB2E-F4FF-0BDB-5F34C5BB3CFC">
+<createdBy>eduardo</createdBy>
+<createdTime>2020-05-08 20:08:57 UTC</createdTime>
+<generatorID>F2A34843-8912-9027-08A4-443909CE7952</generatorID>
+<ownerDesignName>Autonunes</ownerDesignName>
+<engineerTo>
+<item key="9904A792-F10E-D72F-A8ED-D0643674DC08" value="true"/>
+</engineerTo>
+<nullsAllowed>true</nullsAllowed>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT019</logicalDatatype>
+<dataTypePrecision>2</dataTypePrecision>
+<dataTypeScale>9</dataTypeScale>
+<ownDataTypeParameters>,2,9</ownDataTypeParameters>
+</Attribute>
+<Attribute name="tipo tabela" id="F18A2683-514D-461A-3E82-7D7E69B1E0CB">
+<createdBy>eduardo</createdBy>
+<createdTime>2020-05-08 20:08:57 UTC</createdTime>
+<generatorID>26D6CC83-E43B-68C8-B58A-5392F93306C5</generatorID>
+<ownerDesignName>Autonunes</ownerDesignName>
+<engineerTo>
+<item key="9904A792-F10E-D72F-A8ED-D0643674DC08" value="true"/>
+</engineerTo>
+<nullsAllowed>true</nullsAllowed>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT024</logicalDatatype>
+<dataTypeSize>30</dataTypeSize>
+<ownDataTypeParameters>30,,</ownDataTypeParameters>
+</Attribute>
+<Attribute name="valor aumento parc" id="740479B9-63B2-E25C-BF5E-EFE79AC51C19">
+<createdBy>eduardo</createdBy>
+<createdTime>2020-05-08 20:08:57 UTC</createdTime>
+<generatorID>98D1BB89-C281-FFB0-A1EA-DD7378DFE13C</generatorID>
+<ownerDesignName>Autonunes</ownerDesignName>
+<engineerTo>
+<item key="9904A792-F10E-D72F-A8ED-D0643674DC08" value="true"/>
+</engineerTo>
+<nullsAllowed>true</nullsAllowed>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT019</logicalDatatype>
+<dataTypePrecision>8</dataTypePrecision>
+<dataTypeScale>2</dataTypeScale>
+<ownDataTypeParameters>,8,2</ownDataTypeParameters>
+</Attribute>
+<Attribute name="observacoes" id="42E3013D-F8AE-F876-690C-E02B96C117B4">
+<createdBy>eduardo</createdBy>
+<createdTime>2020-05-08 20:08:57 UTC</createdTime>
+<generatorID>1EDCBA04-760C-EAB9-1B40-DC99138F636B</generatorID>
+<ownerDesignName>Autonunes</ownerDesignName>
+<engineerTo>
+<item key="9904A792-F10E-D72F-A8ED-D0643674DC08" value="true"/>
+</engineerTo>
+<nullsAllowed>true</nullsAllowed>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT024</logicalDatatype>
+<dataTypeSize>500</dataTypeSize>
+<ownDataTypeParameters>500,,</ownDataTypeParameters>
+</Attribute>
+<Attribute name="id finan" id="C0330855-3405-657F-9C1C-5EDC0DEEB409">
+<createdBy>eduardo</createdBy>
+<createdTime>2020-05-08 20:08:57 UTC</createdTime>
+<generatorID>22B3C6E3-D217-F253-2A9A-3DF5BE2A1708</generatorID>
+<ownerDesignName>Autonunes</ownerDesignName>
+<engineerTo>
+<item key="9904A792-F10E-D72F-A8ED-D0643674DC08" value="true"/>
+</engineerTo>
+<referedAttribute>92B3B474-7CBD-4BEF-E4D1-4104201BC356</referedAttribute>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT011</logicalDatatype>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+</Attribute>
+</attributes>
+<identifiers itemClass="oracle.dbtools.crest.model.design.logical.CandidateKey">
+<identifier id="2A5CB084-4CB2-ED3D-C43C-74E7DD17E861" name="pk wc finan id">
+<createdBy>eduardo</createdBy>
+<createdTime>2020-05-08 20:08:57 UTC</createdTime>
+<generatorID>65DBC07E-02E9-E16D-6FED-22C7D4D4C30C</generatorID>
+<ownerDesignName>Autonunes</ownerDesignName>
+<engineerTo>
+<item key="9904A792-F10E-D72F-A8ED-D0643674DC08" value="true"/>
+</engineerTo>
+<pk>true</pk>
+<usedAttributes>
+<attributeRef>13767C21-85EE-78E4-E17E-CC43021C6134</attributeRef>
+</usedAttributes>
+</identifier>
+</identifiers>
+</Entity>

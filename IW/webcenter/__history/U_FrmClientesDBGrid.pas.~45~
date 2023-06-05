@@ -1,0 +1,490 @@
+unit U_FrmClientesDBGrid;
+
+interface
+
+uses
+  Winapi.Windows, Winapi.Messages, System.SysUtils, System.Variants, System.Classes, Vcl.Graphics,
+  Vcl.Controls, Vcl.Forms, Vcl.Dialogs, U_FrmPadrao, IWVCLComponent,
+  IWBaseLayoutComponent, IWBaseContainerLayout, IWContainerLayout, IWHTMLTag,
+  IWTemplateProcessorHTML, IWCompButton, IWVCLBaseControl, IWBaseControl,
+  IWBaseHTMLControl, IWControl, IWCompEdit, Data.DB, IWCompListbox, IWCompLabel,
+  IWDBStdCtrls, IWBaseComponent, IWBaseHTMLComponent, IWBaseHTML40Component,
+  IWCompExtCtrls, frxClass, frxExportPDF, frxDBSet, IWCompGrids, IWDBGrids;
+
+type
+  TFrmClientesDBGrid = class(TFrmPadrao)
+    BtnExcluir: TIWButton;
+    IDCLIENTE: TIWDBEdit;
+    RAZAOSOCIAL: TIWDBEdit;
+    CNPJ: TIWDBEdit;
+    IE: TIWDBEdit;
+    CEP: TIWDBEdit;
+    ENDERECO: TIWDBEdit;
+    NUMERO: TIWDBEdit;
+    COMPLEMENTO: TIWDBEdit;
+    BAIRRO: TIWDBEdit;
+    CIDADE: TIWDBEdit;
+    ESTADO: TIWDBEdit;
+    FONEFIXO: TIWDBEdit;
+    FONECELULAR: TIWDBEdit;
+    EMAIL: TIWDBEdit;
+    BtnSenha: TIWButton;
+    TituloModal: TIWLabel;
+    DATAULTACESSO: TIWDBEdit;
+    BtnGravar: TIWButton;
+    BtnCancelar: TIWButton;
+    Filtro: TIWEdit;
+    BtnImprimir: TIWButton;
+    Ordenacao: TIWComboBox;
+    dsClientesCad: TDataSource;
+    frxReport1: TfrxReport;
+    frxDBDataset1: TfrxDBDataset;
+    frxPDFExport1: TfrxPDFExport;
+    IWModalWindow1: TIWModalWindow;
+    ItensPagina: TIWComboBox;
+    Paginacao: TIWLabel;
+    IWDBGrid: TIWDBGrid;
+    DSClientes: TDataSource;
+    IWBtnFiltro: TIWButton;
+    IWBtnConfirmaFiltro: TIWButton;
+    IWBtnLimpaFiltro: TIWButton;
+    fCodigo: TIWEdit;
+    fDescricao: TIWEdit;
+    fCidade: TIWEdit;
+    IWComboBox1: TIWComboBox;
+    procedure CNPJHTMLTag(ASender: TObject; ATag: TIWHTMLTag);
+    procedure CEPHTMLTag(ASender: TObject; ATag: TIWHTMLTag);
+    procedure FONEFIXOHTMLTag(ASender: TObject; ATag: TIWHTMLTag);
+    procedure FONECELULARHTMLTag(ASender: TObject; ATag: TIWHTMLTag);
+    procedure BtnExcluirClick(Sender: TObject);
+    procedure BtnSenhaClick(Sender: TObject);
+    procedure BtnGravarClick(Sender: TObject);
+    procedure BtnCancelarClick(Sender: TObject);
+    procedure BtnImprimirClick(Sender: TObject);
+    procedure IWDBGridRenderCell(ACell: TIWGridCell; const ARow,
+      AColumn: Integer);
+    procedure ItensPaginaChange(Sender: TObject);
+    procedure IWBtnConfirmaFiltroClick(Sender: TObject);
+    procedure IWBtnLimpaFiltroClick(Sender: TObject);
+    procedure IWAppFormCreate(Sender: TObject);
+    procedure IWBTNACAOClick(Sender: TObject);
+  private
+    { Private declarations }
+    html : string;
+    QtdeRegistros,
+    PaginaAtual,
+    TotalPaginas : Integer;
+  public
+    { Public declarations }
+  end;
+
+var
+  FrmClientesDBGrid: TFrmClientesDBGrid;
+
+implementation
+
+{$R *.dfm}
+
+uses ServerController, SweetAlerts, U_DM, System.Math;
+
+procedure TFrmClientesDBGrid.BtnCancelarClick(Sender: TObject);
+begin
+  inherited;
+  //
+  // CANCELAR EDICAO OU INCLUSAO DO RESGISTRO
+  //
+  Controller.DM.FDQClientesCad.Cancel;
+
+end;
+
+procedure TFrmClientesDBGrid.BtnExcluirClick(Sender: TObject);
+begin
+  inherited;
+
+  // Rotina de Exclusao do Registro selecionado
+
+  Controller.DM.FDQQuery.Close;
+  Controller.DM.FDQQuery.SQL.Clear;
+  Controller.DM.FDQQuery.SQL.Add('Delete from Clientes ');
+  Controller.DM.FDQQuery.SQL.Add('Where IDCliente = '+Trim(Copy(IWAcao.Text,6,50)));
+  Controller.DM.FDQQuery.ExecSQL;
+  Controller.DM.FDQQuery.Close;
+
+  AddToInitProc(swalSuccess('Confirmação', 'Código '+Trim(Copy(IWAcao.Text,6,50))+' excluido com sucesso !!!'));
+
+  IWAppFormCreate(Sender);
+end;
+
+procedure TFrmClientesDBGrid.BtnGravarClick(Sender: TObject);
+begin
+  inherited;
+  //
+  // GRAVA RESGISTRO
+  //
+  if Controller.GLBPK <=0 then
+    Controller.DM.FDQClientesCadIDCliente.AsInteger := Controller.DM.FB_ReturnNextCOD_ByGenerator('COD_CLIENTE');
+
+  try
+    Controller.DM.FDQClientesCad.Post;
+
+    if Controller.GLBCrud = 'Alteração' then
+      AddToInitProc(swalSuccess('CONFIRMAÇÃO', 'Alteração realizada com sucesso !'))
+    else
+      AddToInitProc(swalSuccess('CONFIRMAÇÃO', 'Cadastro realizado com sucesso !'));
+
+  except
+    AddToInitProc(swalAlert('ATENÇÃO','Ocorreu um erro na gravação do registro !'));
+  end;
+
+  IWAppFormCreate(Sender);
+end;
+
+procedure TFrmClientesDBGrid.BtnImprimirClick(Sender: TObject);
+var
+  xDataRel : String;
+begin
+  inherited;
+
+  Controller.DM.FDQQuery.Close;
+  Controller.DM.FDQQuery.SQL.Clear;
+  Controller.DM.FDQQuery.SQL.Add('Select * from Clientes ');
+
+  // Filtro
+  if Filtro.Text <> '' then
+  begin
+    Controller.DM.FDQQuery.SQL.Add('Where Cidade like ''%'+Filtro.Text+'%'' ');
+    frxReport1.Variables['Filtro'] := QuotedStr('Filtro Cidade: "'+Filtro.Text+'"');
+  end;
+
+  // ORDENACAO
+  if Ordenacao.SelectedValue = 'Código' then
+    Controller.DM.FDQQuery.SQL.Add('Order by IDCLIENTE ');
+  if Ordenacao.SelectedValue = 'Razão Social' then
+    Controller.DM.FDQQuery.SQL.Add('Order by RAZAOSOCIAL ');
+
+  Controller.DM.FDQQuery.Open();
+
+  frxReport1.Reloading:=True;
+
+  //
+  // Executando o Relatório para a Exportação
+  //
+  xDataRel := WebApplication.AppID + FormatDateTime('yyyymmddhhmmsszzz', Now);
+
+  frxPDFExport1.FileName := WebApplication.ApplicationPath + 'wwwroot\RelatoriosPDF\' +
+                            xDataRel + '.PDF';
+
+  frxReport1.PrepareReport(True);
+
+  frxPDFExport1.ShowDialog:=False;
+  frxReport1.Export(frxPDFExport1);
+
+  with IWModalWindow1 do begin
+    Reset;
+    Autosize := False;
+    Title := 'Visualizando o PDF do Relatório';
+    Draggable := False;
+    WindowWidth := 95;
+    WindowHeight := 95;
+    Src := '../../../RelatoriosPDF/' + xDataRel + '.PDF';
+    OnAsyncClick := nil;
+    Show;
+  end;
+end;
+
+procedure TFrmClientesDBGrid.BtnSenhaClick(Sender: TObject);
+begin
+  inherited;
+
+  // Colocar o codigo para resetar a senha aqui
+  // MD5 da senha padrao 1234: >>  81dc9bdb52d04dc20036dbd8313ed055  <<
+  Controller.DM.FDQQuery.Close;
+  Controller.DM.FDQQuery.SQL.Clear;
+  Controller.DM.FDQQuery.SQL.Add('Update Clientes set Senha = '''+Controller.MD5('1234')+''' ');
+  Controller.DM.FDQQuery.SQL.Add('Where IDCliente = '+Trim(Copy(IWAcao.Text,6,50)));
+  Controller.DM.FDQQuery.ExecSQL;
+  Controller.DM.FDQQuery.Close;
+
+  AddToInitProc(swalSuccess('Confirmação', 'Senha resetada do Cód.: '+Trim(Copy(IWAcao.Text,6,50))+', senha padrão: 1234 !!!'))
+
+end;
+
+procedure TFrmClientesDBGrid.CEPHTMLTag(ASender: TObject; ATag: TIWHTMLTag);
+begin
+  inherited;
+  ATag.Add('data-inputmask="''mask'': ''99999-999''" data-mask');
+end;
+
+procedure TFrmClientesDBGrid.CNPJHTMLTag(ASender: TObject; ATag: TIWHTMLTag);
+begin
+  inherited;
+  ATag.Add('data-inputmask="''mask'': ''99.999.999/9999-99''" data-mask');
+end;
+
+procedure TFrmClientesDBGrid.FONECELULARHTMLTag(ASender: TObject; ATag: TIWHTMLTag);
+begin
+  inherited;
+  ATag.Add('data-inputmask="''mask'': ''(99) 99999-9999''" data-mask');
+end;
+
+procedure TFrmClientesDBGrid.FONEFIXOHTMLTag(ASender: TObject; ATag: TIWHTMLTag);
+begin
+  inherited;
+  ATag.Add('data-inputmask="''mask'': ''(99) 9999-9999''" data-mask');
+end;
+
+procedure TFrmClientesDBGrid.ItensPaginaChange(Sender: TObject);
+begin
+  inherited;
+  Controller.DM.FDQClientes.Close;
+
+  Controller.DM.FDQClientes.FetchOptions.RecsSkip := -1;
+  Controller.DM.FDQClientes.FetchOptions.RecsMax  := ItensPagina.SelectedValue.ToInteger;
+
+  Controller.DM.FDQClientes.Open();
+  Controller.DM.FDQClientes.First;
+
+  PaginaAtual := 1;
+  TotalPaginas := Ceil(QtdeRegistros / ItensPagina.SelectedValue.ToInteger);
+
+  Paginacao.Text := Controller.MontaPaginacao(PaginaAtual, ItensPagina.SelectedValue.ToInteger, TotalPaginas, QtdeRegistros);
+
+end;
+
+procedure TFrmClientesDBGrid.IWAppFormCreate(Sender: TObject);
+begin
+  inherited;
+  Controller.DM.FDQQuery.Close;
+  Controller.DM.FDQQuery.SQL.Clear;
+  Controller.DM.FDQQuery.SQL.Add('Select Count(*) as TotRegistros from Clientes ');
+  Controller.DM.FDQQuery.Open();
+  Controller.DM.FDQQuery.First;
+  QtdeRegistros := Controller.DM.FDQQuery.FieldByName('TotRegistros').AsInteger;
+  Controller.DM.FDQQuery.Close;
+
+  PaginaAtual := 1;
+  TotalPaginas := Ceil(QtdeRegistros / ItensPagina.SelectedValue.ToInteger);
+
+  Controller.DM.FDQClientes.Close;
+  Controller.DM.FDQClientes.SQL.Clear;
+  Controller.DM.FDQClientes.SQL.Add('Select * from Clientes ');
+  Controller.DM.FDQClientes.SQL.Add('Order by RazaoSocial ');
+  Controller.DM.FDQClientes.FetchOptions.RecsSkip := -1;
+  Controller.DM.FDQClientes.FetchOptions.RecsMax  := ItensPagina.SelectedValue.ToInteger;
+  Controller.DM.FDQClientes.Open();
+  Controller.DM.FDQClientes.First;
+
+  Paginacao.Text := Controller.MontaPaginacao(PaginaAtual, ItensPagina.SelectedValue.ToInteger, TotalPaginas, QtdeRegistros);
+end;
+
+procedure TFrmClientesDBGrid.IWBTNACAOClick(Sender: TObject);
+begin
+  inherited;
+
+  //
+  // Clique no Menu
+  // Para usar o TWBSPagination temos que colocar o Menu aqui no onClick, pois não funciona se ficar no onAsyncClick
+  //
+  if Trim(Copy(IWAcao.Text,1,5)) = 'Menu' then
+    Controller.AcaoMenu(Trim(Copy(IWAcao.Text,6,50)));
+
+
+  // Clique na PAGINACAO
+  if Copy(IWACAO.Text,1,5) = 'TWBS ' then
+  begin
+    PaginaAtual := StrToInt(Copy(IWACAO.Text,6,50));
+    Controller.DM.FDQClientes.Close;
+    Controller.DM.FDQClientes.FetchOptions.RecsSkip := ( ItensPagina.SelectedValue.ToInteger * ( PaginaAtual - 1 ) );
+    Controller.DM.FDQClientes.FetchOptions.RecsMax  := ItensPagina.SelectedValue.ToInteger;
+    Controller.DM.FDQClientes.Open();
+    Paginacao.Text := Controller.MontaPaginacao(PaginaAtual, ItensPagina.SelectedValue.ToInteger, TotalPaginas, QtdeRegistros);
+  end;
+
+
+  // Pesquisar
+  if Trim(Copy(IWAcao.Text,1,5)) = 'Filtr' then
+  begin
+    AddToInitProc('$(''#ModalFiltro'').modal(''show'');');
+  end;
+
+
+  // Clicou em Incluir
+  if Trim(Copy(IWAcao.Text,1,5)) = 'Inc' then
+  begin
+    Controller.GLBPK := -1;
+    Controller.GLBCrud := 'Inclusão';
+    // Atualizo o IWLabel que esta como RawText, assim atualizo o nome do título no Modal
+    TituloModal.Text := Controller.GLBCrud;
+
+    Controller.DM.FDQClientesCad.Close;
+    Controller.DM.FDQClientesCad.Open;
+    Controller.DM.FDQClientesCad.Insert;
+
+    Controller.DM.FDQClientesCadIDCliente.Value := -1;
+
+    AddToInitProc('$(''#Cadastro'').modal(''show'');');
+  end;
+
+
+  // Clicou em Alterar
+  if Trim(Copy(IWAcao.Text,1,5)) = 'Alt' then
+  begin
+    Controller.GLBPK := StrToInt(Trim(Copy(IWAcao.Text,6,50)));
+    Controller.GLBCrud := 'Alteração';
+    // Atualizo o IWLabel que esta como RawText, assim atualizo o nome do título no Modal
+    TituloModal.Text := Controller.GLBCrud;
+
+    Controller.DM.FDQClientesCad.Close;
+    Controller.DM.FDQClientesCad.ParamByName('IDCliente').AsInteger := Controller.GLBPK;
+    Controller.DM.FDQClientesCad.Open;
+    Controller.DM.FDQClientesCad.Edit;
+
+    AddToInitProc('$(''#Cadastro'').modal(''show'');');
+  end;
+
+
+  // Clicou em Excluir
+  if Trim(Copy(IWAcao.Text,1,5)) = 'Exc' then
+  begin
+    AddToInitProc(swalConfirm('CONFIRMAÇÃO', 'Deseja excluir o cliente nº '+Trim(Copy(IWAcao.Text,6,50)), 'warning', 'Excluir', 'Cancelar', 'BTNEXCLUIR'));
+  end;
+
+
+  // Clicou em Trocar Senha
+  if Trim(Copy(IWAcao.Text,1,5)) = 'Senha' then
+  begin
+    AddToInitProc(swalConfirm('CONFIRMAÇÃO', 'Deseja resetar a Senha do cliente nº '+Trim(Copy(IWAcao.Text,6,50)), 'warning', 'Resetar', 'Cancelar', 'BTNSENHA'));
+  end;
+
+
+  // Clicou em Imprimir
+  if Trim(Copy(IWAcao.Text,1,5)) = 'Impr' then
+  begin
+    AddToInitProc('$(''#Relatorios'').modal(''show'');');
+  end;
+end;
+
+procedure TFrmClientesDBGrid.IWBtnConfirmaFiltroClick(Sender: TObject);
+var
+  xWhere : String;
+begin
+  inherited;
+  Controller.DM.FDQQuery.Close;
+  Controller.DM.FDQQuery.SQL.Clear;
+  Controller.DM.FDQQuery.SQL.Add('Select Count(*) as TotRegistros from Clientes ');
+  xWhere := '';
+  if fCodigo.Text <> '' then
+  begin
+    if xWhere <> '' then xWhere := xWhere + ' and ';
+    xWhere := xWhere + '      IDCLIENTE like ''%'+StringReplace(UpperCase(fCodigo.Text), ' ', '%', [rfReplaceAll, rfIgnoreCase])+'%'' ';
+  end;
+
+  if fDescricao.Text <> '' then
+  begin
+    if xWhere <> '' then xWhere := xWhere + ' and ';
+    xWhere := xWhere + '      Upper(RAZAOSOCIAL) like ''%'+StringReplace(UpperCase(fDescricao.Text), ' ', '%', [rfReplaceAll, rfIgnoreCase])+'%'' ';
+  end;
+
+  if fCidade.Text <> '' then
+  begin
+    if xWhere <> '' then xWhere := xWhere + ' and ';
+    xWhere := xWhere + '      Upper(Cidade) like ''%'+StringReplace(UpperCase(fCidade.Text), ' ', '%', [rfReplaceAll, rfIgnoreCase])+'%'' ';
+  end;
+
+  if xWhere <> '' then
+    Controller.DM.FDQQuery.SQL.Add('Where '+xWhere);
+
+  Controller.DM.FDQQuery.Open();
+  Controller.DM.FDQQuery.First;
+  QtdeRegistros := Controller.DM.FDQQuery.FieldByName('TotRegistros').AsInteger;
+  Controller.DM.FDQQuery.Close;
+
+  //
+  // Aplicar Filtro
+  //
+  Controller.DM.FDQClientes.Close;
+  Controller.DM.FDQClientes.SQL.Clear;
+  Controller.DM.FDQClientes.SQL.Add('SELECT * FROM Clientes ');
+
+  xWhere := '';
+  if fCodigo.Text <> '' then
+  begin
+    if xWhere <> '' then xWhere := xWhere + ' and ';
+    xWhere := xWhere + '      IDCLIENTE like ''%'+StringReplace(UpperCase(fCodigo.Text), ' ', '%', [rfReplaceAll, rfIgnoreCase])+'%'' ';
+  end;
+
+  if fDescricao.Text <> '' then
+  begin
+    if xWhere <> '' then xWhere := xWhere + ' and ';
+    xWhere := xWhere + '      Upper(RAZAOSOCIAL) like ''%'+StringReplace(UpperCase(fDescricao.Text), ' ', '%', [rfReplaceAll, rfIgnoreCase])+'%'' ';
+  end;
+
+  if fCidade.Text <> '' then
+  begin
+    if xWhere <> '' then xWhere := xWhere + ' and ';
+    xWhere := xWhere + '      Upper(Cidade) like ''%'+StringReplace(UpperCase(fCidade.Text), ' ', '%', [rfReplaceAll, rfIgnoreCase])+'%'' ';
+  end;
+
+  if xWhere <> '' then
+    Controller.DM.FDQClientes.SQL.Add('Where '+xWhere);
+
+  // ORDENACAO
+  if Ordenacao.SelectedValue = 'Código Cliente' then
+    Controller.DM.FDQClientes.SQL.Add('Order by IDCLIENTE ');
+  if Ordenacao.SelectedValue = 'Nome do Cliente' then
+    Controller.DM.FDQClientes.SQL.Add('Order by RAZAOSOCIAL ');
+
+  Controller.DM.FDQClientes.FetchOptions.RecsSkip := -1;
+  Controller.DM.FDQClientes.FetchOptions.RecsMax  := ItensPagina.SelectedValue.ToInteger;
+  Controller.DM.FDQClientes.Open;
+  Controller.DM.FDQClientes.First;
+
+  PaginaAtual := 1;
+  TotalPaginas := Ceil(QtdeRegistros / ItensPagina.SelectedValue.ToInteger);
+
+  Paginacao.Text := Controller.MontaPaginacao(PaginaAtual, ItensPagina.SelectedValue.ToInteger, TotalPaginas, QtdeRegistros);
+
+end;
+
+procedure TFrmClientesDBGrid.IWBtnLimpaFiltroClick(Sender: TObject);
+begin
+  inherited;
+  fCodigo.Text := '';
+  fDescricao.Text := '';
+  fCidade.Text := '';
+
+  IWAppFormCreate(Sender);
+end;
+
+procedure TFrmClientesDBGrid.IWDBGridRenderCell(ACell: TIWGridCell; const ARow,
+  AColumn: Integer);
+begin
+  inherited;
+
+  if ARow = 0 then
+    if AColumn in [5..7] then
+      ACell.Text := '';
+
+  // Aqui é o segredo para o DBGrid funcionar com o bootstrap
+  // limpando o css das linhas da tabela tem que colocar um espaço
+  ACell.Css := '';
+
+  if (AColumn = 5) and (ARow > 0) and (ACell.Text <> '') then
+    ACell.Text := '<button type="button" class="btn btn-warning btn-xs" data-toggle="tooltip" data-placement="top" title="Editar Registro" onclick="SetaAcao(''Alt'','+ACell.Text+');"><span class="fa fa-pencil" aria-hidden="true"></span> </button>';
+// SE NAO USAR SWEETALERT USAR COMO ABAIXO
+//    ACell.Text := '<a href="#" onclick="return SubmitClick(''IWDBGRID'',''' + IntToStr(AColumn) + '_' + Acell.Text + ''', false);"> <button type="button" class="btn btn-primary btn-xs" title="Editar Registro"><span class="glyphicon glyphicon-pencil" aria-hidden="true"></span> </button> </a>';
+
+  if (AColumn = 6) and (ARow > 0) and (ACell.Text <> '') then
+    ACell.Text := '<button type="button" class="btn btn-danger btn-xs" data-toggle="tooltip" data-placement="top" title="Excluir Registro" onclick="SetaAcao(''Exc'','+ACell.Text+');"><span class="fa fa-trash" aria-hidden="true"></span> </button>';
+
+// SE NAO USAR SWEETALERT USAR COMO ABAIXO
+//    ACell.Text := '<a href="#" onclick="return SubmitClickConfirm(''IWDBGRID'',''' + IntToStr(AColumn) + '_' + Acell.Text + ''', true, ''Confirma a Exclusão do Registro ?'');"> <button type="button" class="btn btn-danger btn-xs" title="Excluir Registro"><span class="glyphicon glyphicon-trash" aria-hidden="true"></span> </button> </a>';
+
+  if (AColumn = 7) and (ARow > 0) and (ACell.Text <> '') then
+    ACell.Text := '<button type="button" class="btn btn-info btn-xs" data-toggle="tooltip" data-placement="top" title="Resetar Senha" onclick="SetaAcao(''Senha'','+ACell.Text+');"><span class="fa fa-key" aria-hidden="true"></span> </button>';
+
+// SE NAO USAR SWEETALERT USAR COMO ABAIXO
+//    ACell.Text := '<a href="#" onclick="return SubmitClickConfirm(''IWDBGRID'',''' + IntToStr(AColumn) + '_' + Acell.Text + ''', true, ''Confirma o Resete da Senha ?'');"> <button type="button" class="btn btn-danger btn-xs" title="Excluir Registro"><span class="glyphicon glyphicon-trash" aria-hidden="true"></span> </button> </a>';
+end;
+
+end.

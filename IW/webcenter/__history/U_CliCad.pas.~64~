@@ -1,0 +1,400 @@
+unit U_CliCad;
+
+interface
+
+uses
+  Winapi.Windows, Winapi.Messages, System.SysUtils, System.Variants, System.Classes, Vcl.Graphics,
+  Vcl.Controls, Vcl.Forms, Vcl.Dialogs, U_FrmPadrao, IWVCLComponent,
+  IWBaseLayoutComponent, IWBaseContainerLayout, IWContainerLayout,
+  IWTemplateProcessorHTML, IWCompButton, IWVCLBaseControl, IWBaseControl,
+  IWBaseHTMLControl, IWControl, IWCompEdit, IWCompListbox,IWHTMLTag,
+  FireDAC.Stan.Intf, FireDAC.Stan.Option, FireDAC.Stan.Param,
+  FireDAC.Stan.Error, FireDAC.DatS, FireDAC.Phys.Intf, FireDAC.DApt.Intf,
+  FireDAC.Stan.Async, FireDAC.DApt, Data.DB, FireDAC.Comp.DataSet,
+  FireDAC.Comp.Client, IWDBStdCtrls, IWBS4CustomControl, IWBS4CustomInput,
+  IWBS4Input, IWCompGrids, IWCompCalendar, IWCompLabel;
+
+type
+  TFormCliCad = class(TFrmPadrao)
+    COMBO_TIPO: TIWComboBox;
+    COMBO_CLASSE: TIWComboBox;
+    EDIT_COD_CLIENTE_PJ: TIWEdit;
+    EDIT_NOME: TIWEdit;
+    edit_cod_cliente_pf: TIWEdit;
+    combo_uf: TIWDBLookupComboBox;
+    combo_cidades: TIWDBLookupComboBox;
+    ds_uf: TDataSource;
+    ds_cidades: TDataSource;
+    q_uf: TFDQuery;
+    q_cidades: TFDQuery;
+    q_ufUF: TStringField;
+    q_cidadesCOD_CIDADE: TFMTBCDField;
+    q_cidadesDESCRICAO: TStringField;
+    edit_endereco: TIWEdit;
+    edit_complemento: TIWEdit;
+    edit_numero: TIWEdit;
+    edit_cep: TIWEdit;
+    edit_ddd1: TIWEdit;
+    edit_ddd2: TIWEdit;
+    edit_ddd3: TIWEdit;
+    edit_fone1: TIWEdit;
+    edit_fone2: TIWEdit;
+    edit_fone3: TIWEdit;
+    edit_bairro: TIWEdit;
+    combo_sexo: TIWComboBox;
+    edit_data_nasc: TIWEdit;
+    edit_rg: TIWEdit;
+    combo_estado_cv: TIWComboBox;
+    edit_insc_mun: TIWEdit;
+    edit_insc_est: TIWEdit;
+    BTN_GRAVAR_DADOS: TIWButton;
+    q_cliente_inc: TFDQuery;
+    edit_email: TIWEdit;
+    lb_acao: TIWLabel;
+    q_geral: TFDQuery;
+    procedure EDIT_COD_CLIENTE_PJHTMLTag(ASender: TObject; ATag: TIWHTMLTag);
+    procedure edit_cod_cliente_pfHTMLTag(ASender: TObject; ATag: TIWHTMLTag);
+    procedure COMBO_TIPOChange(Sender: TObject);
+    procedure IWAppFormShow(Sender: TObject);
+    procedure combo_ufChange(Sender: TObject);
+    procedure edit_cepHTMLTag(ASender: TObject; ATag: TIWHTMLTag);
+    procedure edit_ddd1HTMLTag(ASender: TObject; ATag: TIWHTMLTag);
+    procedure edit_ddd2HTMLTag(ASender: TObject; ATag: TIWHTMLTag);
+    procedure edit_ddd3HTMLTag(ASender: TObject; ATag: TIWHTMLTag);
+    procedure edit_fone1HTMLTag(ASender: TObject; ATag: TIWHTMLTag);
+    procedure edit_fone2HTMLTag(ASender: TObject; ATag: TIWHTMLTag);
+    procedure edit_fone3HTMLTag(ASender: TObject; ATag: TIWHTMLTag);
+    procedure BTN_GRAVAR_DADOSClick(Sender: TObject);
+  private
+    { Private declarations }
+    procedure incluir_cliente;
+    procedure alterar_cliente(cod_cliente : string);
+  public
+    { Public declarations }
+  end;
+
+var
+  FormCliCad: TFormCliCad;
+
+implementation
+
+{$R *.dfm}
+
+uses  ServerController, UserSessionUnit, SweetAlerts, U_DM;
+
+procedure TFormCliCad.EDIT_COD_CLIENTE_PJHTMLTag(ASender: TObject;
+  ATag: TIWHTMLTag);
+begin
+  inherited;
+   ATag.Add('placeholder="Informe um CNPJ válido"');
+   ATag.Add(' style="text-align:right" ');
+   ATag.Add('data-inputmask="''mask'': ''99.999.999/9999-99''" data-mask');
+
+end;
+
+procedure TFormCliCad.edit_ddd1HTMLTag(ASender: TObject; ATag: TIWHTMLTag);
+begin
+  inherited;
+ATag.Add('placeholder="Informe um DDD válido"');
+   ATag.Add(' style="text-align:right" ');
+   ATag.Add('data-inputmask="''mask'': ''(99)''" data-mask');
+end;
+
+procedure TFormCliCad.edit_ddd2HTMLTag(ASender: TObject; ATag: TIWHTMLTag);
+begin
+  inherited;
+ATag.Add('placeholder="Informe um DDD válido"');
+   ATag.Add(' style="text-align:right" ');
+   ATag.Add('data-inputmask="''mask'': ''(99)''" data-mask');
+end;
+
+procedure TFormCliCad.edit_ddd3HTMLTag(ASender: TObject; ATag: TIWHTMLTag);
+begin
+  inherited;
+ATag.Add('placeholder="Informe um DDD válido"');
+   ATag.Add(' style="text-align:right" ');
+   ATag.Add('data-inputmask="''mask'': ''(99)''" data-mask');
+end;
+
+procedure TFormCliCad.edit_fone1HTMLTag(ASender: TObject; ATag: TIWHTMLTag);
+begin
+  inherited;
+ATag.Add('placeholder="Informe um Fone válido"');
+   ATag.Add(' style="text-align:right" ');
+   ATag.Add('data-inputmask="''mask'': ''9999-9999''" data-mask');
+end;
+
+procedure TFormCliCad.edit_fone2HTMLTag(ASender: TObject; ATag: TIWHTMLTag);
+begin
+  inherited;
+  ATag.Add('placeholder="Informe um CEL válido"');
+   ATag.Add(' style="text-align:right" ');
+   ATag.Add('data-inputmask="''mask'': ''99999-9999''" data-mask');
+end;
+
+procedure TFormCliCad.edit_fone3HTMLTag(ASender: TObject; ATag: TIWHTMLTag);
+begin
+  inherited;
+ ATag.Add('placeholder="Informe um ZAP válido"');
+   ATag.Add(' style="text-align:right" ');
+   ATag.Add('data-inputmask="''mask'': ''99999-9999''" data-mask');
+end;
+
+procedure TFormCliCad.incluir_cliente;
+begin
+
+
+q_cliente_inc.Close;
+q_cliente_inc.ParamByName('bairro').asstring := edit_bairro.Text ;
+q_cliente_inc.ParamByName('cep').asstring := stringreplace(edit_cep.Text,'-','',[]) ;
+q_cliente_inc.ParamByName('classe').asstring := COMBO_CLASSE.SelectedValue ;
+q_cliente_inc.ParamByName('cod_cidade').AsInteger := combo_cidades.KeyValue ;
+
+//verifica se o tipo é F pu J
+
+if combo_tipo.SelectedValue='F' then
+   begin
+    q_cliente_inc.ParamByName('cod_cliente').asstring :=
+    stringreplace(stringreplace(edit_cod_cliente_pf.Text,'.','',[rfReplaceAll, rfIgnoreCase]),'-','',[rfReplaceAll, rfIgnoreCase])  ;
+    q_cliente_inc.ParamByName('data_nasc').AsDateTime := edit_data_nasc.AsDateTime ;
+    q_cliente_inc.ParamByName('rg').asstring := edit_rg.Text ;
+    q_cliente_inc.ParamByName('sexo').asstring := combo_sexo.SelectedValue ;
+    //se for pessoa fisica dados juridicos irão null
+    q_cliente_inc.ParamByName('inc_municipal').asstring := '' ;
+    q_cliente_inc.ParamByName('insc_estadual').asstring := '' ;
+   end;
+if combo_tipo.SelectedValue='J' then
+   begin
+    q_cliente_inc.ParamByName('cod_cliente').asstring :=
+    stringreplace(stringreplace(stringreplace(EDIT_COD_CLIENTE_PJ.Text,'.','',[rfReplaceAll, rfIgnoreCase]),'-','',[rfReplaceAll, rfIgnoreCase]),'/','',[rfReplaceAll, rfIgnoreCase]);
+    q_cliente_inc.ParamByName('inc_municipal').asstring := edit_insc_mun.Text ;
+    q_cliente_inc.ParamByName('insc_estadual').asstring := edit_insc_est.Text ;
+
+    //se for pessoa juridica manda dados em branco
+    q_cliente_inc.ParamByName('data_nasc').AsString := '01/01/1890';
+    q_cliente_inc.ParamByName('rg').asstring := '' ;
+    q_cliente_inc.ParamByName('sexo').asstring := '';
+   end;
+
+
+q_cliente_inc.ParamByName('complemento').asstring :=UpperCase(edit_complemento.Text ) ;
+//q_cliente_inc.ParamByName('data_alteracao').asstring := '' ;
+//q_cliente_inc.ParamByName('data_cadastro').asstring := 'sysdate' ;
+
+q_cliente_inc.ParamByName('ddd1').asstring := stringreplace(stringreplace(edit_ddd1.Text,'(','',[]),')','',[])  ;
+q_cliente_inc.ParamByName('ddd2').asstring := stringreplace(stringreplace(edit_ddd2.Text,'(','',[]),')','',[])  ;
+q_cliente_inc.ParamByName('ddd3').asstring := stringreplace(stringreplace(edit_ddd3.Text,'(','',[]),')','',[])  ;
+q_cliente_inc.ParamByName('email').asstring := edit_email.Text ;
+q_cliente_inc.ParamByName('endereco').asstring :=UpperCase(edit_endereco.Text ) ;
+q_cliente_inc.ParamByName('fachada').AsInteger := STRTOINT(edit_numero.Text) ;
+q_cliente_inc.ParamByName('fone1').asstring := stringreplace(edit_fone1.Text,'-','',[]) ;
+q_cliente_inc.ParamByName('fone2').asstring := stringreplace(edit_fone2.Text,'-','',[]) ;
+q_cliente_inc.ParamByName('fone3').asstring :=  stringreplace(edit_fone3.Text,'-','',[]) ;
+
+q_cliente_inc.ParamByName('nacionalidade').asstring :=''  ;
+q_cliente_inc.ParamByName('nome').asstring :=UpperCase(EDIT_NOME.Text)  ;
+
+q_cliente_inc.ParamByName('sobrenome').asstring :=''  ;
+q_cliente_inc.ParamByName('tipo').asstring := COMBO_TIPO.SelectedValue ;
+q_cliente_inc.ParamByName('uf').asstring := combo_uf.KeyValue ;
+//q_cliente_inc.ParamByName('usuario_alterou').asstring := '' ;
+//q_cliente_inc.ParamByName('usuario_cadastrou').asstring := 'user' ;
+q_cliente_inc.ExecSQL;
+
+swalSuccess('Sucesso!','Dados Cadastrados com sucesso!');
+controller.AcaoMenu('FormClientes');
+
+
+
+
+
+end;
+
+procedure TFormCliCad.IWAppFormShow(Sender: TObject);
+begin
+  inherited;
+  q_uf.Close;
+  q_uf.Open();
+
+
+
+
+
+
+    //Verifica se precisa alterar
+     if controller.xcod_cliente_alt='' then
+     begin
+       lb_acao.Caption:='Incluindo...';
+     end
+     else
+     begin
+       lb_acao.Caption:='Alterando...:'+ controller.xcod_cliente_alt;
+
+       alterar_cliente(controller.xcod_cliente_alt);
+       controller.xcod_cliente_alt:='';
+
+     end;
+
+
+
+
+end;
+
+procedure TFormCliCad.alterar_cliente(cod_cliente: string);
+begin
+
+   q_geral.Close;
+   q_geral.SQL.Clear;
+   q_geral.sql.add('select bairro,');
+   q_geral.sql.add('cep,');
+   q_geral.sql.add('classe,');
+   q_geral.sql.add('cod_cidade,');
+   q_geral.sql.add('cod_cliente,');
+   q_geral.sql.add('complemento,');
+   q_geral.sql.add('data_alteracao,');
+   q_geral.sql.add('data_cadastro,');
+   q_geral.sql.add('data_nasc,');
+   q_geral.sql.add('ddd1,');
+   q_geral.sql.add('ddd2,');
+   q_geral.sql.add('ddd3,');
+   q_geral.sql.add('email,');
+   q_geral.sql.add('endereco,');
+   q_geral.sql.add('fachada,');
+   q_geral.sql.add('fone1,');
+   q_geral.sql.add('fone2,');
+   q_geral.sql.add('fone3,');
+   q_geral.sql.add('inc_municipal,');
+   q_geral.sql.add('insc_estadual,');
+   q_geral.sql.add('nacionalidade,');
+   q_geral.sql.add('nome,');
+   q_geral.sql.add('rg,');
+   q_geral.sql.add('sexo,');
+   q_geral.sql.add('sobrenome,');
+   q_geral.sql.add('tipo,');
+   q_geral.sql.add('uf,');
+   q_geral.sql.add('usuario_alterou,');
+   q_geral.sql.add('usuario_cadastrou');
+   q_geral.sql.add('from clientes');
+   q_geral.sql.add('where cod_cliente like' + quotedstr('(%' + cod_cliente + '%)'));
+
+   q_geral.Open();
+
+  // Carrega formulario //
+
+  if q_geral.FieldByName('classe').AsString='C' then
+      begin
+        COMBO_CLASSE.ItemIndex:=0
+      end;
+   if q_geral.FieldByName('classe').AsString='F' then
+      begin
+        COMBO_CLASSE.ItemIndex:=1
+      end;
+   if q_geral.FieldByName('classe').AsString='A' then
+      begin
+        COMBO_CLASSE.ItemIndex:=2
+      end;
+
+   EDIT_NOME.Text:= q_geral.FieldByName('nome').AsString;
+   edit_endereco.Text:=q_geral.FieldByName('endereco').AsString;
+   edit_complemento.Text:=q_geral.FieldByName('complemento').AsString;
+   edit_numero.Text:= q_geral.FieldByName('fachada').AsString;
+   edit_bairro.Text:=q_geral.FieldByName('bairro').AsString;
+   edit_cep.Text:=q_geral.FieldByName('cep').AsString;
+   combo_uf.KeyValue:=q_geral.FieldByName('uf').Value;
+
+  if q_geral.FieldByName('tipo').AsString='F' then
+      begin
+
+        COMBO_TIPO.ItemIndex:=0;
+        EDIT_COD_CLIENTE_PJ.Visible:=false;
+        edit_cod_cliente_pf.Visible:=true;
+        edit_cod_cliente_pf.Text:= q_geral.FieldByName('cod_cliente').AsString;
+
+      end;
+
+  if q_geral.FieldByName('tipo').AsString='J' then
+      begin
+
+        COMBO_TIPO.ItemIndex:=1;
+        EDIT_COD_CLIENTE_PJ.Visible:=True;
+        edit_cod_cliente_pf.Visible:=false;
+        edit_cod_cliente_pf.Text:= q_geral.FieldByName('cod_cliente').AsString;
+
+      end;
+
+
+
+end;
+
+procedure TFormCliCad.BTN_GRAVAR_DADOSClick(Sender: TObject);
+begin
+  inherited;
+incluir_cliente;
+end;
+
+procedure TFormCliCad.COMBO_TIPOChange(Sender: TObject);
+begin
+  inherited;
+ if combo_tipo.ItemIndex=0 then
+   begin
+     edit_cod_cliente_pf.Visible:=true;
+     EDIT_COD_CLIENTE_PJ.Visible:=false;
+
+     //habilita dados fisicos
+      edit_data_nasc.Visible:=true;
+      combo_sexo.Visible:=true;
+      edit_rg.Visible:=true;
+      combo_estado_cv.Visible:=true;
+      //desabilita dados juridicos
+      edit_insc_mun.Visible:=false;
+      edit_insc_est.Visible:=false;
+   end;
+  if COMBO_TIPO.ItemIndex=1 then
+  begin
+    edit_cod_cliente_pf.Visible:=false;
+     EDIT_COD_CLIENTE_PJ.Visible:=true;
+
+      //desabilita dados fisicos
+      edit_data_nasc.Visible:=false;
+      combo_sexo.Visible:=false;
+      edit_rg.Visible:=false;
+      combo_estado_cv.Visible:=false;
+      //habilita dados juridicos
+      edit_insc_mun.Visible:=true;
+      edit_insc_est.Visible:=true;
+  end;
+
+end;
+
+procedure TFormCliCad.combo_ufChange(Sender: TObject);
+begin
+  inherited;
+q_cidades.Close;
+q_cidades.ParamByName('uf').Value:= combo_uf.KeyValue;
+q_cidades.Open();
+combo_cidades.Enabled:=true;
+
+end;
+
+procedure TFormCliCad.edit_cepHTMLTag(ASender: TObject; ATag: TIWHTMLTag);
+begin
+  inherited;
+ATag.Add('placeholder="Informe um CEP válido"');
+   ATag.Add(' style="text-align:right" ');
+   ATag.Add('data-inputmask="''mask'': ''99999-999''" data-mask');
+end;
+
+procedure TFormCliCad.edit_cod_cliente_pfHTMLTag(ASender: TObject;
+  ATag: TIWHTMLTag);
+begin
+  inherited;
+
+
+  ATag.Add(' style="text-align:right" ');
+  ATag.Add('placeholder="Informe um CPF válido"');
+  ATag.Add('data-inputmask="''mask'': ''999.999.999-99''" data-mask');
+
+
+end;
+
+end.

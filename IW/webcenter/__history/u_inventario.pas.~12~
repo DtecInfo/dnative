@@ -1,0 +1,247 @@
+unit u_inventario;
+
+interface
+
+uses
+  Winapi.Windows, Winapi.Messages, System.SysUtils, System.Variants, System.Classes, Vcl.Graphics,
+  Vcl.Controls, Vcl.Forms, Vcl.Dialogs, U_FrmPadrao, IWVCLComponent,
+  IWBaseLayoutComponent, IWBaseContainerLayout, IWContainerLayout,
+  IWTemplateProcessorHTML, IWCompButton, IWVCLBaseControl, IWBaseControl,
+  IWBaseHTMLControl, IWControl, IWCompEdit, FireDAC.Stan.Intf,
+  FireDAC.Stan.Option, FireDAC.Stan.Param, FireDAC.Stan.Error, FireDAC.DatS,
+  FireDAC.Phys.Intf, FireDAC.DApt.Intf, FireDAC.Stan.Async, FireDAC.DApt,
+  Data.DB, FireDAC.Comp.DataSet, FireDAC.Comp.Client;
+
+type
+  Tform_inventario = class(TFrmPadrao)
+    q_datatable: TFDQuery;
+    q_geral: TFDQuery;
+    q_aux: TFDQuery;
+    procedure IWAppFormCreate(Sender: TObject);
+  private
+    procedure TBContagem(aParams: TStrings; out aResult: string);
+  public
+    { Public declarations }
+  end;
+
+var
+  form_inventario: Tform_inventario;
+
+implementation
+
+{$R *.dfm}
+
+uses ServerController, SweetAlerts, UserSessionUnit, U_DM, System.StrUtils;
+
+procedure Tform_inventario.IWAppFormCreate(Sender: TObject);
+begin
+  inherited;
+RegisterCallBack('TBContagem', TBContagem);
+end;
+
+procedure Tform_inventario.TBContagem(aParams: TStrings; out aResult: string);
+var
+  wresult: string;
+  wtotal: integer;
+  btn1: string;
+  btn2: string;
+  btn3: string;
+  btn4: string;
+  id: string;
+  status1,status2,status3,v_classe,v_icone :string;
+begin
+  q_datatable.close;
+  q_datatable.SQL.Clear;
+
+
+  q_datatable.SQL.Add(' select count(*) as total from contagem_estoque ');
+
+  q_datatable.SQL.Add(' where cod_empresa=  '+ inttostr(controller.xcod_empresa));
+
+
+
+
+
+  q_datatable.SQL.Add('and ( status like ''%' +
+    stringreplace(UpperCase(aParams.Values['search[value]']), ' ', '%',
+    [rfReplaceAll]) + '%'' ');
+  q_datatable.SQL.Add('      OR  descricao like ''%' +
+    stringreplace(UpperCase(aParams.Values['search[value]']), ' ', '%',
+    [rfReplaceAll]) + '%''  ');
+
+  q_datatable.SQL.Add('      OR  id like ''%' +
+    stringreplace(UpperCase(aParams.Values['search[value]']), ' ', '%',
+    [rfReplaceAll]) + '%'' ) ');
+
+//  q_datatable.SQL.Add('      OR   ncm like ''%' +
+//    stringreplace(UpperCase(aParams.Values['search[value]']), ' ', '%',
+//    [rfReplaceAll]) + '%'' ) ');
+
+  q_datatable.FetchOptions.RecsMax := -1;
+  q_datatable.FetchOptions.RecsSkip := -1;
+
+  q_datatable.Open;
+
+  wtotal := q_datatable.FieldByName('total').AsInteger;
+
+  //
+  // Select para montar o resultado do ajax na solicitacao do DATATABLE
+  //
+  q_datatable.close;
+
+  q_datatable.SQL.Clear;
+  q_datatable.sql.add('select id,');
+  q_datatable.sql.add('descricao,');
+  q_datatable.sql.add('case');
+  q_datatable.sql.add('when tipo_contagem = ''T'' then');
+  q_datatable.sql.add('''Todos os Itens''');
+  q_datatable.sql.add('when tipo_contagem = ''E'' then');
+  q_datatable.sql.add('''Estoque''');
+  q_datatable.sql.add('when tipo_contagem = ''I'' then');
+  q_datatable.sql.add('''Um Item''');
+  q_datatable.sql.add('end tipo_contagem');
+  q_datatable.sql.add(',');
+  q_datatable.sql.add('status,');
+  q_datatable.sql.add('data_criacao,');
+  q_datatable.sql.add('data_fechamento,');
+  q_datatable.sql.add('');
+  q_datatable.sql.add('contagem_atual');
+  q_datatable.sql.add('from contagem_estoque');
+  q_datatable.sql.add(' where cod_empresa =' + inttostr(controller.xcod_empresa));
+
+
+
+  q_datatable.SQL.Add('and ( status like ''%' +
+    stringreplace(UpperCase(aParams.Values['search[value]']), ' ', '%',
+    [rfReplaceAll]) + '%'' ');
+
+  q_datatable.SQL.Add('      OR  descricao like ''%' +
+    stringreplace(UpperCase(aParams.Values['search[value]']), ' ', '%',
+    [rfReplaceAll]) + '%''  ');
+
+  q_datatable.SQL.Add('      OR  id like ''%' +
+    stringreplace(UpperCase(aParams.Values['search[value]']), ' ', '%',
+    [rfReplaceAll]) + '%'' ) ');
+
+  // definindo a ordenação
+  case aParams.Values['order[0][column]'].ToInteger of
+    1:
+      q_datatable.SQL.Add('Order by id ' + aParams.Values
+        ['order[0][dir]'] + ' ');
+    2:
+      q_datatable.SQL.Add('Order by  descricao ' + aParams.Values
+        ['order[0][dir]'] + ' ');
+
+  end;
+
+  q_datatable.FetchOptions.RecsMax := strtoint(aParams.Values['length']);
+  q_datatable.FetchOptions.RecsSkip := strtoint(aParams.Values['start']);
+
+  q_datatable.Open;
+
+  //
+  // Montagem da variavel com o JASON de resultado da consulta
+  //
+  wresult := '{' + '"draw": ' + StrToIntDef(aParams.Values['draw'], 0).ToString
+    + ', ' + '"recordsTotal": ' + wtotal.ToString + ', ' + '"recordsFiltered": '
+    + wtotal.ToString + ', ' + '"data": [';
+  q_datatable.First;
+  btn2 := '';
+  btn3 := '';
+  id := '';
+  while not q_datatable.Eof do
+  begin
+
+    id := q_datatable.FieldByName('id').AsString;
+
+
+    btn1 := '   "<div class=\"btn-group\">' +
+      '   <button type=\"button\" class=\"btn btn-default dropdown-toggle\" data-toggle=\"dropdown\"  '
+      + '      aria-expanded=\"false\"> ' +
+      '      <span class=\"caret\"></span> ' + '   </button> ' +
+      '   <ul class=\"dropdown-menu\">  ' +
+      ' <li><a onclick=\"SetaAcao(''ShowF''' + ',' + ID +
+      ')\" > <i class=\"fa fa-print (alias)\"></i> Passo 1 - Imprimir Listagem p. contagem </a></li> ' +
+      ' <li><a onclick=\"SetaAcao(''INV01''' + ',' + ID +
+      ')\" > <i class=\"fa  fa-edit (alias)\"></i> Passo 2 - Primeira Digitação </a></li> '
+      + '   <li><a onclick=\"SetaAcao(''INV02''' + ',' + ID +
+      ')\" > <i class=\"fa fa-print\"></i> Passo 3 - Divergência 1ª Contagem </a></li> ' +
+      '   <li><a onclick=\"SetaAcao(''INV03''' + ',' + ID +
+      ')\" > <i class=\"fa  fa-edit (alias)\"></i> Passo 4 - Segunda digitação </a></li> '
+      + ' <li><a onclick=\"SetaAcao(''INV04''' + ',' + ID +
+      ')\" > <i class=\"fa fa-print\"></i> Passo 5 - Imprimir Divergência </a></li>  '
+      + ' <li><a onclick=\"SetaAcao(''INV05''' + ',' + ID +
+      ')\" > <i class=\"fa  fa-edit (alias)\"></i> Passo 6 - Terceira Digitação </a></li> '
+      + ' <li><a onclick=\"SetaAcao(''INV06''' + ',' + ID +
+      ')\" > <i class=\"fa fa-print\"></i>Passo 7 - Imprimir Divergência </a></li> ' +
+      ' <li><a onclick=\"SetaAcao(''INV07''' + ',' + ID +
+      ')\" > <i class=\"fa fa-lock\"></i> Passo 8 - Fechamento/Auditoria </a></li>  ' +
+      '   <li><a onclick=\"SetaAcao(''INV08''' + ',' + ID +
+       ')\" > <i class=\"fa fa-unlock\"></i> Cancelar Fechamento </a></li> '
+      + ' <li><a onclick=\"SetaAcao(''INV09''' + ',' + ID +
+      ')\" > <i class=\"fa fa-thumbs-o-up\"></i> Final - Acertar Estoque(Perigoso, não tem volta) </a></li>  ' +
+      '   <li><a onclick=\"SetaAcao(''INV10''' + ',' + ID +
+      ')\" > <i class=\"fa fa-search\"></i> Exibir Itens da contagem</a></li>   ' +
+      '   <li><a onclick=\"SetaAcao(''INV11''' + ',' + ID +
+
+      ')\" > <i class=\"fa  fa-trash\"></i> Cancelar Contagem</a></li>   '
+      + '   </ul>                                                                                                                  '
+      + ' </div>"  ';
+
+
+
+
+
+
+    //
+    wresult := wresult + '[' + '"' +
+      stringreplace(Trim(q_datatable.FieldByName('id').AsString), '"', '\"',
+      [rfReplaceAll]) + '", ' +
+    // Separador de colunas ------------------------------Ação
+
+          btn1  + ',' +
+    // Separador de colunas ------------------------------
+
+      '"' + stringreplace(Trim(q_datatable.FieldByName('descricao').AsString),
+      '"', '\"', [rfReplaceAll]) + '", ' +
+    // Separador de colunas ------------------------------
+     '"' + stringreplace(Trim(q_datatable.FieldByName('tipo_contagem').AsString),
+      '"', '\"', [rfReplaceAll]) + '", ' +
+    // Separador de colunas ------------------------------
+     '"' + stringreplace(Trim(q_datatable.FieldByName('status').AsString),
+      '"', '\"', [rfReplaceAll]) + '", ' +
+    // Separador de colunas ------------------------------
+     '"' + stringreplace(Trim(q_datatable.FieldByName('data_criacao').AsString),
+      '"', '\"', [rfReplaceAll]) + '", ' +
+    // Separador de colunas ------------------------------
+    '"' + stringreplace(Trim(q_datatable.FieldByName('data_fechamento').AsString),
+      '"', '\"', [rfReplaceAll]) + '", ' +
+    // Separador de colunas ------------------------------
+
+      '"' + stringreplace(Trim(q_datatable.FieldByName('contagem_atual').AsString),
+      '"', '\"', [rfReplaceAll]) + '", ' +
+
+
+    // Separador de colunas ------------------------------
+
+       btn1      + '],';
+    q_datatable.Next;
+
+  end;
+  q_datatable.close;
+
+  if wtotal <= 0 then
+    wresult := wresult + ']}'
+  else
+    wresult := LeftStr(Trim(wresult), Length(Trim(wresult)) - 1) + ']}';
+
+  //
+  // Envia o resultado para o ajax do DataTable
+  aResult := wresult;
+
+  // abco
+
+
+end;
+
+end.

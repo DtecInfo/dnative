@@ -1,0 +1,31 @@
+@media screen and (min-width: 992px) {
+    .v-center {
+        display: flex;
+        align-items: center;
+    }
+
+    .responsive.btn-group-vertical .btn {
+    	display: inline-block;
+    	width: auto;
+    	max-width: auto;
+        margin-top: 0px;
+    }
+}
+
+@media screen and (max-width: 991px) {
+	.btn-group-vertical .btn {
+    	margin-bottom: 5px;
+    }
+}
+
+.btn-group-vertical .btn {
+	text-align: left;
+}
+
+.btn-group-vertical.gapped .btn {
+	margin-bottom: 5px;
+}
+
+.btn-group-vertical .btn {
+        margin-bottom: 3px;
+    }
